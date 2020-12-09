@@ -11,7 +11,9 @@ namespace test
         static void Main(string[] args)
         {
             Console.Title = "Hello, World!"; // Заголовок консоли
-            
+
+            Console.ForegroundColor = ConsoleColor.Magenta; // Цвет текста в консоли
+
             Console.WriteLine("Hello, World!"); // Сообщение в консоли
             Console.ReadKey();
         }
