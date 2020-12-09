@@ -10,7 +10,9 @@ namespace test
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.Title = "Hello, World!"; // Заголовок консоли
+            
+            Console.WriteLine("Hello, World!"); // Сообщение в консоли
             Console.ReadKey();
         }
     }
