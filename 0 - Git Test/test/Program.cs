@@ -15,6 +15,10 @@ namespace test
             Console.ForegroundColor = ConsoleColor.Magenta; // Цвет текста в консоли
 
             Console.WriteLine("Hello, World!"); // Сообщение в консоли
+
+            Console.ResetColor(); // Восстанавливаем стандартный цвет
+
+            Console.WriteLine("\nНажмите любую клавишу, чтобы выйти..."); // Выход из программы
             Console.ReadKey();
         }
     }
