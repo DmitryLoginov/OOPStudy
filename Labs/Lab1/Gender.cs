@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab1
 {
+    // Перечисление, пол
     public enum Gender
     {
         Male,

@@ -10,6 +10,16 @@ namespace Lab1
     {
         static void Main(string[] args)
         {
+            PersonList people = new PersonList();
+
+            Console.WriteLine("тест:\n");
+            people.Print();
+
+            people[0] = people.Add("Чек", "тест", 20, Gender.Male);
+            Console.WriteLine("тест:\n");
+            people.Print();
+
+            Console.ReadKey();
         }
     }
 }

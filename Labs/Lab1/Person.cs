@@ -11,9 +11,10 @@ namespace Lab1
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public uint Age { get; set; }
-        public Gender Gender { get; set }
+        public Gender Gender { get; set; }
 
-        public Person(string firstName, string lastName, uint age, Gender gender) // Конструктор класса
+        // Конструктор класса
+        public Person(string firstName, string lastName, uint age, Gender gender)
         {
             FirstName = firstName;
             LastName = lastName;
