@@ -41,11 +41,13 @@ namespace Lab1
         public void Delete(int index)
         {
             Person[] temp = new Person[data.Length];
+            Array.Copy(data, temp, data.Length);
             Array.Resize<Person>(ref data, data.Length - 1);
-            for (int i = index; i < data.Length; i++)
-            {
-                data[i] = temp[i + 1];
-            }
+            Array.Copy(temp, index + 1, data, index, temp.Length - index - 1);
+            //for (int i = index; i < data.Length; i++)
+            //{
+            //    data[i] = temp[i + 1];
+            //}
         }
 
         // Вывод в консоль всех персон в списке
@@ -58,6 +60,12 @@ namespace Lab1
                 Console.Write($"{person.Age}\t");
                 Console.Write($"{person.Gender}\t\n");
             }
+        }
+
+        // Очистить список
+        public void Erase()
+        {
+            Array.Resize<Person>(ref data, 0);
         }
     }
 }

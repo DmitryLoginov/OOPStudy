@@ -21,12 +21,17 @@ namespace Lab1
             people.Print();
 
             people.Add("Хочу", "жрать", 20, Gender.Male);
+            people.Add("Ммм", "кфс", 20, Gender.Male);
             Console.WriteLine("\nтест:\n");
             people.Print();
 
             people.Delete(1);
             Console.WriteLine("\nтест:\n");
             people.Print();
+
+            //people.Erase();
+            //Console.WriteLine("\nтест:\n");
+            //people.Print();
 
             Console.ReadKey();
         }
