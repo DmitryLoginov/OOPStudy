@@ -13,20 +13,23 @@ namespace Lab1
             PersonList people = new PersonList();
 
             Console.WriteLine("тест:\n");
+            Console.WriteLine($"Количество элементов списка равно {people.Length()}");
             people.Print();
 
-            //people[0] = people.Add("Чек", "тест", 20, Gender.Male);
             people.Add("Чек", "тест", 20, Gender.Male);
             Console.WriteLine("\nтест:\n");
+            Console.WriteLine($"Количество элементов списка равно {people.Length()}");
             people.Print();
 
             people.Add("Хочу", "жрать", 20, Gender.Male);
             people.Add("Ммм", "кфс", 20, Gender.Male);
             Console.WriteLine("\nтест:\n");
+            Console.WriteLine($"Количество элементов списка равно {people.Length()}");
             people.Print();
 
             people.Delete(1);
             Console.WriteLine("\nтест:\n");
+            Console.WriteLine($"Количество элементов списка равно {people.Length()}");
             people.Print();
 
             people.Erase();

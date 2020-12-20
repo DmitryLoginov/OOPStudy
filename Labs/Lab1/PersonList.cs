@@ -63,5 +63,11 @@ namespace Lab1
         {
             Array.Resize<Person>(ref data, 0);
         }
+
+        // Получение количества элементов списка
+        public int Length()
+        {
+            return data.Length;
+        }
     }
 }
