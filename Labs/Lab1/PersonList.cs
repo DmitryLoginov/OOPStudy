@@ -45,30 +45,14 @@ namespace Lab1
             Array.Resize<Person>(ref data, data.Length - 1);
             Array.Copy(temp, index + 1, data, index, temp.Length - index - 1);
         }
-
-        // Вывод в консоль персоны по индексу
-        public void Print(int index)
-        {
-            Console.Write($"{data[index].FirstName}\t");
-            Console.Write($"{data[index].LastName}\t");
-            Console.Write($"{data[index].Age}\t");
-            Console.Write($"{data[index].Gender}\t\n");
-        }
-
+        
         // Вывод в консоль всех персон в списке
         public void PrintAll()
         {
             for (int i = 0; i < data.Length; i++)
             {
-                Print(i);
+                data[i].Print();
             }
-            //foreach (Person person in data)
-            //{
-            //    Console.Write($"{person.FirstName}\t");
-            //    Console.Write($"{person.LastName}\t");
-            //    Console.Write($"{person.Age}\t");
-            //    Console.Write($"{person.Gender}\t\n");
-            //}
         }
 
         // Очистить список

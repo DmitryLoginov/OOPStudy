@@ -21,5 +21,13 @@ namespace Lab1
             Age = age;
             Gender = gender;
         }
+
+        // Чтение персоны с клавиатуры
+
+        // Вывод персоны на экран
+        public void Print()
+        {
+            Console.Write($"\n{this.FirstName}\t{this.LastName}\t{this.Age}\t{this.Gender}\t\n");
+        }
     }
 }
