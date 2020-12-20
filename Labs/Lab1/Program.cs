@@ -15,8 +15,17 @@ namespace Lab1
             Console.WriteLine("тест:\n");
             people.Print();
 
-            people[0] = people.Add("Чек", "тест", 20, Gender.Male);
-            Console.WriteLine("тест:\n");
+            //people[0] = people.Add("Чек", "тест", 20, Gender.Male);
+            people.Add("Чек", "тест", 20, Gender.Male);
+            Console.WriteLine("\nтест:\n");
+            people.Print();
+
+            people.Add("Хочу", "жрать", 20, Gender.Male);
+            Console.WriteLine("\nтест:\n");
+            people.Print();
+
+            people.Delete(1);
+            Console.WriteLine("\nтест:\n");
             people.Print();
 
             Console.ReadKey();
