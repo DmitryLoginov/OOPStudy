@@ -44,10 +44,6 @@ namespace Lab1
             Array.Copy(data, temp, data.Length);
             Array.Resize<Person>(ref data, data.Length - 1);
             Array.Copy(temp, index + 1, data, index, temp.Length - index - 1);
-            //for (int i = index; i < data.Length; i++)
-            //{
-            //    data[i] = temp[i + 1];
-            //}
         }
 
         // Вывод в консоль всех персон в списке

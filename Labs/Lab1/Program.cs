@@ -29,9 +29,9 @@ namespace Lab1
             Console.WriteLine("\nтест:\n");
             people.Print();
 
-            //people.Erase();
-            //Console.WriteLine("\nтест:\n");
-            //people.Print();
+            people.Erase();
+            Console.WriteLine("\nтест:\n");
+            people.Print();
 
             Console.ReadKey();
         }
