@@ -44,34 +44,34 @@ namespace Lab1
             //Console.WriteLine("\nСодержимое второго списка:\n");
             //secondList.PrintAll();
 
-            PersonList people = new PersonList();
-
-            Console.WriteLine("тест:\n");
-            Console.WriteLine($"Количество элементов списка равно {people.Length()}");
-            people.PrintAll();
-            
-            people.Add("Чек", "тест", 20, Gender.Male);
-            Console.WriteLine("\nтест:\n");
-            Console.WriteLine($"Количество элементов списка равно {people.Length()}");
-            people.PrintAll();
-            
-            people.Add("Хочу", "жрать", 20, Gender.Male);
-            people.Add("Ммм", "кфс", 20, Gender.Male);
-            Console.WriteLine("\nтест:\n");
-            Console.WriteLine($"Количество элементов списка равно {people.Length()}");
-            people.PrintAll();
-            
-            // blah blah blah
-            people.Delete(1);
-            Console.WriteLine("\nтест:\n");
-            Console.WriteLine($"Количество элементов списка равно {people.Length()}");
-            people.PrintAll();
-            
-            people.Erase();
-            Console.WriteLine("\nтест:\n");
-            people.PrintAll();
-            
-            Console.ReadKey();
+            //PersonList people = new PersonList();
+            //
+            //Console.WriteLine("тест:\n");
+            //Console.WriteLine($"Количество элементов списка равно {people.Count()}");
+            //people.PrintAll();
+            //
+            //people.Add("Чек", "тест", 20, Gender.Male);
+            //Console.WriteLine("\nтест:\n");
+            //Console.WriteLine($"Количество элементов списка равно {people.Count()}");
+            //people.PrintAll();
+            //
+            //people.Add("Хочу", "жрать", 20, Gender.Male);
+            //people.Add("Ммм", "кфс", 20, Gender.Male);
+            //Console.WriteLine("\nтест:\n");
+            //Console.WriteLine($"Количество элементов списка равно {people.Count()}");
+            //people.PrintAll();
+            //
+            //// blah blah blah
+            //people.Delete(1);
+            //Console.WriteLine("\nтест:\n");
+            //Console.WriteLine($"Количество элементов списка равно {people.Count()}");
+            //people.PrintAll();
+            //
+            //people.Erase();
+            //Console.WriteLine("\nтест:\n");
+            //people.PrintAll();
+            //
+            //Console.ReadKey();
         }
     }
 }

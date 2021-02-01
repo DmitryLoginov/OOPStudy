@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Lab1
 {
-    // Перечисление, пол
+    /// <summary>
+    /// Пол персоны.
+    /// </summary>
     public enum Gender
     {
         Male,
-
         Female
     }
 }

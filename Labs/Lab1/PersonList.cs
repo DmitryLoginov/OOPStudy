@@ -6,65 +6,101 @@ using System.Threading.Tasks;
 
 namespace Lab1
 {
+    /// <summary>
+    /// Класс, описывающий абстракцию списка, содержащего объекты класса Person.
+    /// </summary>
     public class PersonList
     {
-        Person[] data;
+        private Person[] _data;
 
-        // Конструктор класса
+        /// <summary>
+        /// Конструктор класса PersonList.
+        /// </summary>
         public PersonList()
         {
-            data = new Person[0];
+            _data = new Person[0];
         }
 
-        // Индексатор
+        /// <summary>
+        /// Индексатор.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public Person this[int index]
         {
             get
             {
-                return data[index];
+                return _data[index];
             }
             set
             {
-                data[index] = value;
+                _data[index] = value;
             }
         }
 
-        // Добавление новой персоны
+        /// <summary>
+        /// Добавляет новую персону в конец списка.
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="age"></param>
+        /// <param name="gender"></param>
         public void Add(string firstName, string lastName, uint age, Gender gender)
         {
-            Array.Resize<Person>(ref data, data.Length + 1);
-            data[data.Length - 1] = new Person(firstName, lastName, age, gender);
-            //return data[data.Length - 1];
+            Array.Resize<Person>(ref _data, _data.Length + 1);
+            _data[_data.Length - 1] = new Person(firstName, lastName, age, gender);
         }
 
-        // Удаление элемента по индексу
+        /// <summary>
+        /// Удаляет персону по индексу.
+        /// </summary>
+        /// <param name="index"></param>
         public void Delete(int index)
         {
-            Person[] temp = new Person[data.Length];
-            Array.Copy(data, temp, data.Length);
-            Array.Resize<Person>(ref data, data.Length - 1);
-            Array.Copy(temp, index + 1, data, index, temp.Length - index - 1);
+            Person[] temp = new Person[_data.Length];
+            Array.Copy(_data, temp, _data.Length);
+            Array.Resize<Person>(ref _data, _data.Length - 1);
+            Array.Copy(temp, index + 1, _data, index, temp.Length - index - 1);
         }
-        
-        // Вывод в консоль всех персон в списке
+
+        /// <summary>
+        /// Выводит на экран персону по указанному индексу.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>Строка, содержащая имя, фамилию, пол и возраст персоны.</returns>
+        public string Print(int index)
+        {
+            return $"{_data[index].FirstName} {_data[index].LastName}, " +
+                $"пол: {_data[index].Gender}, возраст: {_data[index].Age}";
+        }
+
+        /// <summary>
+        /// Выводит всех персон в списке. WORK IN PROGRESS.
+        /// </summary>
         public void PrintAll()
         {
-            for (int i = 0; i < data.Length; i++)
+            for (int i = 0; i < _data.Length; i++)
             {
-                data[i].Print();
+                //_data[i].Print();
+
             }
         }
 
-        // Очистить список
+        /// <summary>
+        /// Удаляет всех персон в списке.
+        /// </summary>
         public void Erase()
         {
-            Array.Resize<Person>(ref data, 0);
+            Array.Resize<Person>(ref _data, 0);
         }
 
-        // Получение количества элементов списка
-        public int Length()
+        /// <summary>
+        /// Возвращает количество персон в списке.
+        /// </summary>
+        /// <returns>Целое число персон в списке.</returns>
+        public int Count()
         {
-            return data.Length;
+            return _data.Length;
         }
 
     }
