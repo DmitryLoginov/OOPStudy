@@ -13,9 +13,10 @@ namespace Lab1
             PersonList firstList = new PersonList();
             PersonList secondList = new PersonList();
 
-            firstList.Add(RandomPerson.GetRandomPerson());
-            firstList.Add(RandomPerson.GetRandomPerson());
-            firstList.Add(RandomPerson.GetRandomPerson());
+            for (int i = 0; i < 10; i++)
+            {
+                firstList.Add(RandomPerson.GetRandomPerson());
+            }
 
             //firstList.Add("Методика", "Войти", 18, Gender.Female);
             //firstList.Add("Главная", "Тест", 27, Gender.Female);

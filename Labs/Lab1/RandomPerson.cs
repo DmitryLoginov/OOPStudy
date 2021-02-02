@@ -11,11 +11,11 @@ namespace Lab1
     /// </summary>
     class RandomPerson
     {
-        static private string[] _maleNames = new string[10] { "Isaac", "Zach", "Nolan", "Hans", "Robert", 
+        static private string[] _maleNames = { "Isaac", "Zach", "Nolan", "Hans", "Robert", 
             "Terrence", "Challus", "Michael", "Nathan", "Gabe" };
-        static private string[] _femaleNames = new string[10] { "Nicole", "Kendra", "Elizabeth", "Ellie", "Lexine",
+        static private string[] _femaleNames = { "Nicole", "Kendra", "Elizabeth", "Ellie", "Lexine",
             "Daina", "Jennifer", "Karen", "Alissa", "Isabel" };
-        static private string[] _lastNames = new string[15] { "Clarke", "Brennan", "Hammond", "Daniels", "Kyne",
+        static private string[] _lastNames = { "Clarke", "Brennan", "Hammond", "Daniels", "Kyne",
             "Mercer", "Cross", "Temple", "Stross", "Langford", "Murdoch", "McNeill", "Weller", "Altman", "Carver" };
         static private Random randNum = new Random();
 
@@ -28,7 +28,7 @@ namespace Lab1
             string name;
             string surname;
             int age;
-            Gender gender = (Gender)randNum.Next(0, 1);
+            Gender gender = (Gender)randNum.Next(0, 2);
             switch (gender)
             {
                 case Gender.Male:
