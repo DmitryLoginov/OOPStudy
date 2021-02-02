@@ -13,7 +13,7 @@ namespace Lab1
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public uint Age { get; set; }
+        public int Age { get; set; }
         public Gender Gender { get; set; }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace Lab1
         /// <param name="lastName"></param>
         /// <param name="age"></param>
         /// <param name="gender"></param>
-        public Person(string firstName, string lastName, uint age, Gender gender)
+        public Person(string firstName, string lastName, int age, Gender gender)
         {
             FirstName = firstName;
             LastName = lastName;

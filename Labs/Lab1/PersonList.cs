@@ -45,10 +45,20 @@ namespace Lab1
         /// <param name="lastName"></param>
         /// <param name="age"></param>
         /// <param name="gender"></param>
-        public void Add(string firstName, string lastName, uint age, Gender gender)
+        public void Add(string firstName, string lastName, int age, Gender gender)
         {
             Array.Resize<Person>(ref _data, _data.Length + 1);
             _data[_data.Length - 1] = new Person(firstName, lastName, age, gender);
+        }
+
+        /// <summary>
+        /// Добавляет новую персону в конец списка.
+        /// </summary>
+        /// <param name="person"></param>
+        public void Add(Person person)
+        {
+            Array.Resize<Person>(ref _data, _data.Length + 1);
+            _data[_data.Length - 1] = person;
         }
 
         /// <summary>

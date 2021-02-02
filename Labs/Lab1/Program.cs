@@ -12,88 +12,92 @@ namespace Lab1
         {
             PersonList firstList = new PersonList();
             PersonList secondList = new PersonList();
-            
-            firstList.Add("Методика", "Войти", 18, Gender.Female);
-            firstList.Add("Главная", "Тест", 27, Gender.Female);
-            firstList.Add("Средства", "Окно", 18, Gender.Male);
-            
-            secondList.Add("Обозреватель", "Свойства", 37, Gender.Male);
-            secondList.Add("Список", "Сообщение", 11, Gender.Male);
-            secondList.Add("Правка", "Анализ", 28, Gender.Female);
-            
+
+            firstList.Add(RandomPerson.GetRandomPerson());
+            firstList.Add(RandomPerson.GetRandomPerson());
+            firstList.Add(RandomPerson.GetRandomPerson());
+
+            //firstList.Add("Методика", "Войти", 18, Gender.Female);
+            //firstList.Add("Главная", "Тест", 27, Gender.Female);
+            //firstList.Add("Средства", "Окно", 18, Gender.Male);
+            //
+            //secondList.Add("Обозреватель", "Свойства", 37, Gender.Male);
+            //secondList.Add("Список", "Сообщение", 11, Gender.Male);
+            //secondList.Add("Правка", "Анализ", 28, Gender.Female);
+            //
             Console.WriteLine("Содержимое первого списка:\n");
             for (int i = 0; i < firstList.Count(); i++)
             {
                 Console.WriteLine(firstList.Print(i));
             }
-
-            Console.ReadKey();
-
-            Console.WriteLine("\nСодержимое второго списка:\n");
-            for (int i = 0; i < secondList.Count(); i++)
-            {
-                Console.WriteLine(secondList.Print(i));
-            }
-
-            Console.ReadKey();
-            Console.WriteLine("\nДобавление нового человека в первый список\n" +
-                "Копирование второго человека из первого списка в конец второго списка");
-
-            firstList.Add("Новый", "Человек", 28, Gender.Male);
-            secondList.Add("Новый", "Человек", 28, Gender.Male);
-            secondList[3] = firstList[1];
-            
-            Console.WriteLine("\nСодержимое первого списка:\n");
-            for (int i = 0; i < firstList.Count(); i++)
-            {
-                Console.WriteLine(firstList.Print(i));
-            }
-
-            Console.ReadKey();
-
-            Console.WriteLine("\nСодержимое второго списка:\n");
-            for (int i = 0; i < secondList.Count(); i++)
-            {
-                Console.WriteLine(secondList.Print(i));
-            }
-
-            Console.ReadKey();
-            Console.WriteLine("\nУдаление второго человека из первого списка");
-
-            firstList.Delete(1);
-            
-            Console.WriteLine("\nСодержимое первого списка:\n");
-            for (int i = 0; i < firstList.Count(); i++)
-            {
-                Console.WriteLine(firstList.Print(i));
-            }
-
-            Console.ReadKey();
-
-            Console.WriteLine("\nСодержимое второго списка:\n");
-            for (int i = 0; i < secondList.Count(); i++)
-            {
-                Console.WriteLine(secondList.Print(i));
-            }
-
-            Console.ReadKey();
-            Console.WriteLine("\nОчистка второго списка");
-
-            secondList.Erase();
-
-            Console.WriteLine("\nСодержимое первого списка:\n");
-            for (int i = 0; i < firstList.Count(); i++)
-            {
-                Console.WriteLine(firstList.Print(i));
-            }
-
-            Console.ReadKey();
-
-            Console.WriteLine("\nСодержимое второго списка:\n");
-            for (int i = 0; i < secondList.Count(); i++)
-            {
-                Console.WriteLine(secondList.Print(i));
-            }
+            //
+            //Console.ReadKey();
+            //
+            //Console.WriteLine("\nСодержимое второго списка:\n");
+            //for (int i = 0; i < secondList.Count(); i++)
+            //{
+            //    Console.WriteLine(secondList.Print(i));
+            //}
+            //
+            //Console.ReadKey();
+            //Console.WriteLine("\nДобавление нового человека в первый список\n" +
+            //    "Копирование второго человека из первого списка в конец второго списка");
+            //
+            //firstList.Add("Новый", "Человек", 28, Gender.Male);
+            //secondList.Add("Новый", "Человек", 28, Gender.Male);
+            //secondList[3] = firstList[1];
+            //
+            //Console.WriteLine("\nСодержимое первого списка:\n");
+            //for (int i = 0; i < firstList.Count(); i++)
+            //{
+            //    Console.WriteLine(firstList.Print(i));
+            //}
+            //
+            //Console.ReadKey();
+            //
+            //Console.WriteLine("\nСодержимое второго списка:\n");
+            //for (int i = 0; i < secondList.Count(); i++)
+            //{
+            //    Console.WriteLine(secondList.Print(i));
+            //}
+            //
+            //Console.ReadKey();
+            //Console.WriteLine("\nУдаление второго человека из первого списка");
+            //
+            //firstList.Delete(1);
+            //
+            //Console.WriteLine("\nСодержимое первого списка:\n");
+            //for (int i = 0; i < firstList.Count(); i++)
+            //{
+            //    Console.WriteLine(firstList.Print(i));
+            //}
+            //
+            //Console.ReadKey();
+            //
+            //Console.WriteLine("\nСодержимое второго списка:\n");
+            //for (int i = 0; i < secondList.Count(); i++)
+            //{
+            //    Console.WriteLine(secondList.Print(i));
+            //}
+            //
+            //Console.ReadKey();
+            //Console.WriteLine("\nОчистка второго списка");
+            //
+            //secondList.Erase();
+            //
+            //Console.WriteLine("\nСодержимое первого списка:\n");
+            //for (int i = 0; i < firstList.Count(); i++)
+            //{
+            //    Console.WriteLine(firstList.Print(i));
+            //}
+            //
+            //Console.ReadKey();
+            //
+            //Console.WriteLine("\nСодержимое второго списка:\n");
+            //for (int i = 0; i < secondList.Count(); i++)
+            //{
+            //    Console.WriteLine(secondList.Print(i));
+            //}
 
 
             //PersonList people = new PersonList();
