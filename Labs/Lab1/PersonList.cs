@@ -112,9 +112,29 @@ namespace Lab1
             for (int i = 0; i < _data.Length; i++)
             {
                 str = str + $"\n{_data[i].FirstName} {_data[i].LastName}, " +
-                $"пол: {_data[i].Gender}, возраст: {_data[i].Age}";
+                    $"пол: {_data[i].Gender}, возраст: {_data[i].Age}";
             }
             return str;
+        }
+
+        /// <summary>
+        /// Осуществляет поиск индексов элементов при наличии их в списке.
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <returns></returns>
+        public int[] FindIndex(string firstName, string lastName)
+        {
+            int[] index = new int[0];
+            for (int i = 0; i < _data.Length; i++)
+            {
+                if ((_data[i].FirstName == firstName) && (_data[i].LastName == lastName))
+                {
+                    Array.Resize<int>(ref index, index.Length + 1);
+                    index[index.Length - 1] = i;
+                }
+            }
+            return index;
         }
 
         /// <summary>

@@ -31,9 +31,14 @@ namespace Lab1
                 Console.WriteLine(firstList.Print(i));
             }
 
-            firstList.DeleteByName("Kek", "Lol");
+            int[] index = firstList.FindIndex("Kek", "Lol");
 
-            Console.WriteLine(firstList.PrintAll());
+            for (int i = 0; i < index.Length; i++)
+            {
+                Console.WriteLine(index[i]);
+            }
+
+            //Console.WriteLine(firstList.PrintAll());
             //Console.WriteLine("\nСодержимое первого списка:\n");
             //for (int i = 0; i < firstList.Count(); i++)
             //{
