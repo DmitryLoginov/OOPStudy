@@ -13,25 +13,33 @@ namespace Lab1
             PersonList firstList = new PersonList();
             PersonList secondList = new PersonList();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 3; i++)
             {
                 firstList.Add(RandomPerson.GetRandomPerson());
             }
 
-            //firstList.Add("Методика", "Войти", 18, Gender.Female);
-            //firstList.Add("Главная", "Тест", 27, Gender.Female);
-            //firstList.Add("Средства", "Окно", 18, Gender.Male);
-            //
-            //secondList.Add("Обозреватель", "Свойства", 37, Gender.Male);
-            //secondList.Add("Список", "Сообщение", 11, Gender.Male);
-            //secondList.Add("Правка", "Анализ", 28, Gender.Female);
-            //
-            Console.WriteLine("Содержимое первого списка:\n");
+            firstList.Add("Kek", "Lol", 20, Gender.Male);
+
+            for (int i = 0; i < 3; i++)
+            {
+                firstList.Add(RandomPerson.GetRandomPerson());
+            }
+
+            Console.WriteLine("\nСодержимое первого списка:\n");
             for (int i = 0; i < firstList.Count(); i++)
             {
                 Console.WriteLine(firstList.Print(i));
             }
-            //
+
+            firstList.DeleteByName("Kek", "Lol");
+            
+            Console.WriteLine("\nСодержимое первого списка:\n");
+            for (int i = 0; i < firstList.Count(); i++)
+            {
+                Console.WriteLine(firstList.Print(i));
+            }
+
+
             //Console.ReadKey();
             //
             //Console.WriteLine("\nСодержимое второго списка:\n");
@@ -100,34 +108,6 @@ namespace Lab1
             //    Console.WriteLine(secondList.Print(i));
             //}
 
-
-            //PersonList people = new PersonList();
-            //
-            //Console.WriteLine("тест:\n");
-            //Console.WriteLine($"Количество элементов списка равно {people.Count()}");
-            //people.PrintAll();
-            //
-            //people.Add("Чек", "тест", 20, Gender.Male);
-            //Console.WriteLine("\nтест:\n");
-            //Console.WriteLine($"Количество элементов списка равно {people.Count()}");
-            //people.PrintAll();
-            //
-            //people.Add("Хочу", "жрать", 20, Gender.Male);
-            //people.Add("Ммм", "кфс", 20, Gender.Male);
-            //Console.WriteLine("\nтест:\n");
-            //Console.WriteLine($"Количество элементов списка равно {people.Count()}");
-            //people.PrintAll();
-            //
-            //// blah blah blah
-            //people.Delete(1);
-            //Console.WriteLine("\nтест:\n");
-            //Console.WriteLine($"Количество элементов списка равно {people.Count()}");
-            //people.PrintAll();
-            //
-            //people.Erase();
-            //Console.WriteLine("\nтест:\n");
-            //people.PrintAll();
-            //
             Console.ReadKey();
         }
     }

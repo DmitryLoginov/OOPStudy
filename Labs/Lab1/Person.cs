@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Lab1
 {
@@ -11,9 +12,26 @@ namespace Lab1
     /// </summary>
     public class Person
     {
+        private int _age;
+        
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
+        public int Age
+        { 
+            get
+            {
+                return _age;
+            }
+            private set
+            {
+                const int maxAge = 130;
+                if ((value >= maxAge) || (value < 0))
+                {
+                    throw new ArgumentException($"{nameof(Age)} должен быть не отрицательным числом, меньшим {maxAge}");
+                }
+                _age = value;
+            }
+        }
         public Gender Gender { get; set; }
 
         /// <summary>
@@ -30,11 +48,5 @@ namespace Lab1
             Age = age;
             Gender = gender;
         }
-
-        // Вывод персоны на экран
-        //public void Print()
-        //{
-        //    Console.Write($"\n{this.FirstName}\t{this.LastName}\t{this.Age}\t{this.Gender}\t\n");
-        //}
     }
 }

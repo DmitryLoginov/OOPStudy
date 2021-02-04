@@ -65,12 +65,32 @@ namespace Lab1
         /// Удаляет персону по индексу.
         /// </summary>
         /// <param name="index"></param>
-        public void Delete(int index)
+        public void DeleteByIndex(int index)
         {
             Person[] temp = new Person[_data.Length];
             Array.Copy(_data, temp, _data.Length);
             Array.Resize<Person>(ref _data, _data.Length - 1);
             Array.Copy(temp, index + 1, _data, index, temp.Length - index - 1);
+        }
+
+        /// <summary>
+        /// Удаляет персону по имени и фамилии.
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        public void DeleteByName(string firstName, string lastName)
+        {
+            Person[] temp = new Person[0];
+            //int k = 0;
+            for (int i = 0; i < _data.Length; i++)
+            {
+                if ((_data[i].FirstName != firstName) && (_data[i].LastName != lastName))
+                {
+                    Array.Resize<Person>(ref temp, temp.Length + 1);
+                    temp[temp.Length - 1] = _data[i];
+                }
+            }
+            _data = temp;
         }
 
         /// <summary>
@@ -85,14 +105,13 @@ namespace Lab1
         }
 
         /// <summary>
-        /// Выводит всех персон в списке. WORK IN PROGRESS.
+        /// Выводит всех персон в списке. НЕ РАБОТАЕТ.
         /// </summary>
         public void PrintAll()
         {
             for (int i = 0; i < _data.Length; i++)
             {
-                //_data[i].Print();
-
+                Print(i);
             }
         }
 
