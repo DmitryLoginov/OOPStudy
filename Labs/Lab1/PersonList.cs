@@ -81,7 +81,6 @@ namespace Lab1
         public void DeleteByName(string firstName, string lastName)
         {
             Person[] temp = new Person[0];
-            //int k = 0;
             for (int i = 0; i < _data.Length; i++)
             {
                 if ((_data[i].FirstName != firstName) && (_data[i].LastName != lastName))
@@ -105,14 +104,17 @@ namespace Lab1
         }
 
         /// <summary>
-        /// Выводит всех персон в списке. НЕ РАБОТАЕТ.
+        /// Выводит всех персон в списке.
         /// </summary>
-        public void PrintAll()
+        public string PrintAll()
         {
+            string str = "";
             for (int i = 0; i < _data.Length; i++)
             {
-                Print(i);
+                str = str + $"\n{_data[i].FirstName} {_data[i].LastName}, " +
+                $"пол: {_data[i].Gender}, возраст: {_data[i].Age}";
             }
+            return str;
         }
 
         /// <summary>

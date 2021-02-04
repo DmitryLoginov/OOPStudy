@@ -32,12 +32,13 @@ namespace Lab1
             }
 
             firstList.DeleteByName("Kek", "Lol");
-            
-            Console.WriteLine("\nСодержимое первого списка:\n");
-            for (int i = 0; i < firstList.Count(); i++)
-            {
-                Console.WriteLine(firstList.Print(i));
-            }
+
+            Console.WriteLine(firstList.PrintAll());
+            //Console.WriteLine("\nСодержимое первого списка:\n");
+            //for (int i = 0; i < firstList.Count(); i++)
+            //{
+            //    Console.WriteLine(firstList.Print(i));
+            //}
 
 
             //Console.ReadKey();
