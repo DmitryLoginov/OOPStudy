@@ -153,6 +153,5 @@ namespace Lab1
         {
             return _data.Length;
         }
-
     }
 }
