@@ -30,10 +30,18 @@ namespace Lab1
         {
             get
             {
+                if ((index < 0) || (index > (_data.Length - 1)))
+                {
+                    throw new IndexOutOfRangeException("Выход за границы массива.");
+                }
                 return _data[index];
             }
             set
             {
+                if ((index < 0) || (index > (_data.Length - 1)))
+                {
+                    throw new IndexOutOfRangeException("Выход за границы массива.");
+                }
                 _data[index] = value;
             }
         }
@@ -67,6 +75,10 @@ namespace Lab1
         /// <param name="index"></param>
         public void DeleteByIndex(int index)
         {
+            if ((index < 0) || (index > (_data.Length - 1)))
+            {
+                throw new IndexOutOfRangeException("Выход за границы массива.");
+            }
             Person[] temp = new Person[_data.Length];
             Array.Copy(_data, temp, _data.Length);
             Array.Resize<Person>(ref _data, _data.Length - 1);
@@ -99,6 +111,10 @@ namespace Lab1
         /// <returns>Строка, содержащая имя, фамилию, пол и возраст персоны.</returns>
         public string Print(int index)
         {
+            if ((index < 0) || (index > (_data.Length - 1)))
+            {
+                throw new IndexOutOfRangeException("Выход за границы массива.");
+            }
             return $"{_data[index].FirstName} {_data[index].LastName}, " +
                 $"пол: {_data[index].Gender}, возраст: {_data[index].Age}";
         }
@@ -106,6 +122,7 @@ namespace Lab1
         /// <summary>
         /// Выводит всех персон в списке.
         /// </summary>
+        /// <returns>Строка с информацией о персонах в списке.</returns>
         public string PrintAll()
         {
             string str = "";
@@ -122,7 +139,7 @@ namespace Lab1
         /// </summary>
         /// <param name="firstName"></param>
         /// <param name="lastName"></param>
-        /// <returns></returns>
+        /// <returns>Массив индексов персон, удовлетворяющих условиям.</returns>
         public int[] FindIndex(string firstName, string lastName)
         {
             int[] index = new int[0];

@@ -31,27 +31,36 @@ namespace Lab1
         /// Ведёт диалог с пользователем для ввода персоны с клавиатуры.
         /// </summary>
         /// <returns>Переменная типа Person.</returns>
-        private static Person ReadPerson() // надо убрать дублирование
+        private static Person ReadPerson()
         {
             string firstName, lastName, ageString, genderString;
-            //bool k = true;
+
             Check method = Person.IsNameCorrect;
             firstName = CheckInputValue("имя", method);
             lastName = CheckInputValue("фамилия", method);
+
             method = Person.IsAgeCorrect;
             ageString = CheckInputValue("возраст", method);
+
             method = Person.IsGenderCorrect;
             genderString = CheckInputValue("пол", method);
+
             int age = Convert.ToInt32(ageString);
             Gender gender = (Gender)Enum.Parse(typeof(Gender), genderString, true);
 
             return new Person(firstName, lastName, age, gender);
         }
 
+        /// <summary>
+        /// Принимает от пользователя параметр и вызывает метод для проверки этого параметра.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="method"></param>
+        /// <returns>Строка, введённая пользователем.</returns>
         private static string CheckInputValue(string id, Check method)
         {
             string param;
-            bool k = true;
+            bool k;
             do
             {
                 k = true;
@@ -59,7 +68,7 @@ namespace Lab1
                 param = Console.ReadLine();
                 try
                 {
-                    method(param); // тут нужен делегат
+                    method(param);
                 }
                 catch (ArgumentException ex)
                 {

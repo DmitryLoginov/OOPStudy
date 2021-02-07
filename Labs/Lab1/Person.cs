@@ -33,6 +33,17 @@ namespace Lab1
         }
 
         /// <summary>
+        /// Выводит на экран информацию о персоне.
+        /// </summary>
+        /// <param name="person"></param>
+        /// <returns>Строка, содержащая имя, фамилию, пол и возраст персоны.</returns>
+        public string Print(Person person)
+        {
+            return $"{person.FirstName} {person.LastName}, " +
+                $"пол: {person.Gender}, возраст: {person.Age}";
+        }
+
+        /// <summary>
         /// Проверяет имя или фамилию на соответствие требованиям.
         /// </summary>
         /// <param name="name"></param>
