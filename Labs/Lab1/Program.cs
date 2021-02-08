@@ -36,14 +36,16 @@ namespace Lab1
             string firstName, lastName, ageString, genderString;
 
             Check method = Person.IsNameCorrect;
-            firstName = CheckInputValue("имя", method);
-            lastName = CheckInputValue("фамилия", method);
+            firstName = RightRegister(CheckInputValue("имя", method));
+            lastName = RightRegister(CheckInputValue("фамилию", method));
 
             method = Person.IsAgeCorrect;
             ageString = CheckInputValue("возраст", method);
 
             method = Person.IsGenderCorrect;
             genderString = CheckInputValue("пол", method);
+
+
 
             int age = Convert.ToInt32(ageString);
             Gender gender = (Gender)Enum.Parse(typeof(Gender), genderString, true);
@@ -78,6 +80,23 @@ namespace Lab1
             }
             while (k == false);
             return param;
+        }
+
+        private static string RightRegister(string name)
+        {
+            string rightName = name.Substring(0, 1).ToUpper() + name.Substring(1).ToLower();
+            int index;
+            for (int i = 0; i < rightName.Length; i++)
+            {
+                if ((rightName[i] == ' ') || (rightName[i] == '-'))
+                {
+                    index = i;
+                    rightName = rightName.Substring(0, i + 1) + rightName.Substring(i + 1, 1).ToUpper() 
+                        + rightName.Substring(i + 2).ToLower();
+                    break;
+                }
+            }
+            return rightName;
         }
     }
 }

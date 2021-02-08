@@ -49,7 +49,7 @@ namespace Lab1
         /// <param name="name"></param>
         public static void IsNameCorrect(string name)
         {
-            Regex namePattern = new Regex(@"((^([a-zA-Z])+$)|(^([a-zA-Z])+\s([a-zA-Z])+$))|((^([а-яА-Я])+$)|(^([а-яА-Я])+\s([а-яА-Я])+$))");
+            Regex namePattern = new Regex(@"((^([a-zA-Z])+$)|(^([a-zA-Z])+(\s|-)([a-zA-Z])+$))|((^([а-яА-Я])+$)|(^([а-яА-Я])+(\s|-)([а-яА-Я])+$))");
             if (namePattern.IsMatch(name) != true)
             {
                 throw new ArgumentException("Имя и фамилия должны содержать только русские или английские символы.\n" +
