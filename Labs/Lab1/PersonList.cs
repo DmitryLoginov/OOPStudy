@@ -128,8 +128,8 @@ namespace Lab1
             string str = "";
             for (int i = 0; i < _data.Length; i++)
             {
-                str = str + $"\n{_data[i].FirstName} {_data[i].LastName}, " +
-                    $"пол: {_data[i].Gender}, возраст: {_data[i].Age}";
+                str = str + $"{_data[i].FirstName} {_data[i].LastName}, " +
+                    $"пол: {_data[i].Gender}, возраст: {_data[i].Age}\n";
             }
             return str;
         }

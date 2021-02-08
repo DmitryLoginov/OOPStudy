@@ -19,11 +19,48 @@ namespace Lab1
             PersonList firstList = new PersonList();
             PersonList secondList = new PersonList();
 
-            Person test = ReadPerson();
+            Console.WriteLine("Создание двух списков персон по три человека в каждом.");
+            for (int i = 0; i < 3; i++)
+            {
+                firstList.Add(RandomPerson.GetRandomPerson());
+                secondList.Add(RandomPerson.GetRandomPerson());
+            }
+            
+            Console.ReadKey();
+            Console.WriteLine("Содержимое первого списка:");
+            Console.WriteLine(firstList.PrintAll());
+            Console.WriteLine("Содержимое второго списка:");
+            Console.WriteLine(secondList.PrintAll());
 
-            Console.WriteLine($"{test.FirstName} {test.LastName} {test.Age} {test.Gender}");
+            Console.ReadKey();
+            Console.WriteLine("Добавление нового человека в первый список.");
+            firstList.Add(RandomPerson.GetRandomPerson());
+            Console.WriteLine("Копирование второго человека из первого списка в конец второго.");
+            secondList.Add(firstList[1]);
 
+            Console.ReadKey();
+            Console.WriteLine("Содержимое первого списка:");
+            Console.WriteLine(firstList.PrintAll());
+            Console.WriteLine("Содержимое второго списка:");
+            Console.WriteLine(secondList.PrintAll());
 
+            Console.ReadKey();
+            Console.WriteLine("Удаление второго человека из первого списка.");
+            firstList.DeleteByIndex(1);
+            Console.WriteLine("Содержимое первого списка:");
+            Console.WriteLine(firstList.PrintAll());
+            Console.WriteLine("Содержимое второго списка:");
+            Console.WriteLine(secondList.PrintAll());
+
+            Console.ReadKey();
+            Console.WriteLine("Очистка второго списка.");
+            secondList.Erase();
+            Console.WriteLine("Содержимое первого списка:");
+            Console.WriteLine(firstList.PrintAll());
+            Console.WriteLine("Содержимое второго списка:");
+            Console.WriteLine(secondList.PrintAll());
+
+            Console.WriteLine("Нажмите любую клавишу, чтобы выйти...");
             Console.ReadKey();
         }
 
@@ -44,8 +81,6 @@ namespace Lab1
 
             method = Person.IsGenderCorrect;
             genderString = CheckInputValue("пол", method);
-
-
 
             int age = Convert.ToInt32(ageString);
             Gender gender = (Gender)Enum.Parse(typeof(Gender), genderString, true);
@@ -82,6 +117,11 @@ namespace Lab1
             return param;
         }
 
+        /// <summary>
+        /// Преобразует имя и фамилию в правильный регистр.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>Имя/фамилия с первой заглавной буквой и прописными остальными.</returns>
         private static string RightRegister(string name)
         {
             string rightName = name.Substring(0, 1).ToUpper() + name.Substring(1).ToLower();
