@@ -12,7 +12,7 @@ namespace Lab1
         /// Делегат для вызова методов проверки свойств персоны.
         /// </summary>
         /// <param name="param"></param>
-        delegate void Check(string param);
+        private delegate void Check(string param);
         
         static void Main(string[] args)
         {
