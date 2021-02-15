@@ -20,10 +20,10 @@ namespace Lab1
         /// <summary>
         /// Конструктор класса Person.
         /// </summary>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
-        /// <param name="age"></param>
-        /// <param name="gender"></param>
+        /// <param name="firstName">Имя персоны.</param>
+        /// <param name="lastName">Фамилия персоны.</param>
+        /// <param name="age">Возраст персоны.</param>
+        /// <param name="gender">Пол персоны.</param>
         public Person(string firstName, string lastName, int age, Gender gender)
         {
             FirstName = firstName;
@@ -44,11 +44,11 @@ namespace Lab1
         /// <summary>
         /// Проверяет имя или фамилию на соответствие требованиям.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">Строка, соответствующая имени или фамилии.</param>
         public static void IsNameCorrect(string name)
         {
             Regex namePattern = new Regex(@"((^([a-zA-Z])+$)|(^([a-zA-Z])+(\s|-)([a-zA-Z])+$))|((^([а-яА-Я])+$)|(^([а-яА-Я])+(\s|-)([а-яА-Я])+$))");
-            if (namePattern.IsMatch(name) != true)
+            if (!namePattern.IsMatch(name))
             {
                 throw new ArgumentException("Имя и фамилия должны содержать только русские или английские символы.\n" +
                     "Попробуйте ещё раз.");
@@ -58,12 +58,12 @@ namespace Lab1
         /// <summary>
         /// Проверяет возраст на соответствие требованиям.
         /// </summary>
-        /// <param name="ageString"></param>
+        /// <param name="ageString">Строка, соответствующая возрасту.</param>
         public static void IsAgeCorrect(string ageString)
         {
             int age;
             const int maxAge = 130;
-            if ((Int32.TryParse(ageString, out age) != true) || (age >= maxAge) || (age < 0))
+            if (!Int32.TryParse(ageString, out age) || (age >= maxAge) || (age < 0))
             {
                 throw new ArgumentException($"Возраст должен быть не отрицательным числом, меньшим {maxAge}.\n" +
                     $"Попробуйте ещё раз.");
@@ -73,14 +73,13 @@ namespace Lab1
         /// <summary>
         /// Проверяет корректный ввод пола.
         /// </summary>
-        /// <param name="genderString"></param>
+        /// <param name="genderString">Строка, соответствующая полу.</param>
         public static void IsGenderCorrect(string genderString)
         {
-            if (Enum.IsDefined(typeof(Gender), genderString) != true)
+            if (!Enum.IsDefined(typeof(Gender), genderString))
             {
                 throw new ArgumentException("Некорректно введён пол.\nПопробуйте ещё раз.");
             }
-            Gender genderPlaceholder = (Gender)Enum.Parse(typeof(Gender), genderString, true);
         }
 
     }

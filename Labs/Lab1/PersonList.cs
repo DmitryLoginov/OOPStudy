@@ -49,10 +49,10 @@ namespace Lab1
         /// <summary>
         /// Добавляет новую персону в конец списка.
         /// </summary>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
-        /// <param name="age"></param>
-        /// <param name="gender"></param>
+        /// <param name="firstName">Имя персоны.</param>
+        /// <param name="lastName">Фамилия персоны.</param>
+        /// <param name="age">Возраст персоны.</param>
+        /// <param name="gender">Пол персоны.</param>
         public void Add(string firstName, string lastName, int age, Gender gender)
         {
             Array.Resize<Person>(ref _data, _data.Length + 1);
@@ -62,7 +62,7 @@ namespace Lab1
         /// <summary>
         /// Добавляет новую персону в конец списка.
         /// </summary>
-        /// <param name="person"></param>
+        /// <param name="person">Переменная типа Person.</param>
         public void Add(Person person)
         {
             Array.Resize<Person>(ref _data, _data.Length + 1);
@@ -72,42 +72,42 @@ namespace Lab1
         /// <summary>
         /// Удаляет персону по индексу.
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">Индекс персоны в списке.</param>
         public void DeleteByIndex(int index)
         {
             if ((index < 0) || (index > (_data.Length - 1)))
             {
                 throw new IndexOutOfRangeException("Выход за границы массива.");
             }
-            Person[] temp = new Person[_data.Length];
-            Array.Copy(_data, temp, _data.Length);
+            Person[] tmpArray = new Person[_data.Length];
+            Array.Copy(_data, tmpArray, _data.Length);
             Array.Resize<Person>(ref _data, _data.Length - 1);
-            Array.Copy(temp, index + 1, _data, index, temp.Length - index - 1);
+            Array.Copy(tmpArray, index + 1, _data, index, tmpArray.Length - index - 1);
         }
 
         /// <summary>
         /// Удаляет персону по имени и фамилии.
         /// </summary>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
+        /// <param name="firstName">Имя персоны.</param>
+        /// <param name="lastName">Фамилия персоны.</param>
         public void DeleteByName(string firstName, string lastName)
         {
-            Person[] temp = new Person[0];
+            Person[] tmpArray = new Person[0];
             for (int i = 0; i < _data.Length; i++)
             {
                 if ((_data[i].FirstName != firstName) && (_data[i].LastName != lastName))
                 {
-                    Array.Resize<Person>(ref temp, temp.Length + 1);
-                    temp[temp.Length - 1] = _data[i];
+                    Array.Resize<Person>(ref tmpArray, tmpArray.Length + 1);
+                    tmpArray[tmpArray.Length - 1] = _data[i];
                 }
             }
-            _data = temp;
+            _data = tmpArray;
         }
 
         /// <summary>
         /// Выводит на экран персону по указанному индексу.
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">Индекс персоны в списке.</param>
         /// <returns>Строка, содержащая имя, фамилию, пол и возраст персоны.</returns>
         public string Print(int index)
         {
@@ -137,8 +137,8 @@ namespace Lab1
         /// <summary>
         /// Осуществляет поиск индексов элементов при наличии их в списке.
         /// </summary>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
+        /// <param name="firstName">Имя персоны.</param>
+        /// <param name="lastName">Фамилия персоны.</param>
         /// <returns>Массив индексов персон, удовлетворяющих условиям.</returns>
         public int[] FindIndex(string firstName, string lastName)
         {

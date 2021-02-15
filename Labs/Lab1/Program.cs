@@ -11,7 +11,7 @@ namespace Lab1
         /// <summary>
         /// Делегат для вызова методов проверки свойств персоны.
         /// </summary>
-        /// <param name="param"></param>
+        /// <param name="param">Строка-параметр персоны для проверки.</param>
         private delegate void Check(string param);
         
         static void Main(string[] args)
@@ -19,7 +19,7 @@ namespace Lab1
             PersonList firstList = new PersonList();
             PersonList secondList = new PersonList();
 
-            Console.WriteLine("Создание двух списков персон по три человека в каждом.");
+            Console.WriteLine("--Создание двух списков персон по три человека в каждом.--");
             for (int i = 0; i < 3; i++)
             {
                 firstList.Add(RandomPerson.GetRandomPerson());
@@ -33,9 +33,9 @@ namespace Lab1
             Console.WriteLine(secondList.PrintAll());
 
             Console.ReadKey();
-            Console.WriteLine("Добавление нового человека в первый список.");
+            Console.WriteLine("--Добавление нового человека в первый список.--");
             firstList.Add(RandomPerson.GetRandomPerson());
-            Console.WriteLine("Копирование второго человека из первого списка в конец второго.");
+            Console.WriteLine("--Копирование второго человека из первого списка в конец второго.--");
             secondList.Add(firstList[1]);
 
             Console.ReadKey();
@@ -45,7 +45,7 @@ namespace Lab1
             Console.WriteLine(secondList.PrintAll());
 
             Console.ReadKey();
-            Console.WriteLine("Удаление второго человека из первого списка.");
+            Console.WriteLine("--Удаление второго человека из первого списка.--");
             firstList.DeleteByIndex(1);
             Console.WriteLine("Содержимое первого списка:");
             Console.WriteLine(firstList.PrintAll());
@@ -53,7 +53,7 @@ namespace Lab1
             Console.WriteLine(secondList.PrintAll());
 
             Console.ReadKey();
-            Console.WriteLine("Очистка второго списка.");
+            Console.WriteLine("--Очистка второго списка.--");
             secondList.Erase();
             Console.WriteLine("Содержимое первого списка:");
             Console.WriteLine(firstList.PrintAll());
@@ -91,16 +91,16 @@ namespace Lab1
         /// <summary>
         /// Принимает от пользователя параметр и вызывает метод для проверки этого параметра.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="method"></param>
+        /// <param name="id">Параметр персоны для проверки.</param>
+        /// <param name="method">Соответствующий метод проверки.</param>
         /// <returns>Строка, введённая пользователем.</returns>
         private static string CheckInputValue(string id, Check method)
         {
             string param;
-            bool k;
+            bool trigger;
             do
             {
-                k = true;
+                trigger = true;
                 Console.Write($"Введите {id} персоны: ");
                 param = Console.ReadLine();
                 try
@@ -110,17 +110,17 @@ namespace Lab1
                 catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
-                    k = false;
+                    trigger = false;
                 }
             }
-            while (k == false);
+            while (trigger == false);
             return param;
         }
 
         /// <summary>
-        /// Преобразует имя и фамилию в правильный регистр.
+        /// Преобразует имя и фамилию к правильному регистру.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">Имя или фамилия персоны.</param>
         /// <returns>Имя/фамилия с первой заглавной буквой и прописными остальными.</returns>
         private static string RightRegister(string name)
         {
