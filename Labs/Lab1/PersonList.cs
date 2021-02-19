@@ -11,7 +11,21 @@ namespace Lab1
     /// </summary>
     public class PersonList
     {
+        /// <summary>
+        /// Массив переменных типа Person.
+        /// </summary>
         private Person[] _data;
+
+        /// <summary>
+        /// Количество персон в списке.
+        /// </summary>
+        public int Count
+        {
+            get
+            {
+                return _data.Length;
+            }
+        }
 
         /// <summary>
         /// Конструктор класса PersonList.
@@ -25,23 +39,18 @@ namespace Lab1
         /// Индексатор.
         /// </summary>
         /// <param name="index"></param>
-        /// <returns></returns>
+        /// <returns>Персона по индексу.</returns>
+        /// <exception cref="System.IndexOutOfRangeException">
+        /// Возникает при указании индекса вне границ массива.
+        /// </exception>
         public Person this[int index]
         {
             get
             {
-                if ((index < 0) || (index > (_data.Length - 1)))
-                {
-                    throw new IndexOutOfRangeException("Выход за границы массива.");
-                }
                 return _data[index];
             }
             set
             {
-                if ((index < 0) || (index > (_data.Length - 1)))
-                {
-                    throw new IndexOutOfRangeException("Выход за границы массива.");
-                }
                 _data[index] = value;
             }
         }
@@ -55,8 +64,7 @@ namespace Lab1
         /// <param name="gender">Пол персоны.</param>
         public void Add(string firstName, string lastName, int age, Gender gender)
         {
-            Array.Resize<Person>(ref _data, _data.Length + 1);
-            _data[_data.Length - 1] = new Person(firstName, lastName, age, gender);
+            Add(new Person(firstName, lastName, age, gender));
         }
 
         /// <summary>
@@ -73,12 +81,11 @@ namespace Lab1
         /// Удаляет персону по индексу.
         /// </summary>
         /// <param name="index">Индекс персоны в списке.</param>
+        /// <exception cref="System.IndexOutOfRangeException">
+        /// Возникает при указании индекса вне границ массива.
+        /// </exception> 
         public void DeleteByIndex(int index)
         {
-            if ((index < 0) || (index > (_data.Length - 1)))
-            {
-                throw new IndexOutOfRangeException("Выход за границы массива.");
-            }
             Person[] tmpArray = new Person[_data.Length];
             Array.Copy(_data, tmpArray, _data.Length);
             Array.Resize<Person>(ref _data, _data.Length - 1);
@@ -109,12 +116,11 @@ namespace Lab1
         /// </summary>
         /// <param name="index">Индекс персоны в списке.</param>
         /// <returns>Строка, содержащая имя, фамилию, пол и возраст персоны.</returns>
+        /// <exception cref="System.IndexOutOfRangeException">
+        /// Возникает при указании индекса вне границ массива.
+        /// </exception>
         public string Print(int index)
         {
-            if ((index < 0) || (index > (_data.Length - 1)))
-            {
-                throw new IndexOutOfRangeException("Выход за границы массива.");
-            }
             return $"{_data[index].FirstName} {_data[index].LastName}, " +
                 $"пол: {_data[index].Gender}, возраст: {_data[index].Age}";
         }
@@ -128,8 +134,8 @@ namespace Lab1
             string str = "";
             for (int i = 0; i < _data.Length; i++)
             {
-                str = str + $"{_data[i].FirstName} {_data[i].LastName}, " +
-                    $"пол: {_data[i].Gender}, возраст: {_data[i].Age}\n";
+                //TODO: Дубли +
+                str = str + Print(i) + "\n";
             }
             return str;
         }
@@ -160,15 +166,6 @@ namespace Lab1
         public void Erase()
         {
             Array.Resize<Person>(ref _data, 0);
-        }
-
-        /// <summary>
-        /// Возвращает количество персон в списке.
-        /// </summary>
-        /// <returns>Целое число персон в списке.</returns>
-        public int Count()
-        {
-            return _data.Length;
         }
     }
 }

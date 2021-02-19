@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab1
 {
-    class Program
+    public class Program
     {
         /// <summary>
         /// Делегат для вызова методов проверки свойств персоны.
@@ -18,6 +18,8 @@ namespace Lab1
         {
             PersonList firstList = new PersonList();
             PersonList secondList = new PersonList();
+
+            Person test = ReadPerson();
 
             Console.WriteLine("--Создание двух списков персон по три человека в каждом.--");
             for (int i = 0; i < 3; i++)
