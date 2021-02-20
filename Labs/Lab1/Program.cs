@@ -7,60 +7,40 @@ using System.Threading.Tasks;
 namespace Lab1
 {
     public class Program
-    {
-        /// <summary>
-        /// Делегат для вызова методов проверки свойств персоны.
-        /// </summary>
-        /// <param name="param">Строка-параметр персоны для проверки.</param>
-        private delegate void Check(string param);
-        
-        static void Main(string[] args)
+    { 
+        private static void Main(string[] args)
         {
             PersonList firstList = new PersonList();
-            PersonList secondList = new PersonList();
+            PersonList secondList = new PersonList();      
 
-            Person test = ReadPerson();
-
-            Console.WriteLine("--Создание двух списков персон по три человека в каждом.--");
+            Console.WriteLine("СОЗДАНИЕ ДВУХ СПИСКО ПЕРСОН ПО ТРИ ЧЕЛОВЕКА В КАЖДОМ.");
             for (int i = 0; i < 3; i++)
             {
                 firstList.Add(RandomPerson.GetRandomPerson());
                 secondList.Add(RandomPerson.GetRandomPerson());
             }
-            
-            Console.ReadKey();
-            Console.WriteLine("Содержимое первого списка:");
-            Console.WriteLine(firstList.PrintAll());
-            Console.WriteLine("Содержимое второго списка:");
-            Console.WriteLine(secondList.PrintAll());
 
             Console.ReadKey();
-            Console.WriteLine("--Добавление нового человека в первый список.--");
-            firstList.Add(RandomPerson.GetRandomPerson());
-            Console.WriteLine("--Копирование второго человека из первого списка в конец второго.--");
+            PrintBothLists(firstList, secondList);
+
+            Console.ReadKey();
+            Console.WriteLine("ДОБАВЛЕНИЕ НОВОГО ЧЕЛОВЕКА В ПЕРВЫЙ СПИСОК.");
+            firstList.Add(ReadPerson());
+            Console.WriteLine("\nКОПИРОВАНИЕ ВТОРОГО ЧЕЛОВЕКА ИЗ ПЕРВОГО СПИСКА В КОНЕЦ ВТОРОГО.");
             secondList.Add(firstList[1]);
 
             Console.ReadKey();
-            Console.WriteLine("Содержимое первого списка:");
-            Console.WriteLine(firstList.PrintAll());
-            Console.WriteLine("Содержимое второго списка:");
-            Console.WriteLine(secondList.PrintAll());
+            PrintBothLists(firstList, secondList);
 
             Console.ReadKey();
-            Console.WriteLine("--Удаление второго человека из первого списка.--");
+            Console.WriteLine("УДАЛЕНИЕ ВТОРОГО ЧЕЛОВЕКА ИЗ ПЕРВОГО СПИСКА.");
             firstList.DeleteByIndex(1);
-            Console.WriteLine("Содержимое первого списка:");
-            Console.WriteLine(firstList.PrintAll());
-            Console.WriteLine("Содержимое второго списка:");
-            Console.WriteLine(secondList.PrintAll());
+            PrintBothLists(firstList, secondList);
 
             Console.ReadKey();
-            Console.WriteLine("--Очистка второго списка.--");
+            Console.WriteLine("ОЧИСТКА ВТОРОГО СПИСКА.");
             secondList.Erase();
-            Console.WriteLine("Содержимое первого списка:");
-            Console.WriteLine(firstList.PrintAll());
-            Console.WriteLine("Содержимое второго списка:");
-            Console.WriteLine(secondList.PrintAll());
+            PrintBothLists(firstList, secondList);
 
             Console.WriteLine("Нажмите любую клавишу, чтобы выйти...");
             Console.ReadKey();
@@ -72,42 +52,31 @@ namespace Lab1
         /// <returns>Переменная типа Person.</returns>
         private static Person ReadPerson()
         {
-            string firstName, lastName, ageString, genderString;
-
-            Check method = Person.IsNameCorrect;
-            firstName = RightRegister(CheckInputValue("имя", method));
-            lastName = RightRegister(CheckInputValue("фамилию", method));
-
-            method = Person.IsAgeCorrect;
-            ageString = CheckInputValue("возраст", method);
-
-            method = Person.IsGenderCorrect;
-            genderString = CheckInputValue("пол", method);
-
-            int age = Convert.ToInt32(ageString);
-            Gender gender = (Gender)Enum.Parse(typeof(Gender), genderString, true);
+            string firstName = CheckPersonName("имя");
+            string lastName = CheckPersonName("фамилию");
+            int age = CheckPersonAge();
+            Gender gender = CheckPersonGender();
 
             return new Person(firstName, lastName, age, gender);
         }
 
         /// <summary>
-        /// Принимает от пользователя параметр и вызывает метод для проверки этого параметра.
+        /// Проверяет корректность введённых пользователем имени или фамилии.
         /// </summary>
-        /// <param name="id">Параметр персоны для проверки.</param>
-        /// <param name="method">Соответствующий метод проверки.</param>
-        /// <returns>Строка, введённая пользователем.</returns>
-        private static string CheckInputValue(string id, Check method)
+        /// <param name="id">Имя или фамилия (будет отображаться в консоли).</param>
+        /// <returns>Введённое пользователем имя или фамилия персоны.</returns>
+        private static string CheckPersonName(string id)
         {
-            string param;
+            string firstOrLastName;
             bool trigger;
             do
             {
                 trigger = true;
                 Console.Write($"Введите {id} персоны: ");
-                param = Console.ReadLine();
+                firstOrLastName = Console.ReadLine();
                 try
                 {
-                    method(param);
+                    Person.IsNameCorrect(firstOrLastName);
                 }
                 catch (ArgumentException ex)
                 {
@@ -115,30 +84,73 @@ namespace Lab1
                     trigger = false;
                 }
             }
-            while (trigger == false);
-            return param;
+            while (!trigger);
+            return firstOrLastName;
         }
 
         /// <summary>
-        /// Преобразует имя и фамилию к правильному регистру.
+        /// Проверяет корректность введённого пользователем возраста.
         /// </summary>
-        /// <param name="name">Имя или фамилия персоны.</param>
-        /// <returns>Имя/фамилия с первой заглавной буквой и прописными остальными.</returns>
-        private static string RightRegister(string name)
+        /// <returns>Введённый пользователем возраст.</returns>
+        private static int CheckPersonAge()
         {
-            string rightName = name.Substring(0, 1).ToUpper() + name.Substring(1).ToLower();
-            int index;
-            for (int i = 0; i < rightName.Length; i++)
+            string ageString;
+            int age;
+            bool trigger;
+            do
             {
-                if ((rightName[i] == ' ') || (rightName[i] == '-'))
+                trigger = true;
+                Console.Write("Введите возраст персоны: ");
+                ageString = Console.ReadLine();
+                if (!Int32.TryParse(ageString, out age))
                 {
-                    index = i;
-                    rightName = rightName.Substring(0, i + 1) + rightName.Substring(i + 1, 1).ToUpper() 
-                        + rightName.Substring(i + 2).ToLower();
-                    break;
+                    Console.WriteLine("Возраст должен быть числом.\n");
+                    trigger = false;
+                    continue;
+                }
+                try
+                {
+                    Person.IsAgeCorrect(age);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    trigger = false;
                 }
             }
-            return rightName;
+            while (!trigger);
+            return age;
+        }
+
+        /// <summary>
+        /// Проверяет корректность введённого пользователем пола.
+        /// </summary>
+        /// <returns>Введённый пользователем пол.</returns>
+        private static Gender CheckPersonGender()
+        {
+            string genderString;
+            bool trigger;
+            do
+            {
+                trigger = true;
+                Console.Write("Введите пол персоны (Male/Female): ");
+                genderString = Console.ReadLine();
+                if (!Enum.IsDefined(typeof(Gender), genderString))
+                {
+                    Console.WriteLine("Некорректно введён пол.\n");
+                    trigger = false;
+                }
+            }
+            while (!trigger);
+            return (Gender)Enum.Parse(typeof(Gender), genderString, true);
+        }
+
+        private static void PrintBothLists(PersonList firstList, PersonList secondList)
+        {
+            Console.WriteLine("Содержимое первого списка:");
+            Console.WriteLine(firstList.PrintAll());
+            Console.WriteLine("Содержимое второго списка:");
+            Console.WriteLine(secondList.PrintAll());
         }
     }
 }

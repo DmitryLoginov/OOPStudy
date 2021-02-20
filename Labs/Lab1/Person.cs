@@ -12,10 +12,89 @@ namespace Lab1
     /// </summary>
     public class Person
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int Age { get; set; }
-        public Gender Gender { get; set; }
+        /// <summary>
+        /// Имя персоны.
+        /// </summary>
+        private string _fisrtName;
+
+        /// <summary>
+        /// Имя персоны.
+        /// </summary>
+        public string FirstName
+        {
+            get
+            {
+                return _fisrtName;
+            }
+            private set
+            {
+                IsNameCorrect(value);
+                _fisrtName = value;
+            }
+        }
+
+        /// <summary>
+        /// Фамилия персоны.
+        /// </summary>
+        private string _lastName;
+
+        /// <summary>
+        /// Фамилия персоны.
+        /// </summary>
+        public string LastName
+        {
+            get
+            {
+                return _lastName;
+            }
+            private set
+            {
+                IsNameCorrect(value);
+                _lastName = value;
+            }
+        }
+
+        /// <summary>
+        /// Возраст персоны.
+        /// </summary>
+        private int _age;
+
+        /// <summary>
+        /// Возраст персоны.
+        /// </summary>
+        public int Age
+        {
+            get
+            {
+                return _age;
+            }
+            private set
+            {
+                IsAgeCorrect(value);
+                _age = value;
+            }
+        }
+
+        /// <summary>
+        /// Пол персоны.
+        /// </summary>
+        private Gender _gender;
+
+        /// <summary>
+        /// Пол персоны.
+        /// </summary>
+        public Gender Gender
+        {
+            get
+            {
+                return _gender;
+            }
+            private set
+            {
+                _gender = value;
+            }
+        }
+
 
         /// <summary>
         /// Конструктор класса Person.
@@ -26,8 +105,8 @@ namespace Lab1
         /// <param name="gender">Пол персоны.</param>
         public Person(string firstName, string lastName, int age, Gender gender)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            FirstName = ToCorrectCase(firstName);
+            LastName = ToCorrectCase(lastName);
             Age = age;
             Gender = gender;
         }
@@ -45,13 +124,13 @@ namespace Lab1
         /// Проверяет имя или фамилию на соответствие требованиям.
         /// </summary>
         /// <param name="name">Строка, соответствующая имени или фамилии.</param>
+
         public static void IsNameCorrect(string name)
         {
             Regex namePattern = new Regex(@"((^([a-zA-Z])+$)|(^([a-zA-Z])+(\s|-)([a-zA-Z])+$))|((^([а-яА-Я])+$)|(^([а-яА-Я])+(\s|-)([а-яА-Я])+$))");
             if (!namePattern.IsMatch(name))
             {
-                throw new ArgumentException("Имя и фамилия должны содержать только русские или английские символы.\n" +
-                    "Попробуйте ещё раз.");
+                throw new ArgumentException("Имя и фамилия должны содержать только русские или английские символы.\n");
             }
         }
 
@@ -59,28 +138,34 @@ namespace Lab1
         /// Проверяет возраст на соответствие требованиям.
         /// </summary>
         /// <param name="ageString">Строка, соответствующая возрасту.</param>
-        public static void IsAgeCorrect(string ageString)
+
+        public static void IsAgeCorrect(int age)
         {
-            int age;
             const int maxAge = 130;
-            if (!Int32.TryParse(ageString, out age) || (age >= maxAge) || (age < 0))
+            if ((age >= maxAge) || (age < 0))
             {
-                throw new ArgumentException($"Возраст должен быть не отрицательным числом, меньшим {maxAge}.\n" +
-                    $"Попробуйте ещё раз.");
+                throw new ArgumentException($"Возраст должен быть не отрицательным числом, меньшим {maxAge}.\n");
             }
         }
 
         /// <summary>
-        /// Проверяет корректный ввод пола.
+        /// Преобразует имя и фамилию к правильному регистру.
         /// </summary>
-        /// <param name="genderString">Строка, соответствующая полу.</param>
-        public static void IsGenderCorrect(string genderString)
+        /// <param name="name">Имя или фамилия персоны.</param>
+        /// <returns>Имя/фамилия с первой заглавной буквой.</returns>
+        private static string ToCorrectCase(string name)
         {
-            if (!Enum.IsDefined(typeof(Gender), genderString))
+            string newName = name.Substring(0, 1).ToUpper() + name.Substring(1).ToLower();
+            for (int i = 0; i < newName.Length; i++)
             {
-                throw new ArgumentException("Некорректно введён пол.\nПопробуйте ещё раз.");
+                if ((newName[i] == ' ') || (newName[i] == '-'))
+                {
+                    newName = newName.Substring(0, i + 1) + newName.Substring(i + 1, 1).ToUpper()
+                        + newName.Substring(i + 2).ToLower();
+                    break;
+                }
             }
+            return newName;
         }
-
     }
 }
