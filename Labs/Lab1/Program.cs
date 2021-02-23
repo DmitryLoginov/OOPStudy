@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using PersonLibrary;
 
 namespace Lab1
@@ -12,9 +13,9 @@ namespace Lab1
         private static void Main(string[] args)
         {
             PersonList firstList = new PersonList();
-            PersonList secondList = new PersonList();      
+            PersonList secondList = new PersonList();
 
-            Console.WriteLine("СОЗДАНИЕ ДВУХ СПИСКО ПЕРСОН ПО ТРИ ЧЕЛОВЕКА В КАЖДОМ.");
+            Console.WriteLine("СОЗДАНИЕ ДВУХ СПИСКОВ ПЕРСОН ПО ТРИ ЧЕЛОВЕКА В КАЖДОМ.");
             for (int i = 0; i < 3; i++)
             {
                 firstList.Add(RandomPerson.GetRandomPerson());
@@ -64,12 +65,17 @@ namespace Lab1
         /// <summary>
         /// Проверяет корректность введённых пользователем имени или фамилии.
         /// </summary>
-        /// <param name="id">Имя или фамилия (будет отображаться в консоли).</param>
-        /// <returns>Введённое пользователем имя или фамилия персоны.</returns>
+        /// <param name="id">
+        /// Имя или фамилия (будет отображаться в консоли).
+        /// </param>
+        /// <returns>
+        /// Введённое пользователем имя или фамилия персоны.
+        /// </returns>
         private static string CheckPersonName(string id)
         {
             string firstOrLastName;
             bool trigger;
+            
             do
             {
                 trigger = true;
@@ -86,6 +92,7 @@ namespace Lab1
                 }
             }
             while (!trigger);
+            
             return firstOrLastName;
         }
 
@@ -98,6 +105,7 @@ namespace Lab1
             string ageString;
             int age;
             bool trigger;
+            
             do
             {
                 trigger = true;
@@ -120,6 +128,7 @@ namespace Lab1
                 }
             }
             while (!trigger);
+            
             return age;
         }
 
@@ -131,6 +140,7 @@ namespace Lab1
         {
             string genderString;
             bool trigger;
+            
             do
             {
                 trigger = true;
@@ -143,10 +153,17 @@ namespace Lab1
                 }
             }
             while (!trigger);
+            
             return (Gender)Enum.Parse(typeof(Gender), genderString, true);
         }
 
-        private static void PrintBothLists(PersonList firstList, PersonList secondList)
+        /// <summary>
+        /// Выводит в консоль два списка персон.
+        /// </summary>
+        /// <param name="firstList">Первый список.</param>
+        /// <param name="secondList">Второй список.</param>
+        private static void PrintBothLists(PersonList firstList, 
+            PersonList secondList)
         {
             Console.WriteLine("Содержимое первого списка:");
             Console.WriteLine(firstList.PrintAll());

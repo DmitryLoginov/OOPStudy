@@ -29,7 +29,7 @@ namespace PersonLibrary
             private set
             {
                 IsNameCorrect(value);
-                _fisrtName = value;
+                _fisrtName = ToCorrectCase(value);
             }
         }
 
@@ -50,7 +50,7 @@ namespace PersonLibrary
             private set
             {
                 IsNameCorrect(value);
-                _lastName = value;
+                _lastName = ToCorrectCase(value);
             }
         }
 
@@ -103,10 +103,11 @@ namespace PersonLibrary
         /// <param name="lastName">Фамилия персоны.</param>
         /// <param name="age">Возраст персоны.</param>
         /// <param name="gender">Пол персоны.</param>
-        public Person(string firstName, string lastName, int age, Gender gender)
+        public Person(string firstName, string lastName,
+            int age, Gender gender)
         {
-            FirstName = ToCorrectCase(firstName);
-            LastName = ToCorrectCase(lastName);
+            FirstName = firstName;
+            LastName = lastName;
             Age = age;
             Gender = gender;
         }
@@ -114,7 +115,9 @@ namespace PersonLibrary
         /// <summary>
         /// Выводит на экран информацию о персоне.
         /// </summary>
-        /// <returns>Строка, содержащая имя, фамилию, пол и возраст персоны.</returns>
+        /// <returns>
+        /// Строка, содержащая имя, фамилию, пол и возраст персоны.
+        /// </returns>
         public string Print()
         {
             return $"{FirstName} {LastName}, пол: {Gender}, возраст: {Age}";
@@ -123,14 +126,17 @@ namespace PersonLibrary
         /// <summary>
         /// Проверяет имя или фамилию на соответствие требованиям.
         /// </summary>
-        /// <param name="name">Строка, соответствующая имени или фамилии.</param>
-
+        /// <param name="name">
+        /// Строка, соответствующая имени или фамилии.
+        /// </param>
         public static void IsNameCorrect(string name)
         {
             Regex namePattern = new Regex(@"((^([a-zA-Z])+$)|(^([a-zA-Z])+(\s|-)([a-zA-Z])+$))|((^([а-яА-Я])+$)|(^([а-яА-Я])+(\s|-)([а-яА-Я])+$))");
+            
             if (!namePattern.IsMatch(name))
             {
-                throw new ArgumentException("Имя и фамилия должны содержать только русские или английские символы.\n");
+                throw new ArgumentException("Имя и фамилия должны содержать " +
+                    "только русские или английские символы.\n");
             }
         }
 
@@ -138,13 +144,14 @@ namespace PersonLibrary
         /// Проверяет возраст на соответствие требованиям.
         /// </summary>
         /// <param name="ageString">Строка, соответствующая возрасту.</param>
-
         public static void IsAgeCorrect(int age)
         {
             const int maxAge = 130;
+            
             if ((age >= maxAge) || (age < 0))
             {
-                throw new ArgumentException($"Возраст должен быть не отрицательным числом, меньшим {maxAge}.\n");
+                throw new ArgumentException($"Возраст должен быть " +
+                    $"не отрицательным числом, меньшим {maxAge}.\n");
             }
         }
 
@@ -153,19 +160,22 @@ namespace PersonLibrary
         /// </summary>
         /// <param name="name">Имя или фамилия персоны.</param>
         /// <returns>Имя/фамилия с первой заглавной буквой.</returns>
-
-        private static string ToCorrectCase(string name)
+        private string ToCorrectCase(string name)
         {
-            string newName = name.Substring(0, 1).ToUpper() + name.Substring(1).ToLower();
+            string newName = name.Substring(0, 1).ToUpper() + 
+                name.Substring(1).ToLower();
+            
             for (int i = 0; i < newName.Length; i++)
             {
                 if ((newName[i] == ' ') || (newName[i] == '-'))
                 {
-                    newName = newName.Substring(0, i + 1) + newName.Substring(i + 1, 1).ToUpper()
-                        + newName.Substring(i + 2).ToLower();
+                    newName = newName.Substring(0, i + 1) + 
+                        newName.Substring(i + 1, 1).ToUpper() + 
+                        newName.Substring(i + 2).ToLower();
                     break;
                 }
             }
+            
             return newName;
         }
     }

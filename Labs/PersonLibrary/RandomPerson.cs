@@ -19,6 +19,7 @@ namespace PersonLibrary
             "Isaac", "Zach", "Nolan", "Hans", "Robert",
             "Terrence", "Challus", "Michael", "Nathan", "Gabe"
         };
+
         /// <summary>
         /// Строковый массив женских имён.
         /// </summary>
@@ -27,6 +28,7 @@ namespace PersonLibrary
             "Nicole", "Kendra", "Elizabeth", "Ellie", "Lexine",
             "Daina", "Jennifer", "Karen", "Alissa", "Isabel"
         };
+
         /// <summary>
         /// Строковый массив фамилий.
         /// </summary>
@@ -36,6 +38,7 @@ namespace PersonLibrary
             "Mercer", "Cross", "Temple", "Stross", "Langford",
             "Murdoch", "McNeill", "Weller", "Altman", "Carver"
         };
+
         private static Random randNum = new Random();
 
         /// <summary>
@@ -45,7 +48,8 @@ namespace PersonLibrary
         public static Person GetRandomPerson()
         {
             string name;
-            Gender gender = (Gender)randNum.Next(0, 2);
+            
+            Gender gender = (Gender)randNum.Next(0, Enum.GetNames(typeof(Gender)).Length);
             switch (gender)
             {
                 case Gender.Male:
@@ -65,6 +69,7 @@ namespace PersonLibrary
             }
             string surname = _lastNames[randNum.Next(_lastNames.Length)];
             int age = randNum.Next(0, 100);
+            
             return new Person(name, surname, age, gender);
         }
     }

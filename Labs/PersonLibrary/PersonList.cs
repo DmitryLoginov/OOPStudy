@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace PersonLibrary
 {
     /// <summary>
-    /// Класс, описывающий абстракцию списка, содержащего объекты класса Person.
+    /// Класс, описывающий абстракцию списка, 
+    /// содержащего объекты класса Person.
     /// </summary>
     public class PersonList
     {
@@ -62,7 +63,8 @@ namespace PersonLibrary
         /// <param name="lastName">Фамилия персоны.</param>
         /// <param name="age">Возраст персоны.</param>
         /// <param name="gender">Пол персоны.</param>
-        public void Add(string firstName, string lastName, int age, Gender gender)
+        public void Add(string firstName, string lastName, 
+            int age, Gender gender)
         {
             Add(new Person(firstName, lastName, age, gender));
         }
@@ -74,6 +76,7 @@ namespace PersonLibrary
         public void Add(Person person)
         {
             Array.Resize<Person>(ref _data, _data.Length + 1);
+            
             _data[_data.Length - 1] = person;
         }
 
@@ -86,10 +89,11 @@ namespace PersonLibrary
         /// </exception> 
         public void DeleteByIndex(int index)
         {
-            Person[] tmpArray = new Person[_data.Length];
-            Array.Copy(_data, tmpArray, _data.Length);
+            Person[] tempArray = new Person[_data.Length];
+            Array.Copy(_data, tempArray, _data.Length);
             Array.Resize<Person>(ref _data, _data.Length - 1);
-            Array.Copy(tmpArray, index + 1, _data, index, tmpArray.Length - index - 1);
+            Array.Copy(tempArray, index + 1, _data, index, 
+                tempArray.Length - index - 1);
         }
 
         /// <summary>
@@ -99,23 +103,29 @@ namespace PersonLibrary
         /// <param name="lastName">Фамилия персоны.</param>
         public void DeleteByName(string firstName, string lastName)
         {
-            Person[] tmpArray = new Person[0];
+            Person[] tempArray = new Person[0];
+            
             for (int i = 0; i < _data.Length; i++)
             {
-                if ((_data[i].FirstName != firstName) && (_data[i].LastName != lastName))
+                if ((_data[i].FirstName != firstName) && 
+                    (_data[i].LastName != lastName))
                 {
-                    Array.Resize<Person>(ref tmpArray, tmpArray.Length + 1);
-                    tmpArray[tmpArray.Length - 1] = _data[i];
+                    Array.Resize<Person>(ref tempArray, tempArray.Length + 1);
+                    tempArray[tempArray.Length - 1] = _data[i];
                 }
             }
-            _data = tmpArray;
+            
+            _data = tempArray;
         }
 
         /// <summary>
         /// Выводит на экран персону по указанному индексу.
         /// </summary>
         /// <param name="index">Индекс персоны в списке.</param>
-        /// <returns>Строка, содержащая имя, фамилию, пол и возраст персоны.</returns>
+        /// <returns>
+        /// Строка, содержащая имя, фамилию, 
+        /// пол и возраст персоны.
+        /// </returns>
         /// <exception cref="System.IndexOutOfRangeException">
         /// Возникает при указании индекса вне границ массива.
         /// </exception>
@@ -131,13 +141,15 @@ namespace PersonLibrary
         /// <returns>Строка с информацией о персонах в списке.</returns>
         public string PrintAll()
         {
-            string str = "";
+            string outputString = "";
+            
             for (int i = 0; i < _data.Length; i++)
             {
                 //TODO: Дубли +
-                str = str + Print(i) + "\n";
+                outputString = outputString + Print(i) + "\n";
             }
-            return str;
+            
+            return outputString;
         }
 
         /// <summary>
@@ -145,19 +157,24 @@ namespace PersonLibrary
         /// </summary>
         /// <param name="firstName">Имя персоны.</param>
         /// <param name="lastName">Фамилия персоны.</param>
-        /// <returns>Массив индексов персон, удовлетворяющих условиям.</returns>
+        /// <returns>
+        /// Массив индексов персон, удовлетворяющих условиям.
+        /// </returns>
         public int[] FindIndex(string firstName, string lastName)
         {
-            int[] index = new int[0];
+            int[] indexArray = new int[0];
+            
             for (int i = 0; i < _data.Length; i++)
             {
-                if ((_data[i].FirstName == firstName) && (_data[i].LastName == lastName))
+                if ((_data[i].FirstName == firstName) && 
+                    (_data[i].LastName == lastName))
                 {
-                    Array.Resize<int>(ref index, index.Length + 1);
-                    index[index.Length - 1] = i;
+                    Array.Resize<int>(ref indexArray, indexArray.Length + 1);
+                    indexArray[indexArray.Length - 1] = i;
                 }
             }
-            return index;
+            
+            return indexArray;
         }
 
         /// <summary>
