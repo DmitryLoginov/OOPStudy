@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
-namespace Lab1
+namespace PersonLibrary
 {
     /// <summary>
     /// Класс персон.
@@ -153,6 +153,7 @@ namespace Lab1
         /// </summary>
         /// <param name="name">Имя или фамилия персоны.</param>
         /// <returns>Имя/фамилия с первой заглавной буквой.</returns>
+
         private static string ToCorrectCase(string name)
         {
             string newName = name.Substring(0, 1).ToUpper() + name.Substring(1).ToLower();

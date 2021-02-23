@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1
+namespace PersonLibrary
 {
     /// <summary>
     /// Класс для формирования рандомных персон.
@@ -16,7 +16,7 @@ namespace Lab1
         /// </summary>
         private static string[] _maleNames =
         {
-            "Isaac", "Zach", "Nolan", "Hans", "Robert", 
+            "Isaac", "Zach", "Nolan", "Hans", "Robert",
             "Terrence", "Challus", "Michael", "Nathan", "Gabe"
         };
         /// <summary>
@@ -30,11 +30,11 @@ namespace Lab1
         /// <summary>
         /// Строковый массив фамилий.
         /// </summary>
-        private static string[] _lastNames = 
-        { 
+        private static string[] _lastNames =
+        {
             "Clarke", "Brennan", "Hammond", "Daniels", "Kyne",
-            "Mercer", "Cross", "Temple", "Stross", "Langford", 
-            "Murdoch", "McNeill", "Weller", "Altman", "Carver" 
+            "Mercer", "Cross", "Temple", "Stross", "Langford",
+            "Murdoch", "McNeill", "Weller", "Altman", "Carver"
         };
         private static Random randNum = new Random();
 
@@ -61,7 +61,7 @@ namespace Lab1
                 default:
                     {
                         return new Person("", "", 0, Gender.Male);
-                    }  
+                    }
             }
             string surname = _lastNames[randNum.Next(_lastNames.Length)];
             int age = randNum.Next(0, 100);
