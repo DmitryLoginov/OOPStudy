@@ -76,7 +76,6 @@ namespace PersonLibrary
         public void Add(Person person)
         {
             Array.Resize<Person>(ref _data, _data.Length + 1);
-            
             _data[_data.Length - 1] = person;
         }
 
@@ -141,12 +140,12 @@ namespace PersonLibrary
         /// <returns>Строка с информацией о персонах в списке.</returns>
         public string PrintAll()
         {
-            string outputString = "";
+            string outputString = string.Empty;
             
             for (int i = 0; i < _data.Length; i++)
             {
                 //TODO: Дубли +
-                outputString = outputString + Print(i) + "\n";
+                outputString = outputString + _data[i].Print() + "\n";
             }
             
             return outputString;
@@ -158,7 +157,7 @@ namespace PersonLibrary
         /// <param name="firstName">Имя персоны.</param>
         /// <param name="lastName">Фамилия персоны.</param>
         /// <returns>
-        /// Массив индексов персон, удовлетворяющих условиям.
+        /// Массив индексов персон, удовлетворяющих условию.
         /// </returns>
         public int[] FindIndex(string firstName, string lastName)
         {

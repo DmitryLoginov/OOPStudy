@@ -39,17 +39,31 @@ namespace PersonLibrary
             "Murdoch", "McNeill", "Weller", "Altman", "Carver"
         };
 
+        /// <summary>
+        /// Объект класса Random.
+        /// </summary>
         private static Random randNum = new Random();
+
+        /// <summary>
+        /// Минимальный возраст.
+        /// </summary>
+        private const int minAge = 0;
+
+        /// <summary>
+        /// Максимальный возраст.
+        /// </summary>
+        private const int maxAge = 100;
 
         /// <summary>
         /// Возвращает случайную персону.
         /// </summary>
         /// <returns>Переменная типа Person.</returns>
-        public static Person GetRandomPerson()
+        public static Person Get()
         {
             string name;
             
-            Gender gender = (Gender)randNum.Next(0, Enum.GetNames(typeof(Gender)).Length);
+            Gender gender = (Gender)randNum.Next(0, 
+                Enum.GetNames(typeof(Gender)).Length);
             switch (gender)
             {
                 case Gender.Male:
@@ -64,11 +78,12 @@ namespace PersonLibrary
                     }
                 default:
                     {
-                        return new Person("", "", 0, Gender.Male);
+                        return new Person(string.Empty, string.Empty, 
+                            0, Gender.Male);
                     }
             }
             string surname = _lastNames[randNum.Next(_lastNames.Length)];
-            int age = randNum.Next(0, 100);
+            int age = randNum.Next(minAge, maxAge);
             
             return new Person(name, surname, age, gender);
         }

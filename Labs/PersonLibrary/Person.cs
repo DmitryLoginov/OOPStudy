@@ -26,7 +26,7 @@ namespace PersonLibrary
             {
                 return _fisrtName;
             }
-            private set
+            set
             {
                 IsNameCorrect(value);
                 _fisrtName = ToCorrectCase(value);
@@ -47,7 +47,7 @@ namespace PersonLibrary
             {
                 return _lastName;
             }
-            private set
+            set
             {
                 IsNameCorrect(value);
                 _lastName = ToCorrectCase(value);
@@ -68,7 +68,7 @@ namespace PersonLibrary
             {
                 return _age;
             }
-            private set
+            set
             {
                 IsAgeCorrect(value);
                 _age = value;
@@ -78,23 +78,7 @@ namespace PersonLibrary
         /// <summary>
         /// Пол персоны.
         /// </summary>
-        private Gender _gender;
-
-        /// <summary>
-        /// Пол персоны.
-        /// </summary>
-        public Gender Gender
-        {
-            get
-            {
-                return _gender;
-            }
-            private set
-            {
-                _gender = value;
-            }
-        }
-
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// Конструктор класса Person.
@@ -110,6 +94,17 @@ namespace PersonLibrary
             LastName = lastName;
             Age = age;
             Gender = gender;
+        }
+
+        /// <summary>
+        /// Конструктор по умолчанию.
+        /// </summary>
+        public Person()
+        {
+            FirstName = "Неизвестная";
+            LastName = "Персона";
+            Age = 0;
+            Gender = Gender.Male;
         }
 
         /// <summary>
@@ -129,14 +124,14 @@ namespace PersonLibrary
         /// <param name="name">
         /// Строка, соответствующая имени или фамилии.
         /// </param>
-        public static void IsNameCorrect(string name)
+        private void IsNameCorrect(string name)
         {
             Regex namePattern = new Regex(@"((^([a-zA-Z])+$)|(^([a-zA-Z])+(\s|-)([a-zA-Z])+$))|((^([а-яА-Я])+$)|(^([а-яА-Я])+(\s|-)([а-яА-Я])+$))");
             
             if (!namePattern.IsMatch(name))
             {
                 throw new ArgumentException("Имя и фамилия должны содержать " +
-                    "только русские или английские символы.\n");
+                    "только русские или английские символы.");
             }
         }
 
@@ -144,14 +139,14 @@ namespace PersonLibrary
         /// Проверяет возраст на соответствие требованиям.
         /// </summary>
         /// <param name="ageString">Строка, соответствующая возрасту.</param>
-        public static void IsAgeCorrect(int age)
+        private void IsAgeCorrect(int age)
         {
             const int maxAge = 130;
             
             if ((age >= maxAge) || (age < 0))
             {
                 throw new ArgumentException($"Возраст должен быть " +
-                    $"не отрицательным числом, меньшим {maxAge}.\n");
+                    $"не отрицательным числом, меньшим {maxAge}.");
             }
         }
 
@@ -159,7 +154,7 @@ namespace PersonLibrary
         /// Преобразует имя и фамилию к правильному регистру.
         /// </summary>
         /// <param name="name">Имя или фамилия персоны.</param>
-        /// <returns>Имя/фамилия с первой заглавной буквой.</returns>
+        /// <returns>Имя или фамилия с первой заглавной буквой.</returns>
         private string ToCorrectCase(string name)
         {
             string newName = name.Substring(0, 1).ToUpper() + 
