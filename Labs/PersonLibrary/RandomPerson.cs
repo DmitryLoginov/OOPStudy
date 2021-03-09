@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PersonLibrary
 {
     /// <summary>
-    /// Класс для формирования рандомных персон.
+    /// Класс для формирования случайных персон.
     /// </summary>
     public static class RandomPerson
     {

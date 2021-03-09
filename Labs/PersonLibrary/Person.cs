@@ -81,6 +81,11 @@ namespace PersonLibrary
         public Gender Gender { get; set; }
 
         /// <summary>
+        /// Наибольший допустимый возраст персоны.
+        /// </summary>
+        private const int maxAge = 130;
+
+        /// <summary>
         /// Конструктор класса Person.
         /// </summary>
         /// <param name="firstName">Имя персоны.</param>
@@ -141,8 +146,6 @@ namespace PersonLibrary
         /// <param name="ageString">Строка, соответствующая возрасту.</param>
         private void IsAgeCorrect(int age)
         {
-            const int maxAge = 130;
-            
             if ((age >= maxAge) || (age < 0))
             {
                 throw new ArgumentException($"Возраст должен быть " +

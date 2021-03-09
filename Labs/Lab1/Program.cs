@@ -10,7 +10,7 @@ namespace Lab1
 {
     public class Program
     { 
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             PersonList firstList = new PersonList();
             PersonList secondList = new PersonList();
@@ -75,14 +75,13 @@ namespace Lab1
         /// <param name="person">Персона, вводимая с клавиатуры.</param>
         private static void CheckPersonFirstName(Person person)
         {
-            string firstName;
             bool trigger;
 
             do
             {
                 trigger = true;
                 Console.Write("Введите имя персоны: ");
-                firstName = Console.ReadLine();
+                string firstName = Console.ReadLine();
                 try
                 {
                     person.FirstName = firstName;
@@ -103,14 +102,13 @@ namespace Lab1
         /// <param name="person">Персона, вводимая с клавиатуры.</param>
         private static void CheckPersonLastName(Person person)
         {
-            string lastName;
             bool trigger;
 
             do
             {
                 trigger = true;
                 Console.Write("Введите фамилию персоны: ");
-                lastName = Console.ReadLine();
+                string lastName = Console.ReadLine();
                 try
                 {
                     person.LastName = lastName;
@@ -131,16 +129,14 @@ namespace Lab1
         /// <param name="person">Персона, вводимая с клавиатуры.</param>
         private static void CheckPersonAge(Person person)
         {
-            string ageString;
-            int age;
             bool trigger;
 
             do
             {
                 trigger = true;
                 Console.Write("Введите возраст персоны: ");
-                ageString = Console.ReadLine();
-                if (!Int32.TryParse(ageString, out age))
+                string ageString = Console.ReadLine();
+                if (!Int32.TryParse(ageString, out int age))
                 {
                     Console.WriteLine("Возраст должен быть числом.");
                     trigger = false;

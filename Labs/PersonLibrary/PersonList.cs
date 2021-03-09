@@ -118,23 +118,6 @@ namespace PersonLibrary
         }
 
         /// <summary>
-        /// Выводит на экран персону по указанному индексу.
-        /// </summary>
-        /// <param name="index">Индекс персоны в списке.</param>
-        /// <returns>
-        /// Строка, содержащая имя, фамилию, 
-        /// пол и возраст персоны.
-        /// </returns>
-        /// <exception cref="System.IndexOutOfRangeException">
-        /// Возникает при указании индекса вне границ массива.
-        /// </exception>
-        public string Print(int index)
-        {
-            return $"{_data[index].FirstName} {_data[index].LastName}, " +
-                $"пол: {_data[index].Gender}, возраст: {_data[index].Age}";
-        }
-
-        /// <summary>
         /// Выводит всех персон в списке.
         /// </summary>
         /// <returns>Строка с информацией о персонах в списке.</returns>
