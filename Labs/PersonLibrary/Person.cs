@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 namespace PersonLibrary
@@ -80,6 +77,18 @@ namespace PersonLibrary
         /// </summary>
         public Gender Gender { get; set; }
 
+        //TODO: +
+        /// <summary>
+        /// Информация о персоне.
+        /// </summary>
+        public string Info
+        {
+            get
+            {
+                return $"{FirstName} {LastName}, пол: {Gender}, возраст: {Age}";
+            }
+        }
+
         /// <summary>
         /// Наибольший допустимый возраст персоны.
         /// </summary>
@@ -104,23 +113,9 @@ namespace PersonLibrary
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
-        public Person()
+        public Person() : this("Unknown", "Person", 0, Gender.Male)
         {
-            FirstName = "Неизвестная";
-            LastName = "Персона";
-            Age = 0;
-            Gender = Gender.Male;
-        }
-
-        /// <summary>
-        /// Выводит на экран информацию о персоне.
-        /// </summary>
-        /// <returns>
-        /// Строка, содержащая имя, фамилию, пол и возраст персоны.
-        /// </returns>
-        public string Print()
-        {
-            return $"{FirstName} {LastName}, пол: {Gender}, возраст: {Age}";
+            //TODO +
         }
 
         /// <summary>
@@ -131,7 +126,20 @@ namespace PersonLibrary
         /// </param>
         private void IsNameCorrect(string name)
         {
-            Regex namePattern = new Regex(@"((^([a-zA-Z])+$)|(^([a-zA-Z])+(\s|-)([a-zA-Z])+$))|((^([а-яА-Я])+$)|(^([а-яА-Я])+(\s|-)([а-яА-Я])+$))");
+            var lettersSet = new List<char[]>()
+            {
+                new char[] {'a','z','A','Z'},
+                new char[] {'а','я','А','Я'}
+            };
+
+            var patternsList = new List<string>();
+            foreach (var letters in lettersSet)
+            {
+                var lettersPattern = $"[{letters[0]}-{letters[1]}{letters[2]}-{letters[3]}]";
+                patternsList.Add($@"((^({lettersPattern})+$)|(^({lettersPattern})+(\s|-)({lettersPattern})+$))");
+            }
+
+            Regex namePattern = new Regex(String.Join("|", patternsList));
             
             if (!namePattern.IsMatch(name))
             {

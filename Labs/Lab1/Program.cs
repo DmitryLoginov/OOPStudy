@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using PersonLibrary;
 
 namespace Lab1
 {
+    /// <summary>
+    /// Работа с пользователем.
+    /// </summary>
     public class Program
     { 
+        /// <summary>
+        /// Точка входа в программу.
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
+            Console.WindowWidth = 100;
+
             PersonList firstList = new PersonList();
             PersonList secondList = new PersonList();
 
@@ -29,7 +35,8 @@ namespace Lab1
             Console.ReadKey();
             PrintBothLists(firstList, secondList);
             
-            Console.WriteLine("c. Добавление нового человека в первый список...");
+            Console.WriteLine("c. Добавление нового человека в " +
+                "первый список...");
             Console.ReadKey();
             firstList.Add(ReadPerson());
 
@@ -39,14 +46,15 @@ namespace Lab1
             secondList.Add(firstList[1]);
             PrintBothLists(firstList, secondList);
             
-            Console.WriteLine("е. Удаление второго человека из первого списка.");
+            Console.WriteLine("е. Удаление второго человека из " +
+                "первого списка.");
             Console.ReadKey();
             firstList.DeleteByIndex(1);
             PrintBothLists(firstList, secondList);
             
             Console.WriteLine("f. Очистка второго списка.");
             Console.ReadKey();
-            secondList.Erase();
+            secondList.Clear();
             PrintBothLists(firstList, secondList);
 
             Console.WriteLine("Нажмите любую клавишу, чтобы выйти...");
@@ -60,127 +68,83 @@ namespace Lab1
         private static Person ReadPerson()
         {
             Person personFromConsole = new Person();
+            var validationActions = new List<Tuple<string, Action>>()
+            {
+                new Tuple<string, Action>
+                (
+                    "Введите имя персоны: ",
+                    () =>
+                    {
+                        personFromConsole.FirstName = Console.ReadLine();
+                    }
+                ),
+                new Tuple<string, Action>
+                (
+                    "Введите фамилию персоны: ",
+                    () =>
+                    {
+                        personFromConsole.LastName = Console.ReadLine();
+                    }
+                ),
+                new Tuple<string, Action>
+                (
+                    "Введите возраст персоны: ",
+                    () =>
+                    {
+                        string ageString = Console.ReadLine();
+                        if (!Int32.TryParse(ageString, out int age))
+                        {
+                            throw new ArgumentException("Возраст должен " +
+                                "быть числом.");
+                        }
+                        personFromConsole.Age = age;
+                    }
+                ),
+                new Tuple<string, Action>
+                (
+                    "Введите пол персоны (Male/Female): ",
+                    () =>
+                    {
+                        string genderString = Console.ReadLine();
+                        if (!Enum.IsDefined(typeof(Gender), genderString))
+                        {
+                            throw new ArgumentException("Некорректно введён пол.");
+                        }
+                        personFromConsole.Gender = (Gender)Enum.Parse(typeof(Gender), 
+                            genderString, true);
+                    }
+                ),
+            };
 
-            CheckPersonFirstName(personFromConsole);
-            CheckPersonLastName(personFromConsole);
-            CheckPersonAge(personFromConsole);
-            CheckPersonGender(personFromConsole);
+            foreach(var actionItem in validationActions)
+            {
+                ValidateInput(actionItem.Item1, actionItem.Item2);
+            }
 
             return personFromConsole;
         }
 
         /// <summary>
-        /// Проверяет корректность введённого пользователем имени.
+        /// Проверка корректности вводимых параметров.
         /// </summary>
-        /// <param name="person">Персона, вводимая с клавиатуры.</param>
-        private static void CheckPersonFirstName(Person person)
+        /// <param name="outputMessage">Параметр для проверки.</param>
+        /// <param name="validationAction">Метод проверки.</param>
+        private static void ValidateInput(string outputMessage, 
+            Action validationAction)
         {
-            bool trigger;
-
-            do
+            while (true)
             {
-                trigger = true;
-                Console.Write("Введите имя персоны: ");
-                string firstName = Console.ReadLine();
                 try
                 {
-                    person.FirstName = firstName;
-                }
-                catch (ArgumentException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    trigger = false;
-                    Console.WriteLine("Попробуйте ещё раз.");
-                }
-            }
-            while (!trigger);
-        }
-
-        /// <summary>
-        /// Проверяет корректность введённой пользователем фамилии.
-        /// </summary>
-        /// <param name="person">Персона, вводимая с клавиатуры.</param>
-        private static void CheckPersonLastName(Person person)
-        {
-            bool trigger;
-
-            do
-            {
-                trigger = true;
-                Console.Write("Введите фамилию персоны: ");
-                string lastName = Console.ReadLine();
-                try
-                {
-                    person.LastName = lastName;
-                }
-                catch (ArgumentException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    trigger = false;
-                    Console.WriteLine("Попробуйте ещё раз.");
-                }
-            }
-            while (!trigger);
-        }
-
-        /// <summary>
-        /// Проверяет корректность введённого пользователем возраста.
-        /// </summary>
-        /// <param name="person">Персона, вводимая с клавиатуры.</param>
-        private static void CheckPersonAge(Person person)
-        {
-            bool trigger;
-
-            do
-            {
-                trigger = true;
-                Console.Write("Введите возраст персоны: ");
-                string ageString = Console.ReadLine();
-                if (!Int32.TryParse(ageString, out int age))
-                {
-                    Console.WriteLine("Возраст должен быть числом.");
-                    trigger = false;
-                    Console.WriteLine("Попробуйте ещё раз.");
-                    continue;
-                }
-                try
-                {
-                    person.Age = age;
+                    Console.Write(outputMessage);
+                    validationAction();
+                    return;
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
-                    trigger = false;
-                    Console.WriteLine("Попробуйте ещё раз.");
+                    Console.WriteLine($"{ex.Message}\nПопробуйте снова.");
                 }
             }
-            while (!trigger);
-        }
-
-        /// <summary>
-        /// Проверяет корректность введённого пользователем пола.
-        /// </summary>
-        /// <param name="person">Персона, вводимая с клавиатуры.</param>
-        private static void CheckPersonGender(Person person)
-        {
-            string genderString;
-            bool trigger;
-
-            do
-            {
-                trigger = true;
-                Console.Write("Введите пол персоны (Male/Female): ");
-                genderString = Console.ReadLine();
-                if (!Enum.IsDefined(typeof(Gender), genderString))
-                {
-                    Console.WriteLine("Некорректно введён пол.");
-                    trigger = false;
-                    Console.WriteLine("Попробуйте ещё раз.");
-                }
-            }
-            while (!trigger);
-
-            person.Gender = (Gender)Enum.Parse(typeof(Gender), genderString, true);
         }
 
         /// <summary>

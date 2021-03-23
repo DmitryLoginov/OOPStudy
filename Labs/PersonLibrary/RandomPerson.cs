@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonLibrary
 {
@@ -67,20 +63,19 @@ namespace PersonLibrary
             switch (gender)
             {
                 case Gender.Male:
-                    {
-                        name = _maleNames[randNum.Next(_maleNames.Length)];
-                        break;
-                    }
+                {
+                    name = _maleNames[randNum.Next(_maleNames.Length)];
+                    break;
+                }
                 case Gender.Female:
-                    {
-                        name = _femaleNames[randNum.Next(_femaleNames.Length)];
-                        break;
-                    }
+                {
+                    name = _femaleNames[randNum.Next(_femaleNames.Length)];
+                    break;
+                }
                 default:
-                    {
-                        return new Person(string.Empty, string.Empty, 
-                            0, Gender.Male);
-                    }
+                {
+                    throw new Exception("Неизвестный пол.");
+                }
             }
             string surname = _lastNames[randNum.Next(_lastNames.Length)];
             int age = randNum.Next(minAge, maxAge);

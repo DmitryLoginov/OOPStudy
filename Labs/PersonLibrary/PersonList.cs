@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonLibrary
 {
@@ -42,7 +38,7 @@ namespace PersonLibrary
         /// <param name="index"></param>
         /// <returns>Персона по индексу.</returns>
         /// <exception cref="System.IndexOutOfRangeException">
-        /// Возникает при указании индекса вне границ массива.
+        /// Выбрасывается при указании индекса вне границ массива.
         /// </exception>
         public Person this[int index]
         {
@@ -127,8 +123,7 @@ namespace PersonLibrary
             
             for (int i = 0; i < _data.Length; i++)
             {
-                //TODO: Дубли +
-                outputString = outputString + _data[i].Print() + "\n";
+                outputString = outputString + _data[i].Info + "\n";
             }
             
             return outputString;
@@ -162,7 +157,7 @@ namespace PersonLibrary
         /// <summary>
         /// Удаляет всех персон в списке.
         /// </summary>
-        public void Erase()
+        public void Clear()
         {
             Array.Resize<Person>(ref _data, 0);
         }
