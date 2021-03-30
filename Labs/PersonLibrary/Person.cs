@@ -77,7 +77,6 @@ namespace PersonLibrary
         /// </summary>
         public Gender Gender { get; set; }
 
-        //TODO: +
         /// <summary>
         /// Информация о персоне.
         /// </summary>
@@ -90,9 +89,14 @@ namespace PersonLibrary
         }
 
         /// <summary>
+        /// Наименьший допустимый возраст персоны.
+        /// </summary>
+        public const int MinAge = 0;
+
+        /// <summary>
         /// Наибольший допустимый возраст персоны.
         /// </summary>
-        private const int maxAge = 130;
+        public const int MaxAge = 130;
 
         /// <summary>
         /// Конструктор класса Person.
@@ -115,7 +119,6 @@ namespace PersonLibrary
         /// </summary>
         public Person() : this("Unknown", "Person", 0, Gender.Male)
         {
-            //TODO +
         }
 
         /// <summary>
@@ -154,10 +157,10 @@ namespace PersonLibrary
         /// <param name="ageString">Строка, соответствующая возрасту.</param>
         private void IsAgeCorrect(int age)
         {
-            if ((age >= maxAge) || (age < 0))
+            if ((age >= MaxAge) || (age < 0))
             {
                 throw new ArgumentException($"Возраст должен быть " +
-                    $"не отрицательным числом, меньшим {maxAge}.");
+                    $"не отрицательным числом, меньшим {MaxAge}.");
             }
         }
 

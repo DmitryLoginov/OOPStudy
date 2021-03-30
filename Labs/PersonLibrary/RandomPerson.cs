@@ -41,16 +41,6 @@ namespace PersonLibrary
         private static Random randNum = new Random();
 
         /// <summary>
-        /// Минимальный возраст.
-        /// </summary>
-        private const int minAge = 0;
-
-        /// <summary>
-        /// Максимальный возраст.
-        /// </summary>
-        private const int maxAge = 100;
-
-        /// <summary>
         /// Возвращает случайную персону.
         /// </summary>
         /// <returns>Переменная типа Person.</returns>
@@ -78,7 +68,7 @@ namespace PersonLibrary
                 }
             }
             string surname = _lastNames[randNum.Next(_lastNames.Length)];
-            int age = randNum.Next(minAge, maxAge);
+            int age = randNum.Next(Person.MinAge, Person.MaxAge);
             
             return new Person(name, surname, age, gender);
         }
