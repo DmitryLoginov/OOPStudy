@@ -24,7 +24,7 @@ namespace PersonLibrary
             {
                 return _series;
             }
-            private set
+            set
             {
                 _series = value;
             }
@@ -39,7 +39,7 @@ namespace PersonLibrary
             {
                 return _number;
             }
-            private set
+            set
             {
                 _number = value;
             }

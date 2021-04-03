@@ -89,5 +89,39 @@ namespace PersonLibrary
                 _job = value;
             }
         }
+
+        public override string Info
+        {
+            get
+            {
+                string child = Child != null
+                    ? $"{Child.FirstName} {Child.LastName}"
+                    : "нет детей";
+                string job = Job != null
+                    ? $"{Job}"
+                    : "безработный";
+                string partner = Partner != null
+                    ? $"{Partner.FirstName} {Partner.LastName}"
+                    : "нет";
+
+                return $"{FirstName} {LastName}, пол: {Gender}, возраст: {Age},\n" +
+                    $"паспортные данные: {Passport.Series} {Passport.Number}, " +
+                    $"супруг(а): {partner},\nдети: {child}, место работы: {job}";
+            }
+        }
+
+        public Adult(string firstName, string lastName,
+            int age, Gender gender, string passSeries, string passNumber) : base(firstName, lastName, age, gender)
+        {
+            Passport = new Passport(passSeries, passNumber);
+        }
+
+        public void GetAJob(string job)
+        {
+            Job = job;
+        }
+
+        // Разобраться с паспортом
+        // GetMarried
     }
 }

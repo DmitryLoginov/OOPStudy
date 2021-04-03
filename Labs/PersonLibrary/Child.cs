@@ -61,5 +61,37 @@ namespace PersonLibrary
                 _learningFacility = value;
             }
         }
+
+        public override string Info
+        {
+            get
+            {
+                string parents;
+                if ((Mother == null) && (Father == null))
+                {
+                    parents = "сирота";
+                }
+                else if ((Mother == null) && (Father != null))
+                {
+                    parents = $"отец: {Father.FirstName} {Father.LastName}";
+                }
+                else if ((Mother != null) && (Father == null))
+                {
+                    parents = $"мать: {Mother.FirstName} {Mother.LastName}";
+                }
+                else
+                {
+                    parents = $"отец: {Father.FirstName} {Father.LastName}, " +
+                        $"мать: {Mother.FirstName} {Mother.LastName}";
+                }
+
+                string learningFacility = LearningFacility != null
+                    ? $"{LearningFacility}"
+                    : "нет";
+
+                return $"{FirstName} {LastName}, пол: {Gender}, возраст: {Age},\n " +
+                    $"родители: {parents}, учебное заведение: {learningFacility}";
+            }
+        }
     }
 }

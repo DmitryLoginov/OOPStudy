@@ -80,7 +80,7 @@ namespace PersonLibrary
         /// <summary>
         /// Информация о персоне.
         /// </summary>
-        public string Info
+        public virtual string Info
         {
             get
             {
