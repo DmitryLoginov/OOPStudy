@@ -38,11 +38,24 @@ namespace Lab2
             //    Console.WriteLine(test.Info);
             //}
 
-            List<Adult> test = RandomPerson.GetChildlessAdultPair();
+            //List<Adult> test = RandomPerson.GetChildlessAdultPair();
+            //
+            //foreach(Adult chel in test)
+            //{
+            //    Console.WriteLine(chel.Info);
+            //}
 
-            foreach(Adult chel in test)
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    Child test = RandomPerson.GetChild();
+            //    Console.WriteLine(test.Info);
+            //}
+
+            List<Person> happyFamily = RandomPerson.GetPairWithAChild();
+
+            foreach(Person person in happyFamily)
             {
-                Console.WriteLine(chel.Info);
+                Console.WriteLine(person.Info);
             }
 
             Console.ReadKey();

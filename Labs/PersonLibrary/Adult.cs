@@ -69,7 +69,7 @@ namespace PersonLibrary
             {
                 return _child;
             }
-            private set
+            set
             {
                 _child = value;
             }
@@ -132,6 +132,11 @@ namespace PersonLibrary
             firstPartner.Partner = secondPartner;
             secondPartner.Partner = firstPartner;
         }
+
+        //public static Child MakeABaby(Adult firstPartner, Adult secondPartner)
+        //{
+        //
+        //}
 
         // Разобраться с паспортом
     }

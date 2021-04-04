@@ -26,7 +26,7 @@ namespace PersonLibrary
             {
                 return _mother;
             }
-            private set
+            set
             {
                 _mother = value;
             }
@@ -41,7 +41,7 @@ namespace PersonLibrary
             {
                 return _father;
             }
-            private set
+            set
             {
                 _father = value;
             }
@@ -89,9 +89,27 @@ namespace PersonLibrary
                     ? $"{LearningFacility}"
                     : "нет";
 
-                return $"{FirstName} {LastName}, пол: {Gender}, возраст: {Age},\n " +
+                return $"{FirstName} {LastName}, пол: {Gender}, возраст: {Age},\n" +
                     $"родители: {parents}, учебное заведение: {learningFacility}";
             }
+        }
+
+        public Child(string firstName, string lastName,
+            int age, Gender gender) : base(firstName, lastName, age, gender)
+        {
+
+        }
+
+        public Child(string firstName, string lastName,
+            int age, Gender gender, Adult mother, Adult father) : base(firstName, lastName, age, gender)
+        {
+            Mother = mother;
+            Father = father;
+        }
+
+        public void GoStudy(string learningFacility)
+        {
+            LearningFacility = learningFacility;
         }
     }
 }

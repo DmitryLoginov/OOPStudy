@@ -49,6 +49,11 @@ namespace PersonLibrary
             "работа1", "работа2", "работа3"
         };
 
+        private static string[] _learningFacilities =
+        {
+            "Детский сад", "Школа", "Музыкальная школа", "Художественная школа"
+        };
+
         /// <summary>
         /// Объект класса Random.
         /// </summary>
@@ -88,6 +93,37 @@ namespace PersonLibrary
         }
 
         /// <summary>
+        /// Возвращает случайную персону с заданным полом.
+        /// </summary>
+        /// <param name="gender"></param>
+        /// <returns></returns>
+        public static Person Get(Gender gender)
+        {
+            string name;
+            switch (gender)
+            {
+                case Gender.Male:
+                    {
+                        name = _maleNames[randNum.Next(_maleNames.Length)];
+                        break;
+                    }
+                case Gender.Female:
+                    {
+                        name = _femaleNames[randNum.Next(_femaleNames.Length)];
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Неизвестный пол.");
+                    }
+            }
+            string surname = _lastNames[randNum.Next(_lastNames.Length)];
+            int age = randNum.Next(Person.MinAge, Person.MaxAge);
+
+            return new Person(name, surname, age, gender);
+        }
+
+        /// <summary>
         /// Возвращает случайного взрослого (без пары).
         /// </summary>
         /// <returns></returns>
@@ -104,25 +140,70 @@ namespace PersonLibrary
         }
 
         /// <summary>
+        /// Возвращает случайного взрослого (без пары) с заданным полом.
+        /// </summary>
+        /// <param name="gender"></param>
+        /// <returns></returns>
+        public static Adult GetSingleAdult(Gender gender)
+        {
+            Person tempPerson = Get(gender);
+
+            Adult newAdult = new Adult(tempPerson.FirstName, tempPerson.LastName,
+                tempPerson.Age, tempPerson.Gender, Passport.GetRandomPassport());
+
+            newAdult.GetAJob(_jobs[randNum.Next(_jobs.Length)]);
+
+            return newAdult;
+        }
+
+        /// <summary>
         /// Возвращает бездетную пару случайных персон.
         /// </summary>
         /// <returns></returns>
         public static List<Adult> GetChildlessAdultPair()
         {
-            Person tempMale = Get();
-            Adult newMale = new Adult(tempMale.FirstName, tempMale.LastName,
-                tempMale.Age, tempMale.Gender, Passport.GetRandomPassport());
-
-            Person tempFemale = Get();
-            Adult newFemale = new Adult(tempFemale.FirstName, tempFemale.LastName,
-                tempFemale.Age, tempFemale.Gender, Passport.GetRandomPassport());
-
-            newMale.GetAJob(_jobs[randNum.Next(_jobs.Length)]);
-            newFemale.GetAJob(_jobs[randNum.Next(_jobs.Length)]);
+            Adult newMale = GetSingleAdult(Gender.Male);
+            Adult newFemale = GetSingleAdult(Gender.Female);
 
             Adult.GetMarried(newMale, newFemale);
 
             return new List<Adult>() { newMale, newFemale };
+        }
+
+        /// <summary>
+        /// Возвращает случайного ребёнка без родителей.
+        /// </summary>
+        /// <returns></returns>
+        public static Child GetChild()
+        {
+            Person tempPerson = Get();
+
+            Child newChild = new Child(tempPerson.FirstName, tempPerson.LastName,
+                tempPerson.Age, tempPerson.Gender);
+
+            newChild.GoStudy(_learningFacilities[randNum.Next(_learningFacilities.Length)]);
+
+            return newChild;
+        }
+
+        //public static Child GetChild(Adult mother, Adult father)
+        //{
+        //
+        //}
+
+        public static List<Person> GetPairWithAChild()
+        {
+            List<Adult> pair = GetChildlessAdultPair();
+
+            Child child = GetChild();
+
+            child.Mother = pair[1];
+            child.Father = pair[0];
+
+            pair[1].Child = child;
+            pair[0].Child = child;
+
+            return new List<Person>() { pair[1], pair[0], child };
         }
     }
 }
