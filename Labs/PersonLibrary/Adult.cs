@@ -116,12 +116,23 @@ namespace PersonLibrary
             Passport = new Passport(passSeries, passNumber);
         }
 
+        public Adult(string firstName, string lastName,
+            int age, Gender gender, Passport passport) : base(firstName, lastName, age, gender)
+        {
+            Passport = passport;
+        }
+
         public void GetAJob(string job)
         {
             Job = job;
         }
 
+        public static void GetMarried(Adult firstPartner, Adult secondPartner)
+        {
+            firstPartner.Partner = secondPartner;
+            secondPartner.Partner = firstPartner;
+        }
+
         // Разобраться с паспортом
-        // GetMarried
     }
 }

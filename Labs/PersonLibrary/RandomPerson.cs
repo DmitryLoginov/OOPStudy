@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PersonLibrary
 {
@@ -12,8 +13,10 @@ namespace PersonLibrary
         /// </summary>
         private static string[] _maleNames =
         {
-            "Isaac", "Zach", "Nolan", "Hans", "Robert",
-            "Terrence", "Challus", "Michael", "Nathan", "Gabe"
+            "Isaac", "Zach", "Nolan", "Hans", "Robert", "Noah",
+            "Terrence", "Challus", "Michael", "Nathan", "Gabe",
+            "Jacob", "Arthur", "Benjamin", "Victor", "Franco",
+            "Austin", "Mark", "Dylan", "Sam", "Warren", "Colin"
         };
 
         /// <summary>
@@ -22,7 +25,9 @@ namespace PersonLibrary
         private static string[] _femaleNames =
         {
             "Nicole", "Kendra", "Elizabeth", "Ellie", "Lexine",
-            "Daina", "Jennifer", "Karen", "Alissa", "Isabel"
+            "Daina", "Jennifer", "Karen", "Alissa", "Isabel",
+            "Amelia", "Rachel", "Damara", "Catherine", "Amanda",
+            "Sarah", "Donna", "Sandra", "Jessica"
         };
 
         /// <summary>
@@ -32,7 +37,16 @@ namespace PersonLibrary
         {
             "Clarke", "Brennan", "Hammond", "Daniels", "Kyne",
             "Mercer", "Cross", "Temple", "Stross", "Langford",
-            "Murdoch", "McNeill", "Weller", "Altman", "Carver"
+            "Murdoch", "McNeill", "Weller", "Altman", "Carver",
+            "Danik", "Delille", "Mathius", "Neumann", "Tatchet",
+            "Phelps", "Santos", "Rosen", "Norton", "Caldwell",
+            "Eckhardt", "Vincent", "Cooper", "Borges", "Cho",
+            "Barrow", "Pawling", "Malyech", "Li", "Chang"
+        };
+
+        private static string[] _jobs =
+        {
+            "работа1", "работа2", "работа3"
         };
 
         /// <summary>
@@ -71,6 +85,44 @@ namespace PersonLibrary
             int age = randNum.Next(Person.MinAge, Person.MaxAge);
             
             return new Person(name, surname, age, gender);
+        }
+
+        /// <summary>
+        /// Возвращает случайного взрослого (без пары).
+        /// </summary>
+        /// <returns></returns>
+        public static Adult GetSingleAdult()
+        {
+            Person tempPerson = Get();
+
+            Adult newAdult = new Adult(tempPerson.FirstName, tempPerson.LastName,
+                tempPerson.Age, tempPerson.Gender, Passport.GetRandomPassport());
+
+            newAdult.GetAJob(_jobs[randNum.Next(_jobs.Length)]);
+
+            return newAdult;
+        }
+
+        /// <summary>
+        /// Возвращает бездетную пару случайных персон.
+        /// </summary>
+        /// <returns></returns>
+        public static List<Adult> GetChildlessAdultPair()
+        {
+            Person tempMale = Get();
+            Adult newMale = new Adult(tempMale.FirstName, tempMale.LastName,
+                tempMale.Age, tempMale.Gender, Passport.GetRandomPassport());
+
+            Person tempFemale = Get();
+            Adult newFemale = new Adult(tempFemale.FirstName, tempFemale.LastName,
+                tempFemale.Age, tempFemale.Gender, Passport.GetRandomPassport());
+
+            newMale.GetAJob(_jobs[randNum.Next(_jobs.Length)]);
+            newFemale.GetAJob(_jobs[randNum.Next(_jobs.Length)]);
+
+            Adult.GetMarried(newMale, newFemale);
+
+            return new List<Adult>() { newMale, newFemale };
         }
     }
 }
