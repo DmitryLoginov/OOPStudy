@@ -46,7 +46,8 @@ namespace PersonLibrary
 
         private static string[] _jobs =
         {
-            "работа1", "работа2", "работа3"
+            "Аптека", "Лаборатория", "Банк", "Магазин", "Аэропорт",
+            "Транспортная компания", "Вокзал", "Офис", "Университет"
         };
 
         private static string[] _learningFacilities =
@@ -103,19 +104,19 @@ namespace PersonLibrary
             switch (gender)
             {
                 case Gender.Male:
-                    {
-                        name = _maleNames[randNum.Next(_maleNames.Length)];
-                        break;
-                    }
+                {
+                    name = _maleNames[randNum.Next(_maleNames.Length)];
+                    break;
+                }
                 case Gender.Female:
-                    {
-                        name = _femaleNames[randNum.Next(_femaleNames.Length)];
-                        break;
-                    }
+                {
+                    name = _femaleNames[randNum.Next(_femaleNames.Length)];
+                    break;
+                }
                 default:
-                    {
-                        throw new Exception("Неизвестный пол.");
-                    }
+                {
+                    throw new Exception("Неизвестный пол.");
+                }
             }
             string surname = _lastNames[randNum.Next(_lastNames.Length)];
             int age = randNum.Next(Person.MinAge, Person.MaxAge);
@@ -136,19 +137,19 @@ namespace PersonLibrary
             switch (gender)
             {
                 case Gender.Male:
-                    {
-                        name = _maleNames[randNum.Next(_maleNames.Length)];
-                        break;
-                    }
+                {
+                    name = _maleNames[randNum.Next(_maleNames.Length)];
+                    break;
+                }
                 case Gender.Female:
-                    {
-                        name = _femaleNames[randNum.Next(_femaleNames.Length)];
-                        break;
-                    }
+                {
+                    name = _femaleNames[randNum.Next(_femaleNames.Length)];
+                    break;
+                }
                 default:
-                    {
-                        throw new Exception("Неизвестный пол.");
-                    }
+                {
+                    throw new Exception("Неизвестный пол.");
+                }
             }
             string surname = _lastNames[randNum.Next(_lastNames.Length)];
             int age = randNum.Next(Adult.MinAdultAge, Person.MaxAge);
@@ -174,19 +175,19 @@ namespace PersonLibrary
             switch (gender)
             {
                 case Gender.Male:
-                    {
-                        name = _maleNames[randNum.Next(_maleNames.Length)];
-                        break;
-                    }
+                {
+                    name = _maleNames[randNum.Next(_maleNames.Length)];
+                    break;
+                }
                 case Gender.Female:
-                    {
-                        name = _femaleNames[randNum.Next(_femaleNames.Length)];
-                        break;
-                    }
+                {
+                    name = _femaleNames[randNum.Next(_femaleNames.Length)];
+                    break;
+                }
                 default:
-                    {
-                        throw new Exception("Неизвестный пол.");
-                    }
+                {
+                    throw new Exception("Неизвестный пол.");
+                }
             }
             string surname = _lastNames[randNum.Next(_lastNames.Length)];
             int age = randNum.Next(Adult.MinAdultAge, Person.MaxAge);
@@ -231,19 +232,19 @@ namespace PersonLibrary
             switch (gender)
             {
                 case Gender.Male:
-                    {
-                        name = _maleNames[randNum.Next(_maleNames.Length)];
-                        break;
-                    }
+                {
+                    name = _maleNames[randNum.Next(_maleNames.Length)];
+                    break;
+                }
                 case Gender.Female:
-                    {
-                        name = _femaleNames[randNum.Next(_femaleNames.Length)];
-                        break;
-                    }
+                {
+                    name = _femaleNames[randNum.Next(_femaleNames.Length)];
+                    break;
+                }
                 default:
-                    {
-                        throw new Exception("Неизвестный пол.");
-                    }
+                {
+                    throw new Exception("Неизвестный пол.");
+                }
             }
             string surname = _lastNames[randNum.Next(_lastNames.Length)];
             int age = randNum.Next(Person.MinAge, Child.MaxChildAge);

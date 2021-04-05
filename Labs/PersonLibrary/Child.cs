@@ -106,8 +106,11 @@ namespace PersonLibrary
                     ? $"{LearningFacility}"
                     : "нет";
 
-                return $"{FirstName} {LastName}, пол: {Gender}, возраст: {Age},\n" +
-                    $"родители: {parents}, учебное заведение: {learningFacility}";
+                return $"{FirstName} {LastName}\n" +
+                    $"\tпол: {Gender}\n" +
+                    $"\tвозраст: {Age}\n" +
+                    $"\tродители: {parents}\n" +
+                    $"\tучебное заведение: {learningFacility}";
             }
         }
 
@@ -193,9 +196,12 @@ namespace PersonLibrary
         /// Пойти/поступить в учебное заведение.
         /// </summary>
         /// <param name="learningFacility">Учебное заведение.</param>
-        public void GoStudy(string learningFacility)
+        /// <returns>Информационное сообщение.</returns>
+        public string GoStudy(string learningFacility)
         {
             LearningFacility = learningFacility;
+
+            return $"Учебное заведение, которое посещает {FirstName} {LastName} - {learningFacility}";
         }
     }
 }

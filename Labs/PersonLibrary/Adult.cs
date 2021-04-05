@@ -125,9 +125,13 @@ namespace PersonLibrary
                     ? $"{Partner.FirstName} {Partner.LastName}"
                     : "нет";
 
-                return $"{FirstName} {LastName}, пол: {Gender}, возраст: {Age},\n" +
-                    $"паспортные данные: {Passport.Series} {Passport.Number}, " +
-                    $"супруг(а): {partner},\nдети: {child}, место работы: {job}";
+                return $"{FirstName} {LastName}\n" +
+                    $"\tпол: {Gender}\n" +
+                    $"\tвозраст: {Age}\n" +
+                    $"\tпаспортные данные: {Passport.Series} {Passport.Number}\n" +
+                    $"\tсупруг(а): {partner}\n" +
+                    $"\tдети: {child}\n" +
+                    $"\tместо работы: {job}";
             }
         }
 
@@ -214,9 +218,12 @@ namespace PersonLibrary
         /// Найти работу.
         /// </summary>
         /// <param name="job">Место работы.</param>
-        public void GetAJob(string job)
+        /// <returns>Информационное сообщение.</returns>
+        public string GetAJob(string job)
         {
             Job = job;
+
+            return $"Новое место работы {FirstName} {LastName} - {job}";
         }
 
         /// <summary>

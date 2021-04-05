@@ -8,69 +8,71 @@ using PersonLibrary;
 
 namespace Lab2
 {
+    /// <summary>
+    /// Класс Program для работы с пользователем.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Точка входа в программу.
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
-            //Adult test = new Adult
-            //(
-            //    "Lol",
-            //    "Kek",
-            //    40,
-            //    Gender.Male,
-            //    "1234",
-            //    "567890"
-            //);
-            //
-            //test.GetAJob("офисный планктон");
-            //
-            //Console.WriteLine(test.Info);
+            Console.WindowWidth = 100;
 
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    Passport test = Passport.GetRandomPassport();
-            //    Console.WriteLine($"{test.Series} {test.Number}\n");
-            //}
+            PersonList people = new PersonList();
+            Random randNum = new Random();
 
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    Adult test = RandomPerson.GetSingleAdult();
-            //    Console.WriteLine(test.Info);
-            //}
+            // a. Создание списка PersonList, состоящий из
+            // семи человек, среди которых - взрослые и дети
+            // в случайном порядке.
+            for (int i = 0; i < 7; i++)
+            {
+                int person = randNum.Next(0, 2);
+                switch (person)
+                {
+                    case 0:
+                    {
+                        people.Add(RandomPerson.GetSingleAdult());
+                        break;
+                    }
+                    case 1:
+                    {
+                        people.Add(RandomPerson.GetChild());
+                        break;
+                    }
+                }
+            }
 
-            //List<Adult> test = RandomPerson.GetChildlessAdultPair();
-            //
-            //foreach(Adult chel in test)
-            //{
-            //    Console.WriteLine(chel.Info);
-            //}
+            // b. Вывод на экран описания всех людей списка.
+            Console.WriteLine("Вывод на экран описания всех людей списка...\n");
+            Console.ReadKey();
+            for (int i = 0; i < people.Count; i++)
+            {
+                Console.WriteLine(people[i].Info + "\n");
+            }
 
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    Child test = RandomPerson.GetChild();
-            //    Console.WriteLine(test.Info);
-            //}
+            // c. Программное определение типа четвёртого человека в списке.
+            Console.WriteLine("Программное определение типа четвёртого человека в списке...\n");
+            Console.ReadKey();
+            switch (people[3])
+            {
+                case Adult adult:
+                {
+                    Console.WriteLine("Тип четвёртого человека в списке - Adult");
+                    Console.WriteLine(adult.GetAJob("Стоматологическая клиника"));
+                    break;
+                }
+                case Child child:
+                {
+                    Console.WriteLine("Тип четвёртого человека в списке - Child");
+                    Console.WriteLine(child.GoStudy("Шахматный кружок"));
+                    break;
+                }
+            }
 
-            //List<Person> happyFamily = RandomPerson.GetPairWithAChild();
-            //
-            //foreach(Person person in happyFamily)
-            //{
-            //    Console.WriteLine(person.Info);
-            //}
 
-            //try
-            //{
-            //    Child child = new Child
-            //(
-            //    "лол", "kek", 18, Gender.Male
-            //);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
-
-            Console.WriteLine("успех");
             Console.ReadKey();
         }
     }
