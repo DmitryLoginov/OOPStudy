@@ -11,14 +11,30 @@ namespace PersonLibrary
     /// </summary>
     public class Adult : Person
     {
+        /// <summary>
+        /// Наименьший возраст, начиная с которого
+        /// персона считается "взрослым".
+        /// </summary>
         public const int MinAdultAge = 18;
         
+        /// <summary>
+        /// Паспорт.
+        /// </summary>
         private Passport _passport;
 
+        /// <summary>
+        /// Партнер, супруг(а).
+        /// </summary>
         private Adult _partner;
 
+        /// <summary>
+        /// Ребёнок.
+        /// </summary>
         private Child _child;
 
+        /// <summary>
+        /// Место работы.
+        /// </summary>
         private string _job;
         
         /// <summary>
@@ -92,6 +108,9 @@ namespace PersonLibrary
             }
         }
 
+        /// <summary>
+        /// Информация о персоне.
+        /// </summary>
         public override string Info
         {
             get
@@ -112,18 +131,76 @@ namespace PersonLibrary
             }
         }
 
-        public Adult(string firstName, string lastName,
-            int age, Gender gender, string passSeries, string passNumber) : base(firstName, lastName, age, gender)
+        /// <summary>
+        /// Конструктор класса Adult.
+        /// </summary>
+        /// <param name="firstName">Имя.</param>
+        /// <param name="lastName">Фамилия.</param>
+        /// <param name="age">Возраст.</param>
+        /// <param name="gender">Пол.</param>
+        /// <param name="passSeries">Серия паспорта.</param>
+        /// <param name="passNumber">Номер паспорта.</param>
+        public Adult(string firstName, string lastName, int age,
+            Gender gender, string passSeries, string passNumber) : base(firstName, lastName, age, gender)
         {
             Passport = new Passport(passSeries, passNumber);
         }
 
-        public Adult(string firstName, string lastName,
-            int age, Gender gender, Passport passport) : base(firstName, lastName, age, gender)
+        /// <summary>
+        /// Конструктор класса Adult.
+        /// </summary>
+        /// <param name="firstName">Имя.</param>
+        /// <param name="lastName">Фамилия.</param>
+        /// <param name="age">Возраст.</param>
+        /// <param name="gender">Пол.</param>
+        /// <param name="passSeries">Серия паспорта.</param>
+        /// <param name="passNumber">Номер паспорта.</param>
+        /// <param name="job">Место работы.</param>
+        public Adult(string firstName, string lastName, int age,
+            Gender gender, string passSeries, string passNumber,
+            string job) : base(firstName, lastName, age, gender)
+        {
+            Passport = new Passport(passSeries, passNumber);
+            Job = job;
+        }
+
+        /// <summary>
+        /// Конструктор класса Adult.
+        /// </summary>
+        /// <param name="firstName">Имя.</param>
+        /// <param name="lastName">Фамилия.</param>
+        /// <param name="age">Возраст.</param>
+        /// <param name="gender">Пол.</param>
+        /// <param name="passport">Паспорт.</param>
+        public Adult(string firstName, string lastName, int age,
+            Gender gender, Passport passport) : base(firstName, lastName, age, gender)
         {
             Passport = passport;
         }
 
+        /// <summary>
+        /// Конструктор класса Adult.
+        /// </summary>
+        /// <param name="firstName">Имя.</param>
+        /// <param name="lastName">Фамилия.</param>
+        /// <param name="age">Возраст.</param>
+        /// <param name="gender">Пол.</param>
+        /// <param name="passport">Паспорт.</param>
+        /// <param name="job">Место работы.</param>
+        public Adult(string firstName, string lastName, int age,
+            Gender gender, Passport passport, string job) : base(firstName, lastName, age, gender)
+        {
+            Passport = passport;
+            Job = job;
+        }
+
+        /// <summary>
+        /// Проверяет возраст на соответствие требованиям.
+        /// </summary>
+        /// <param name="age">Строка, соответствующая возрасту.</param>
+        /// <exception cref="System.ArgumentException">
+        /// Выбрасывается при несоответствии возраста требованиям.
+        /// </exception>
         protected override void IsAgeCorrect(int age)
         {
             if ((age >= MaxAge) || (age < MinAdultAge))
@@ -133,11 +210,23 @@ namespace PersonLibrary
             }
         }
 
+        /// <summary>
+        /// Найти работу.
+        /// </summary>
+        /// <param name="job">Место работы.</param>
         public void GetAJob(string job)
         {
             Job = job;
         }
 
+        /// <summary>
+        /// Связывает узами брака двух персон.
+        /// </summary>
+        /// <remarks>
+        /// Проверка полов не осуществляется.
+        /// </remarks>
+        /// <param name="firstPartner"></param>
+        /// <param name="secondPartner"></param>
         public static void GetMarried(Adult firstPartner, Adult secondPartner)
         {
             firstPartner.Partner = secondPartner;

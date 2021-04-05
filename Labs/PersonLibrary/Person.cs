@@ -154,7 +154,10 @@ namespace PersonLibrary
         /// <summary>
         /// Проверяет возраст на соответствие требованиям.
         /// </summary>
-        /// <param name="ageString">Строка, соответствующая возрасту.</param>
+        /// <param name="age">Строка, соответствующая возрасту.</param>
+        /// <exception cref="System.ArgumentException">
+        /// Выбрасывается при несоответствии возраста требованиям.
+        /// </exception>
         protected virtual void IsAgeCorrect(int age)
         {
             if ((age >= MaxAge) || (age < MinAge))

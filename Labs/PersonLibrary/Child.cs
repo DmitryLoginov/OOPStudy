@@ -11,12 +11,24 @@ namespace PersonLibrary
     /// </summary>
     public class Child : Person
     {
+        /// <summary>
+        /// Наибольший возраст ребёнка.
+        /// </summary>
         public const int MaxChildAge = 18;
         
+        /// <summary>
+        /// Мать.
+        /// </summary>
         private Adult _mother;
 
+        /// <summary>
+        /// Отец.
+        /// </summary>
         private Adult _father;
 
+        /// <summary>
+        /// Учебное заведение.
+        /// </summary>
         private string _learningFacility;
 
         /// <summary>
@@ -64,6 +76,9 @@ namespace PersonLibrary
             }
         }
 
+        /// <summary>
+        /// Информация о персоне.
+        /// </summary>
         public override string Info
         {
             get
@@ -96,19 +111,75 @@ namespace PersonLibrary
             }
         }
 
-        public Child(string firstName, string lastName,
-            int age, Gender gender) : base(firstName, lastName, age, gender)
+        /// <summary>
+        /// Конструктор класса Child.
+        /// </summary>
+        /// <param name="firstName">Имя.</param>
+        /// <param name="lastName">Фамилия.</param>
+        /// <param name="age">Возраст.</param>
+        /// <param name="gender">Пол.</param>
+        public Child(string firstName, string lastName, int age,
+            Gender gender) : base(firstName, lastName, age, gender)
         {
 
         }
 
-        public Child(string firstName, string lastName,
-            int age, Gender gender, Adult mother, Adult father) : base(firstName, lastName, age, gender)
+        /// <summary>
+        /// Конструктор класса Child.
+        /// </summary>
+        /// <param name="firstName">Имя.</param>
+        /// <param name="lastName">Фамилия.</param>
+        /// <param name="age">Возраст.</param>
+        /// <param name="gender">Пол.</param>
+        /// <param name="learningFacility">Учебное заведение.</param>
+        public Child(string firstName, string lastName, int age,
+            Gender gender, string learningFacility) : base(firstName, lastName, age, gender)
+        {
+            LearningFacility = learningFacility;
+        }
+
+        /// <summary>
+        /// Конструктор класса Child.
+        /// </summary>
+        /// <param name="firstName">Имя.</param>
+        /// <param name="lastName">Фамилия.</param>
+        /// <param name="age">Возраст.</param>
+        /// <param name="gender">Пол.</param>
+        /// <param name="mother">Мать.</param>
+        /// <param name="father">Отец.</param>
+        public Child(string firstName, string lastName, int age,
+            Gender gender, Adult mother, Adult father) : base(firstName, lastName, age, gender)
         {
             Mother = mother;
             Father = father;
         }
 
+        /// <summary>
+        /// Конструктор класса Child.
+        /// </summary>
+        /// <param name="firstName">Имя.</param>
+        /// <param name="lastName">Фамилия.</param>
+        /// <param name="age">Возраст.</param>
+        /// <param name="gender">Пол.</param>
+        /// <param name="mother">Мать.</param>
+        /// <param name="father">Отец.</param>
+        /// <param name="learningFacility">Учебное заведение.</param>
+        public Child(string firstName, string lastName, int age,
+            Gender gender, Adult mother, Adult father,
+            string learningFacility) : base(firstName, lastName, age, gender)
+        {
+            Mother = mother;
+            Father = father;
+            LearningFacility = learningFacility;
+        }
+
+        /// <summary>
+        /// Проверяет возраст на соответствие требованиям.
+        /// </summary>
+        /// <param name="age">Строка, соответствующая возрасту.</param>
+        /// <exception cref="System.ArgumentException">
+        /// Выбрасывается при несоответствии возраста требованиям.
+        /// </exception>
         protected override void IsAgeCorrect(int age)
         {
             if ((age >= MaxChildAge) || (age < MinAge))
@@ -118,6 +189,10 @@ namespace PersonLibrary
             }
         }
 
+        /// <summary>
+        /// Пойти/поступить в учебное заведение.
+        /// </summary>
+        /// <param name="learningFacility">Учебное заведение.</param>
         public void GoStudy(string learningFacility)
         {
             LearningFacility = learningFacility;

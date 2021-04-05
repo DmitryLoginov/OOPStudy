@@ -95,8 +95,8 @@ namespace PersonLibrary
         /// <summary>
         /// Возвращает случайную персону с заданным полом.
         /// </summary>
-        /// <param name="gender"></param>
-        /// <returns></returns>
+        /// <param name="gender">Пол персоны.</param>
+        /// <returns>Переменная типа Person.</returns>
         public static Person Get(Gender gender)
         {
             string name;
@@ -126,40 +126,88 @@ namespace PersonLibrary
         /// <summary>
         /// Возвращает случайного взрослого (без пары).
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Переменная типа Adult.</returns>
         public static Adult GetSingleAdult()
         {
-            Person tempPerson = Get();
+            string name;
 
-            Adult newAdult = new Adult(tempPerson.FirstName, tempPerson.LastName,
-                tempPerson.Age, tempPerson.Gender, Passport.GetRandomPassport());
+            Gender gender = (Gender)randNum.Next(0,
+                Enum.GetNames(typeof(Gender)).Length);
+            switch (gender)
+            {
+                case Gender.Male:
+                    {
+                        name = _maleNames[randNum.Next(_maleNames.Length)];
+                        break;
+                    }
+                case Gender.Female:
+                    {
+                        name = _femaleNames[randNum.Next(_femaleNames.Length)];
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Неизвестный пол.");
+                    }
+            }
+            string surname = _lastNames[randNum.Next(_lastNames.Length)];
+            int age = randNum.Next(Adult.MinAdultAge, Person.MaxAge);
+            Passport passport = Passport.GetRandomPassport();
+            string job = _jobs[randNum.Next(_jobs.Length)];
 
-            newAdult.GetAJob(_jobs[randNum.Next(_jobs.Length)]);
 
-            return newAdult;
+            return new Adult
+            (
+                name, surname, age, gender,
+                passport, job
+            );
         }
 
         /// <summary>
         /// Возвращает случайного взрослого (без пары) с заданным полом.
         /// </summary>
-        /// <param name="gender"></param>
-        /// <returns></returns>
+        /// <param name="gender">Пол взрослого.</param>
+        /// <returns>Переменная типа Adult.</returns>
         public static Adult GetSingleAdult(Gender gender)
         {
-            Person tempPerson = Get(gender);
+            string name;
+            switch (gender)
+            {
+                case Gender.Male:
+                    {
+                        name = _maleNames[randNum.Next(_maleNames.Length)];
+                        break;
+                    }
+                case Gender.Female:
+                    {
+                        name = _femaleNames[randNum.Next(_femaleNames.Length)];
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Неизвестный пол.");
+                    }
+            }
+            string surname = _lastNames[randNum.Next(_lastNames.Length)];
+            int age = randNum.Next(Adult.MinAdultAge, Person.MaxAge);
+            Passport passport = Passport.GetRandomPassport();
+            string job = _jobs[randNum.Next(_jobs.Length)];
 
-            Adult newAdult = new Adult(tempPerson.FirstName, tempPerson.LastName,
-                tempPerson.Age, tempPerson.Gender, Passport.GetRandomPassport());
 
-            newAdult.GetAJob(_jobs[randNum.Next(_jobs.Length)]);
-
-            return newAdult;
+            return new Adult
+            (
+                name, surname, age, gender,
+                passport, job
+            );
         }
 
         /// <summary>
         /// Возвращает бездетную пару случайных персон.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// Список, состоящий из двух
+        /// переменных типа Adult.
+        /// </returns>
         public static List<Adult> GetChildlessAdultPair()
         {
             Adult newMale = GetSingleAdult(Gender.Male);
@@ -173,17 +221,39 @@ namespace PersonLibrary
         /// <summary>
         /// Возвращает случайного ребёнка без родителей.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Переменную типа Child.</returns>
         public static Child GetChild()
         {
-            Person tempPerson = Get();
+            string name;
 
-            Child newChild = new Child(tempPerson.FirstName, tempPerson.LastName,
-                tempPerson.Age, tempPerson.Gender);
+            Gender gender = (Gender)randNum.Next(0,
+                Enum.GetNames(typeof(Gender)).Length);
+            switch (gender)
+            {
+                case Gender.Male:
+                    {
+                        name = _maleNames[randNum.Next(_maleNames.Length)];
+                        break;
+                    }
+                case Gender.Female:
+                    {
+                        name = _femaleNames[randNum.Next(_femaleNames.Length)];
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Неизвестный пол.");
+                    }
+            }
+            string surname = _lastNames[randNum.Next(_lastNames.Length)];
+            int age = randNum.Next(Person.MinAge, Child.MaxChildAge);
+            string learninFacility = _learningFacilities[randNum.Next(_learningFacilities.Length)];
 
-            newChild.GoStudy(_learningFacilities[randNum.Next(_learningFacilities.Length)]);
-
-            return newChild;
+            return new Child
+            (
+                name, surname, age, gender,
+                learninFacility
+            );
         }
 
         //public static Child GetChild(Adult mother, Adult father)
@@ -191,6 +261,14 @@ namespace PersonLibrary
         //
         //}
 
+        /// <summary>
+        /// Возвращает пару из двух женатых взрослых и ребёнка.
+        /// </summary>
+        /// <returns>
+        /// Список типа Person, содержащий
+        /// две переменные типа Adult и одну
+        /// переменную типа Child.
+        /// </returns>
         public static List<Person> GetPairWithAChild()
         {
             List<Adult> pair = GetChildlessAdultPair();
