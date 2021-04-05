@@ -51,13 +51,26 @@ namespace Lab2
             //    Console.WriteLine(test.Info);
             //}
 
-            List<Person> happyFamily = RandomPerson.GetPairWithAChild();
+            //List<Person> happyFamily = RandomPerson.GetPairWithAChild();
+            //
+            //foreach(Person person in happyFamily)
+            //{
+            //    Console.WriteLine(person.Info);
+            //}
 
-            foreach(Person person in happyFamily)
-            {
-                Console.WriteLine(person.Info);
-            }
+            //try
+            //{
+            //    Child child = new Child
+            //(
+            //    "лол", "kek", 18, Gender.Male
+            //);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
 
+            Console.WriteLine("успех");
             Console.ReadKey();
         }
     }

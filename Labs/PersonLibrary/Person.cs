@@ -54,12 +54,12 @@ namespace PersonLibrary
         /// <summary>
         /// Возраст персоны.
         /// </summary>
-        private int _age;
+        protected int _age;
 
         /// <summary>
         /// Возраст персоны.
         /// </summary>
-        public int Age
+        public virtual int Age
         {
             get
             {
@@ -155,9 +155,9 @@ namespace PersonLibrary
         /// Проверяет возраст на соответствие требованиям.
         /// </summary>
         /// <param name="ageString">Строка, соответствующая возрасту.</param>
-        private void IsAgeCorrect(int age)
+        protected virtual void IsAgeCorrect(int age)
         {
-            if ((age >= MaxAge) || (age < 0))
+            if ((age >= MaxAge) || (age < MinAge))
             {
                 throw new ArgumentException($"Возраст должен быть " +
                     $"не отрицательным числом, меньшим {MaxAge}.");

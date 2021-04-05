@@ -11,6 +11,8 @@ namespace PersonLibrary
     /// </summary>
     public class Child : Person
     {
+        public const int MaxChildAge = 18;
+        
         private Adult _mother;
 
         private Adult _father;
@@ -105,6 +107,15 @@ namespace PersonLibrary
         {
             Mother = mother;
             Father = father;
+        }
+
+        protected override void IsAgeCorrect(int age)
+        {
+            if ((age >= MaxChildAge) || (age < MinAge))
+            {
+                throw new ArgumentException($"Возраст ребёнка должен " +
+                    $"быть не отрицательным числом, меньшим {MaxChildAge}.");
+            }
         }
 
         public void GoStudy(string learningFacility)

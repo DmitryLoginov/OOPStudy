@@ -11,6 +11,8 @@ namespace PersonLibrary
     /// </summary>
     public class Adult : Person
     {
+        public const int MinAdultAge = 18;
+        
         private Passport _passport;
 
         private Adult _partner;
@@ -120,6 +122,15 @@ namespace PersonLibrary
             int age, Gender gender, Passport passport) : base(firstName, lastName, age, gender)
         {
             Passport = passport;
+        }
+
+        protected override void IsAgeCorrect(int age)
+        {
+            if ((age >= MaxAge) || (age < MinAdultAge))
+            {
+                throw new ArgumentException($"Возраст взрослого должен быть " +
+                    $"не отрицательным числом, большим {MinAdultAge} меньшим {MaxAge}.");
+            }
         }
 
         public void GetAJob(string job)
