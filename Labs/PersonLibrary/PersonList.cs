@@ -59,11 +59,11 @@ namespace PersonLibrary
         /// <param name="lastName">Фамилия персоны.</param>
         /// <param name="age">Возраст персоны.</param>
         /// <param name="gender">Пол персоны.</param>
-        public void Add(string firstName, string lastName, 
-            int age, Gender gender)
-        {
-            Add(new Person(firstName, lastName, age, gender));
-        }
+        //public void Add(string firstName, string lastName, 
+        //    int age, Gender gender)
+        //{
+        //    Add(new Person(firstName, lastName, age, gender));
+        //}
 
         /// <summary>
         /// Добавляет новую персону в конец списка.

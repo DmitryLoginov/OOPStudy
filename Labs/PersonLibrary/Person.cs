@@ -4,10 +4,11 @@ using System.Text.RegularExpressions;
 
 namespace PersonLibrary
 {
+    //TODO: abstract +
     /// <summary>
     /// Класс персон.
     /// </summary>
-    public class Person
+    public abstract class Person
     {
         /// <summary>
         /// Имя персоны.
@@ -54,12 +55,12 @@ namespace PersonLibrary
         /// <summary>
         /// Возраст персоны.
         /// </summary>
-        protected int _age;
+        private int _age;
 
         /// <summary>
         /// Возраст персоны.
         /// </summary>
-        public virtual int Age
+        public int Age
         {
             get
             {
@@ -84,7 +85,9 @@ namespace PersonLibrary
         {
             get
             {
-                return $"{FirstName} {LastName}, пол: {Gender}, возраст: {Age}";
+                return $"{FirstName} {LastName}\n" +
+                    $"\tпол: {Gender}\n" +
+                    $"\tвозраст: {Age}";
             }
         }
 
@@ -158,14 +161,7 @@ namespace PersonLibrary
         /// <exception cref="System.ArgumentException">
         /// Выбрасывается при несоответствии возраста требованиям.
         /// </exception>
-        protected virtual void IsAgeCorrect(int age)
-        {
-            if ((age >= MaxAge) || (age < MinAge))
-            {
-                throw new ArgumentException($"Возраст должен быть " +
-                    $"не отрицательным числом, меньшим {MaxAge}.");
-            }
-        }
+        protected abstract void IsAgeCorrect(int age);
 
         /// <summary>
         /// Преобразует имя и фамилию к правильному регистру.

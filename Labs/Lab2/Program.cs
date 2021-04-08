@@ -46,7 +46,7 @@ namespace Lab2
             }
 
             // b. Вывод на экран описания всех людей списка.
-            Console.WriteLine("Вывод на экран описания всех людей списка...\n");
+            Console.WriteLine("Вывод на экран описания всех людей списка...");
             Console.ReadKey();
             for (int i = 0; i < people.Count; i++)
             {
@@ -54,14 +54,14 @@ namespace Lab2
             }
 
             // c. Программное определение типа четвёртого человека в списке.
-            Console.WriteLine("Программное определение типа четвёртого человека в списке...\n");
+            Console.WriteLine("Программное определение типа четвёртого человека в списке...");
             Console.ReadKey();
             switch (people[3])
             {
                 case Adult adult:
                 {
                     Console.WriteLine("Тип четвёртого человека в списке - Adult");
-                    Console.WriteLine(adult.GetAJob("Стоматологическая клиника"));
+                    Console.WriteLine(adult.FindAJob("Стоматологическая клиника"));
                     break;
                 }
                 case Child child:

@@ -44,7 +44,7 @@
     <Compile Include="Adult.cs" />
     <Compile Include="Child.cs" />
     <Compile Include="Gender.cs" />
-    <Compile Include="Passport.cs" />
+    <Compile Include="PassportTemplate.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="PersonList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

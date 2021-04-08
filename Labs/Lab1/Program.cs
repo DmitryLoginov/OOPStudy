@@ -25,8 +25,8 @@ namespace Lab1
                 "по три человека в каждом...");
             for (int i = 0; i < 3; i++)
             {
-                firstList.Add(RandomPerson.Get());
-                secondList.Add(RandomPerson.Get());
+                firstList.Add(RandomPerson.GetRandomPerson());
+                secondList.Add(RandomPerson.GetRandomPerson());
             }
             Console.ReadKey();
 

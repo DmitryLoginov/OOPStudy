@@ -18,39 +18,9 @@ namespace PersonLibrary
         public const int MinAdultAge = 18;
         
         /// <summary>
-        /// Паспорт.
-        /// </summary>
-        private Passport _passport;
-
-        /// <summary>
-        /// Партнер, супруг(а).
-        /// </summary>
-        private Adult _partner;
-
-        /// <summary>
-        /// Ребёнок.
-        /// </summary>
-        private Child _child;
-
-        /// <summary>
-        /// Место работы.
-        /// </summary>
-        private string _job;
-        
-        /// <summary>
         /// Паспортные данные.
         /// </summary>
-        public Passport Passport
-        {
-            get
-            {
-                return _passport;
-            }
-            private set
-            {
-                _passport = value;
-            }
-        }
+        public PassportTemplate Passport { get; set; }
 
         /// <summary>
         /// Семейное положение.
@@ -59,54 +29,24 @@ namespace PersonLibrary
         {
             get
             {
-                return (_partner != null);
+                return (Partner != null);
             }
         }
 
         /// <summary>
         /// Супруг(а).
         /// </summary>
-        public Adult Partner
-        {
-            get
-            {
-                return _partner;
-            }
-            private set
-            {
-                _partner = value;
-            }
-        }
+        public Adult Partner { get; set; }
 
         /// <summary>
         /// Ребёнок.
         /// </summary>
-        public Child Child
-        {
-            get
-            {
-                return _child;
-            }
-            set
-            {
-                _child = value;
-            }
-        }
+        public Child Child { get; set; }
 
         /// <summary>
         /// Место работы.
         /// </summary>
-        public string Job
-        {
-            get
-            {
-                return _job;
-            }
-            private set
-            {
-                _job = value;
-            }
-        }
+        public string Job { get; set; }
 
         /// <summary>
         /// Информация о персоне.
@@ -125,10 +65,8 @@ namespace PersonLibrary
                     ? $"{Partner.FirstName} {Partner.LastName}"
                     : "нет";
 
-                return $"{FirstName} {LastName}\n" +
-                    $"\tпол: {Gender}\n" +
-                    $"\tвозраст: {Age}\n" +
-                    $"\tпаспортные данные: {Passport.Series} {Passport.Number}\n" +
+                return base.Info +
+                    $"\n\tпаспортные данные: {Passport.Series} {Passport.Number}\n" +
                     $"\tсупруг(а): {partner}\n" +
                     $"\tдети: {child}\n" +
                     $"\tместо работы: {job}";
@@ -142,42 +80,9 @@ namespace PersonLibrary
         /// <param name="lastName">Фамилия.</param>
         /// <param name="age">Возраст.</param>
         /// <param name="gender">Пол.</param>
-        /// <param name="passSeries">Серия паспорта.</param>
-        /// <param name="passNumber">Номер паспорта.</param>
-        public Adult(string firstName, string lastName, int age,
-            Gender gender, string passSeries, string passNumber) : base(firstName, lastName, age, gender)
-        {
-            Passport = new Passport(passSeries, passNumber);
-        }
-
-        /// <summary>
-        /// Конструктор класса Adult.
-        /// </summary>
-        /// <param name="firstName">Имя.</param>
-        /// <param name="lastName">Фамилия.</param>
-        /// <param name="age">Возраст.</param>
-        /// <param name="gender">Пол.</param>
-        /// <param name="passSeries">Серия паспорта.</param>
-        /// <param name="passNumber">Номер паспорта.</param>
-        /// <param name="job">Место работы.</param>
-        public Adult(string firstName, string lastName, int age,
-            Gender gender, string passSeries, string passNumber,
-            string job) : base(firstName, lastName, age, gender)
-        {
-            Passport = new Passport(passSeries, passNumber);
-            Job = job;
-        }
-
-        /// <summary>
-        /// Конструктор класса Adult.
-        /// </summary>
-        /// <param name="firstName">Имя.</param>
-        /// <param name="lastName">Фамилия.</param>
-        /// <param name="age">Возраст.</param>
-        /// <param name="gender">Пол.</param>
         /// <param name="passport">Паспорт.</param>
         public Adult(string firstName, string lastName, int age,
-            Gender gender, Passport passport) : base(firstName, lastName, age, gender)
+            Gender gender, PassportTemplate passport) : base(firstName, lastName, age, gender)
         {
             Passport = passport;
         }
@@ -192,7 +97,7 @@ namespace PersonLibrary
         /// <param name="passport">Паспорт.</param>
         /// <param name="job">Место работы.</param>
         public Adult(string firstName, string lastName, int age,
-            Gender gender, Passport passport, string job) : base(firstName, lastName, age, gender)
+            Gender gender, PassportTemplate passport, string job) : base(firstName, lastName, age, gender)
         {
             Passport = passport;
             Job = job;
@@ -207,10 +112,10 @@ namespace PersonLibrary
         /// </exception>
         protected override void IsAgeCorrect(int age)
         {
-            if ((age >= MaxAge) || (age < MinAdultAge))
+            if ((age > MaxAge) || (age < MinAdultAge))
             {
                 throw new ArgumentException($"Возраст взрослого должен быть " +
-                    $"не отрицательным числом, большим {MinAdultAge} меньшим {MaxAge}.");
+                    $"положительным числом, большим {MinAdultAge} меньшим {MaxAge}.");
             }
         }
 
@@ -219,11 +124,11 @@ namespace PersonLibrary
         /// </summary>
         /// <param name="job">Место работы.</param>
         /// <returns>Информационное сообщение.</returns>
-        public string GetAJob(string job)
+        public string FindAJob(string job)
         {
             Job = job;
 
-            return $"Новое место работы {FirstName} {LastName} - {job}";
+            return $"Теперь {FirstName} {LastName} работает в {job}";
         }
 
         /// <summary>
@@ -239,12 +144,5 @@ namespace PersonLibrary
             firstPartner.Partner = secondPartner;
             secondPartner.Partner = firstPartner;
         }
-
-        //public static Child MakeABaby(Adult firstPartner, Adult secondPartner)
-        //{
-        //
-        //}
-
-        // Разобраться с паспортом
     }
 }

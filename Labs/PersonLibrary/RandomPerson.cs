@@ -60,16 +60,10 @@ namespace PersonLibrary
         /// </summary>
         private static Random randNum = new Random();
 
-        /// <summary>
-        /// Возвращает случайную персону.
-        /// </summary>
-        /// <returns>Переменная типа Person.</returns>
-        public static Person Get()
+        private static string RandomName(Gender gender)
         {
             string name;
-            
-            Gender gender = (Gender)randNum.Next(0, 
-                Enum.GetNames(typeof(Gender)).Length);
+
             switch (gender)
             {
                 case Gender.Male:
@@ -87,41 +81,8 @@ namespace PersonLibrary
                     throw new Exception("Неизвестный пол.");
                 }
             }
-            string surname = _lastNames[randNum.Next(_lastNames.Length)];
-            int age = randNum.Next(Person.MinAge, Person.MaxAge);
-            
-            return new Person(name, surname, age, gender);
-        }
 
-        /// <summary>
-        /// Возвращает случайную персону с заданным полом.
-        /// </summary>
-        /// <param name="gender">Пол персоны.</param>
-        /// <returns>Переменная типа Person.</returns>
-        public static Person Get(Gender gender)
-        {
-            string name;
-            switch (gender)
-            {
-                case Gender.Male:
-                {
-                    name = _maleNames[randNum.Next(_maleNames.Length)];
-                    break;
-                }
-                case Gender.Female:
-                {
-                    name = _femaleNames[randNum.Next(_femaleNames.Length)];
-                    break;
-                }
-                default:
-                {
-                    throw new Exception("Неизвестный пол.");
-                }
-            }
-            string surname = _lastNames[randNum.Next(_lastNames.Length)];
-            int age = randNum.Next(Person.MinAge, Person.MaxAge);
-
-            return new Person(name, surname, age, gender);
+            return name;
         }
 
         /// <summary>
@@ -130,38 +91,10 @@ namespace PersonLibrary
         /// <returns>Переменная типа Adult.</returns>
         public static Adult GetSingleAdult()
         {
-            string name;
-
+            //TODO: дубли +
             Gender gender = (Gender)randNum.Next(0,
                 Enum.GetNames(typeof(Gender)).Length);
-            switch (gender)
-            {
-                case Gender.Male:
-                {
-                    name = _maleNames[randNum.Next(_maleNames.Length)];
-                    break;
-                }
-                case Gender.Female:
-                {
-                    name = _femaleNames[randNum.Next(_femaleNames.Length)];
-                    break;
-                }
-                default:
-                {
-                    throw new Exception("Неизвестный пол.");
-                }
-            }
-            string surname = _lastNames[randNum.Next(_lastNames.Length)];
-            int age = randNum.Next(Adult.MinAdultAge, Person.MaxAge);
-            Passport passport = Passport.GetRandomPassport();
-            string job = _jobs[randNum.Next(_jobs.Length)];
-
-
-            return new Adult
-            (
-                name, surname, age, gender,
-                passport, job
-            );
+            return GetSingleAdult(gender);
         }
 
         /// <summary>
@@ -171,34 +104,16 @@ namespace PersonLibrary
         /// <returns>Переменная типа Adult.</returns>
         public static Adult GetSingleAdult(Gender gender)
         {
-            string name;
-            switch (gender)
-            {
-                case Gender.Male:
-                {
-                    name = _maleNames[randNum.Next(_maleNames.Length)];
-                    break;
-                }
-                case Gender.Female:
-                {
-                    name = _femaleNames[randNum.Next(_femaleNames.Length)];
-                    break;
-                }
-                default:
-                {
-                    throw new Exception("Неизвестный пол.");
-                }
-            }
+            string name = RandomName(gender);
+            //TODO: дубли +
             string surname = _lastNames[randNum.Next(_lastNames.Length)];
             int age = randNum.Next(Adult.MinAdultAge, Person.MaxAge);
-            Passport passport = Passport.GetRandomPassport();
+            PassportTemplate passport = PassportTemplate.GetRandomPassport();
             string job = _jobs[randNum.Next(_jobs.Length)];
-
 
             return new Adult
             (
-                name, surname, age, gender,
-                passport, job
+                name, surname, age, gender, passport, job
             );
         }
 
@@ -225,50 +140,27 @@ namespace PersonLibrary
         /// <returns>Переменную типа Child.</returns>
         public static Child GetChild()
         {
-            string name;
-
+            
+            //TODO: дубли +
             Gender gender = (Gender)randNum.Next(0,
                 Enum.GetNames(typeof(Gender)).Length);
-            switch (gender)
-            {
-                case Gender.Male:
-                {
-                    name = _maleNames[randNum.Next(_maleNames.Length)];
-                    break;
-                }
-                case Gender.Female:
-                {
-                    name = _femaleNames[randNum.Next(_femaleNames.Length)];
-                    break;
-                }
-                default:
-                {
-                    throw new Exception("Неизвестный пол.");
-                }
-            }
+            string name = RandomName(gender);
             string surname = _lastNames[randNum.Next(_lastNames.Length)];
             int age = randNum.Next(Person.MinAge, Child.MaxChildAge);
             string learninFacility = _learningFacilities[randNum.Next(_learningFacilities.Length)];
 
             return new Child
             (
-                name, surname, age, gender,
-                learninFacility
+                name, surname, age, gender, learninFacility
             );
         }
-
-        //public static Child GetChild(Adult mother, Adult father)
-        //{
-        //
-        //}
 
         /// <summary>
         /// Возвращает пару из двух женатых взрослых и ребёнка.
         /// </summary>
         /// <returns>
-        /// Список типа Person, содержащий
-        /// две переменные типа Adult и одну
-        /// переменную типа Child.
+        /// Список типа Person, содержащий две переменные
+        /// типа Adult и одну переменную типа Child.
         /// </returns>
         public static List<Person> GetPairWithAChild()
         {

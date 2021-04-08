@@ -7,20 +7,31 @@ using System.Threading.Tasks;
 
 namespace PersonLibrary
 {
+    //TODO naming +
     /// <summary>
     /// Паспорт.
     /// </summary>
-    public class Passport
+    public class PassportTemplate
     {
+        /// <summary>
+        /// Шаблон для проверки серии паспорта.
+        /// </summary>
         const string _seriesPattern = @"^[0-9]{4}$";
 
+        /// <summary>
+        /// Шаблон для проверки номера паспорта.
+        /// </summary>
         const string _numberPattern = @"^[0-9]{6}$";
 
+        /// <summary>
+        /// Серия паспорта.
+        /// </summary>
         private string _series;
 
+        /// <summary>
+        /// Номер паспорта.
+        /// </summary>
         private string _number;
-
-        private static Random randNum = new Random();
 
         /// <summary>
         /// Серия паспорта.
@@ -59,12 +70,17 @@ namespace PersonLibrary
         /// </summary>
         /// <param name="series">Серия паспорта.</param>
         /// <param name="number">Номер паспорта.</param>
-        public Passport(string series, string number)
+        public PassportTemplate(string series, string number)
         {
             Series = series;
             Number = number;
         }
 
+        /// <summary>
+        /// Проверяет серию или номер паспорта на соответствие требованиям.
+        /// </summary>
+        /// <param name="param">Серия/номер паспорта.</param>
+        /// <param name="pattern">Шаблон для проверки.</param>
         private void IsDataCorrect(string param, string pattern)
         {
             Regex regex = new Regex(pattern);
@@ -73,26 +89,6 @@ namespace PersonLibrary
             {
                 throw new ArgumentException("Некорректно заданы серия или номер паспорта.");
             }
-        }
-
-        public static Passport GetRandomPassport()
-        {
-            string series = String.Empty;
-
-            for (int i = 0; i < 4; i++)
-            {
-                // TODO: количество цифр в серии и номере
-                series += randNum.Next(10);
-            }
-
-            string number = String.Empty;
-
-            for (int i = 0; i < 6; i++)
-            {
-                number += randNum.Next(10);
-            }
-
-            return new Passport(series, number);
         }
     }
 }

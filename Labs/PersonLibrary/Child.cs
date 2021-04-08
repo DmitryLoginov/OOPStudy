@@ -15,66 +15,21 @@ namespace PersonLibrary
         /// Наибольший возраст ребёнка.
         /// </summary>
         public const int MaxChildAge = 18;
-        
-        /// <summary>
-        /// Мать.
-        /// </summary>
-        private Adult _mother;
-
-        /// <summary>
-        /// Отец.
-        /// </summary>
-        private Adult _father;
-
-        /// <summary>
-        /// Учебное заведение.
-        /// </summary>
-        private string _learningFacility;
 
         /// <summary>
         /// Мать.
         /// </summary>
-        public Adult Mother
-        {
-            get
-            {
-                return _mother;
-            }
-            set
-            {
-                _mother = value;
-            }
-        }
+        public Adult Mother { get; set; }
 
         /// <summary>
         /// Отец.
         /// </summary>
-        public Adult Father
-        {
-            get
-            {
-                return _father;
-            }
-            set
-            {
-                _father = value;
-            }
-        }
+        public Adult Father { get; set; }
 
         /// <summary>
         /// Учебное заведение.
         /// </summary>
-        public string LearningFacility
-        {
-            get
-            {
-                return _learningFacility;
-            }
-            private set
-            {
-                _learningFacility = value;
-            }
-        }
+        public string LearningFacility { get; set; }
 
         /// <summary>
         /// Информация о персоне.
@@ -86,45 +41,30 @@ namespace PersonLibrary
                 string parents;
                 if ((Mother == null) && (Father == null))
                 {
-                    parents = "сирота";
+                    parents = "отсутствуют";
                 }
                 else if ((Mother == null) && (Father != null))
                 {
-                    parents = $"отец: {Father.FirstName} {Father.LastName}";
+                    parents = $"отец-одиночка - {Father.FirstName} {Father.LastName}";
                 }
                 else if ((Mother != null) && (Father == null))
                 {
-                    parents = $"мать: {Mother.FirstName} {Mother.LastName}";
+                    parents = $"мать-одиночка - {Mother.FirstName} {Mother.LastName}";
                 }
                 else
                 {
-                    parents = $"отец: {Father.FirstName} {Father.LastName}, " +
-                        $"мать: {Mother.FirstName} {Mother.LastName}";
+                    parents = $"отец - {Father.FirstName} {Father.LastName}, " +
+                        $"мать - {Mother.FirstName} {Mother.LastName}";
                 }
 
                 string learningFacility = LearningFacility != null
                     ? $"{LearningFacility}"
                     : "нет";
 
-                return $"{FirstName} {LastName}\n" +
-                    $"\tпол: {Gender}\n" +
-                    $"\tвозраст: {Age}\n" +
-                    $"\tродители: {parents}\n" +
+                return base.Info +
+                    $"\n\tродители: {parents}\n" +
                     $"\tучебное заведение: {learningFacility}";
             }
-        }
-
-        /// <summary>
-        /// Конструктор класса Child.
-        /// </summary>
-        /// <param name="firstName">Имя.</param>
-        /// <param name="lastName">Фамилия.</param>
-        /// <param name="age">Возраст.</param>
-        /// <param name="gender">Пол.</param>
-        public Child(string firstName, string lastName, int age,
-            Gender gender) : base(firstName, lastName, age, gender)
-        {
-
         }
 
         /// <summary>
@@ -139,22 +79,6 @@ namespace PersonLibrary
             Gender gender, string learningFacility) : base(firstName, lastName, age, gender)
         {
             LearningFacility = learningFacility;
-        }
-
-        /// <summary>
-        /// Конструктор класса Child.
-        /// </summary>
-        /// <param name="firstName">Имя.</param>
-        /// <param name="lastName">Фамилия.</param>
-        /// <param name="age">Возраст.</param>
-        /// <param name="gender">Пол.</param>
-        /// <param name="mother">Мать.</param>
-        /// <param name="father">Отец.</param>
-        public Child(string firstName, string lastName, int age,
-            Gender gender, Adult mother, Adult father) : base(firstName, lastName, age, gender)
-        {
-            Mother = mother;
-            Father = father;
         }
 
         /// <summary>
@@ -201,7 +125,7 @@ namespace PersonLibrary
         {
             LearningFacility = learningFacility;
 
-            return $"Учебное заведение, которое посещает {FirstName} {LastName} - {learningFacility}";
+            return $"Теперь {FirstName} {LastName} посещает {learningFacility}";
         }
     }
 }
