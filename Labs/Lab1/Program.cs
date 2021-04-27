@@ -65,9 +65,9 @@ namespace Lab1
         /// Ведёт диалог с пользователем для ввода персоны с клавиатуры.
         /// </summary>
         /// <returns>Переменная типа Person.</returns>
-        private static Person ReadPerson()
+        private static PersonBase ReadPerson()
         {
-            Person personFromConsole = new Person();
+            PersonBase personFromConsole = new PersonBase();
             var validationActions = new List<Tuple<string, Action>>()
             {
                 new Tuple<string, Action>

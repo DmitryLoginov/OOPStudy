@@ -44,12 +44,20 @@ namespace PersonLibrary
             "Barrow", "Pawling", "Malyech", "Li", "Chang"
         };
 
+        //TODO: XML +
+        /// <summary>
+        /// Строковый массив мест работы.
+        /// </summary>
         private static string[] _jobs =
         {
             "Аптека", "Лаборатория", "Банк", "Магазин", "Аэропорт",
             "Транспортная компания", "Вокзал", "Офис", "Университет"
         };
 
+        //TODO: XML +
+        /// <summary>
+        /// Строковый массив учебных заведений.
+        /// </summary>
         private static string[] _learningFacilities =
         {
             "Детский сад", "Школа", "Музыкальная школа", "Художественная школа"
@@ -60,6 +68,12 @@ namespace PersonLibrary
         /// </summary>
         private static Random randNum = new Random();
 
+        //TODO: XML +
+        /// <summary>
+        /// Возвращает случайное имя для заданного пола.
+        /// </summary>
+        /// <param name="gender">Пол персоны.</param>
+        /// <returns>Имя персоны.</returns>
         private static string RandomName(Gender gender)
         {
             string name;
@@ -91,7 +105,6 @@ namespace PersonLibrary
         /// <returns>Переменная типа Adult.</returns>
         public static Adult GetSingleAdult()
         {
-            //TODO: дубли +
             Gender gender = (Gender)randNum.Next(0,
                 Enum.GetNames(typeof(Gender)).Length);
             return GetSingleAdult(gender);
@@ -105,10 +118,9 @@ namespace PersonLibrary
         public static Adult GetSingleAdult(Gender gender)
         {
             string name = RandomName(gender);
-            //TODO: дубли +
             string surname = _lastNames[randNum.Next(_lastNames.Length)];
-            int age = randNum.Next(Adult.MinAdultAge, Person.MaxAge);
-            PassportTemplate passport = PassportTemplate.GetRandomPassport();
+            int age = randNum.Next(Adult.MinAdultAge, PersonBase.MaxAge);
+            PassportTemplate passport = RandomPassport.GetRandomPassport();
             string job = _jobs[randNum.Next(_jobs.Length)];
 
             return new Adult
@@ -140,13 +152,11 @@ namespace PersonLibrary
         /// <returns>Переменную типа Child.</returns>
         public static Child GetChild()
         {
-            
-            //TODO: дубли +
             Gender gender = (Gender)randNum.Next(0,
                 Enum.GetNames(typeof(Gender)).Length);
             string name = RandomName(gender);
             string surname = _lastNames[randNum.Next(_lastNames.Length)];
-            int age = randNum.Next(Person.MinAge, Child.MaxChildAge);
+            int age = randNum.Next(PersonBase.MinAge, Child.MaxChildAge);
             string learninFacility = _learningFacilities[randNum.Next(_learningFacilities.Length)];
 
             return new Child
@@ -162,7 +172,7 @@ namespace PersonLibrary
         /// Список типа Person, содержащий две переменные
         /// типа Adult и одну переменную типа Child.
         /// </returns>
-        public static List<Person> GetPairWithAChild()
+        public static List<PersonBase> GetPairWithAChild()
         {
             List<Adult> pair = GetChildlessAdultPair();
 
@@ -174,7 +184,7 @@ namespace PersonLibrary
             pair[1].Child = child;
             pair[0].Child = child;
 
-            return new List<Person>() { pair[1], pair[0], child };
+            return new List<PersonBase>() { pair[1], pair[0], child };
         }
     }
 }

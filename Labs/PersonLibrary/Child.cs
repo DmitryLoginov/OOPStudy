@@ -9,7 +9,7 @@ namespace PersonLibrary
     /// <summary>
     /// Ребёнок.
     /// </summary>
-    public class Child : Person
+    public class Child : PersonBase
     {
         /// <summary>
         /// Наибольший возраст ребёнка.

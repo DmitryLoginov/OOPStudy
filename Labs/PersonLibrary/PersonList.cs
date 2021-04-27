@@ -11,7 +11,7 @@ namespace PersonLibrary
         /// <summary>
         /// Массив переменных типа Person.
         /// </summary>
-        private Person[] _data;
+        private PersonBase[] _data;
 
         /// <summary>
         /// Количество персон в списке.
@@ -29,7 +29,7 @@ namespace PersonLibrary
         /// </summary>
         public PersonList()
         {
-            _data = new Person[0];
+            _data = new PersonBase[0];
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace PersonLibrary
         /// <exception cref="System.IndexOutOfRangeException">
         /// Выбрасывается при указании индекса вне границ массива.
         /// </exception>
-        public Person this[int index]
+        public PersonBase this[int index]
         {
             get
             {
@@ -55,23 +55,10 @@ namespace PersonLibrary
         /// <summary>
         /// Добавляет новую персону в конец списка.
         /// </summary>
-        /// <param name="firstName">Имя персоны.</param>
-        /// <param name="lastName">Фамилия персоны.</param>
-        /// <param name="age">Возраст персоны.</param>
-        /// <param name="gender">Пол персоны.</param>
-        //public void Add(string firstName, string lastName, 
-        //    int age, Gender gender)
-        //{
-        //    Add(new Person(firstName, lastName, age, gender));
-        //}
-
-        /// <summary>
-        /// Добавляет новую персону в конец списка.
-        /// </summary>
         /// <param name="person">Переменная типа Person.</param>
-        public void Add(Person person)
+        public void Add(PersonBase person)
         {
-            Array.Resize<Person>(ref _data, _data.Length + 1);
+            Array.Resize<PersonBase>(ref _data, _data.Length + 1);
             _data[_data.Length - 1] = person;
         }
 
@@ -84,9 +71,9 @@ namespace PersonLibrary
         /// </exception> 
         public void DeleteByIndex(int index)
         {
-            Person[] tempArray = new Person[_data.Length];
+            PersonBase[] tempArray = new PersonBase[_data.Length];
             Array.Copy(_data, tempArray, _data.Length);
-            Array.Resize<Person>(ref _data, _data.Length - 1);
+            Array.Resize<PersonBase>(ref _data, _data.Length - 1);
             Array.Copy(tempArray, index + 1, _data, index, 
                 tempArray.Length - index - 1);
         }
@@ -98,14 +85,14 @@ namespace PersonLibrary
         /// <param name="lastName">Фамилия персоны.</param>
         public void DeleteByName(string firstName, string lastName)
         {
-            Person[] tempArray = new Person[0];
+            PersonBase[] tempArray = new PersonBase[0];
             
             for (int i = 0; i < _data.Length; i++)
             {
                 if ((_data[i].FirstName != firstName) && 
                     (_data[i].LastName != lastName))
                 {
-                    Array.Resize<Person>(ref tempArray, tempArray.Length + 1);
+                    Array.Resize<PersonBase>(ref tempArray, tempArray.Length + 1);
                     tempArray[tempArray.Length - 1] = _data[i];
                 }
             }
@@ -159,7 +146,7 @@ namespace PersonLibrary
         /// </summary>
         public void Clear()
         {
-            Array.Resize<Person>(ref _data, 0);
+            Array.Resize<PersonBase>(ref _data, 0);
         }
     }
 }

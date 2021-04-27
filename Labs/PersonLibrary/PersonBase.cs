@@ -4,11 +4,11 @@ using System.Text.RegularExpressions;
 
 namespace PersonLibrary
 {
-    //TODO: abstract +
+    //TODO: RSDN? +
     /// <summary>
     /// Класс персон.
     /// </summary>
-    public abstract class Person
+    public abstract class PersonBase
     {
         /// <summary>
         /// Имя персоны.
@@ -108,7 +108,7 @@ namespace PersonLibrary
         /// <param name="lastName">Фамилия персоны.</param>
         /// <param name="age">Возраст персоны.</param>
         /// <param name="gender">Пол персоны.</param>
-        public Person(string firstName, string lastName,
+        public PersonBase(string firstName, string lastName,
             int age, Gender gender)
         {
             FirstName = firstName;
@@ -120,7 +120,7 @@ namespace PersonLibrary
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
-        public Person() : this("Unknown", "Person", 0, Gender.Male)
+        public PersonBase() : this("Unknown", "Person", 0, Gender.Male)
         {
         }
 
