@@ -40,19 +40,15 @@ namespace Model
         /// <summary>
         /// Конструктор по умолчани.
         /// </summary>
-        public Capacitor()
-        {
-        }
+        public Capacitor() : this("не задано", 1) { }
 
         //TODO: 
         /// <summary>
         /// Конструктор класса Capacitor.
         /// </summary>
-        /// <param name="name">Наименование резистора.</param>
-        /// <param name="resistance">Активное сопротивление.</param>
+        /// <param name="name">Наименование конденсатора.</param>
         /// <param name="capacitance">Ёмкость.</param>
-        public Capacitor(string name, double resistance, 
-            double capacitance) : base(name, resistance)
+        public Capacitor(string name, double capacitance) : base(name)
         {
             Capacitance = capacitance;
         }
@@ -65,8 +61,7 @@ namespace Model
         public override Complex Impedance(int frequency)
         {
             CheckFrequency(frequency);
-            return new Complex(Resistance, -1 / (2 * Math.PI 
-                * frequency * Capacitance));
+            return new Complex(0, -1 / (2 * Math.PI * frequency * Capacitance));
         }
     }
 }

@@ -14,11 +14,6 @@ namespace Model
         private string _name;
 
         /// <summary>
-        /// Активное сопротивление.
-        /// </summary>
-        private double _resistance;
-
-        /// <summary>
         /// Наименование элемента.
         /// </summary>
         public string Name
@@ -41,48 +36,19 @@ namespace Model
             }
         }
 
-        /// <summary>
-        /// Активное сопротивление.
-        /// </summary>
-        public double Resistance
-        {
-            get
-            {
-                return _resistance;
-            }
-            set
-            {
-                if (value > 0)
-                {
-                    _resistance = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Активное сопротивление " +
-                        "должно быть больше нуля.");
-                }
-            }
-        }
-
-        //TODO: цепочка конструкторов
+        //TODO: цепочка конструкторов +
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
-        protected PassiveElementBase()
-        {
-            Name = "не задано";
-            Resistance = 1;
-        }
+        protected PassiveElementBase() : this("не задано") { }
 
         /// <summary>
         /// Конструктор класса PassiveElementBase.
         /// </summary>
         /// <param name="name">Наименование элемента</param>
-        /// <param name="resistance">Активное сопротивление.</param>
-        protected PassiveElementBase(string name, double resistance)
+        protected PassiveElementBase(string name)
         {
             Name = name;
-            Resistance = resistance;
         }
 
         /// <summary>

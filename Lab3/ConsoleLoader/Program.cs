@@ -88,50 +88,49 @@ namespace ConsoleLoader
         }
 
         /// <summary>
-        /// Ввод базовых параметров объекта PassiveElementBase.
+        /// Ввод параметра с типом double.
         /// </summary>
-        /// <param name="element">Объект типа PassiveElementBase</param>
-        private static void InputBaseParams(PassiveElementBase element)
-        {
-            var validationActions = new List<Action>()
-            {
-                new Action(() =>
-                {
-                    Console.Write("Введите название элемента: ");
-                    element.Name = Console.ReadLine();
-                }),
-                new Action(() =>
-                {
-                    //TODO: дублирование
-                    Console.Write("Введите значение активного сопротивления элемента: ");
-                    string resistanceString = Console.ReadLine();
-                    resistanceString = resistanceString.Replace('.', ',');
-                    if (!Double.TryParse(resistanceString, out double resistance))
-                    {
-                        throw new ArgumentException("Активное сопротивление должно быть числом.");
-                    }
-                    element.Resistance = resistance;
-                })
-            };
-
-            foreach (var actionItem in validationActions)
-            {
-                ValidateInput(actionItem);
-            }
-        }
-        
-        /// <summary>
-        /// Проверка вводимых пользователем параметров.
-        /// </summary>
-        /// <param name="validationAction">Делегат.</param>
-        private static void ValidateInput(Action validationAction)
+        /// <param name="id">Строковый идентификатор.</param>
+        /// <returns>Переменная типа double.</returns>
+        private static double InputParameter(string id)
         {
             while (true)
             {
                 try
                 {
-                    validationAction();
-                    return;
+                    
+                    Console.Write($"Введите {id}: ");
+                    string paramString = Console.ReadLine();
+                    paramString = paramString.Replace('.', ',');
+                    if (!Double.TryParse(paramString, out double param))
+                    {
+                        throw new ArgumentException($"Параметр \"{id}\" должен быть числом.");
+                    }
+                    return param;
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine($"{exception.Message}\nПопробуйте снова.");
+                }
+            }
+            
+        }
+
+        /// <summary>
+        /// Ввод резистора с клавиатуры.
+        /// </summary>
+        /// <returns>Объект типа Resistor.</returns>
+        private static Resistor InputResistor()
+        {
+            Resistor resistor = new Resistor();
+            Console.Write("Введите название элемента: ");
+            resistor.Name = Console.ReadLine();
+            while (true)
+            {
+                try
+                {
+                    resistor.Resistance = InputParameter("активное сопротивление");
+                    return resistor;
                 }
                 catch (Exception exception)
                 {
@@ -141,68 +140,49 @@ namespace ConsoleLoader
         }
 
         /// <summary>
-        /// Ввод параметров объекта Resistor.
-        /// </summary>
-        /// <returns>Объект типа Resistor.</returns>
-        private static Resistor InputResistor()
-        {
-            Resistor resistor = new Resistor();
-            InputBaseParams(resistor);
-            return resistor;
-        }
-
-        /// <summary>
-        /// Ввод параметров объекта Capacitor.
+        /// Ввод ёмкости с клавиатуры.
         /// </summary>
         /// <returns>Объект типа Capacitor.</returns>
         private static Capacitor InputCapacitor()
         {
             Capacitor capacitor = new Capacitor();
-            InputBaseParams(capacitor);
-
-            var validationAction = new Action(() =>
+            Console.Write("Введите название элемента: ");
+            capacitor.Name = Console.ReadLine();
+            while (true)
             {
-                //TODO: дублирование
-                Console.Write("Введите значение ёмкости: ");
-                string capacitanceString = Console.ReadLine();
-                capacitanceString = capacitanceString.Replace('.', ',');
-                if (!Double.TryParse(capacitanceString, out double capacitance))
+                try
                 {
-                    throw new ArgumentException("Ёмкость должна быть числом.");
+                    capacitor.Capacitance = InputParameter("ёмкость");
+                    return capacitor;
                 }
-                capacitor.Capacitance = capacitance;
-            });
-
-            ValidateInput(validationAction);
-            
-            return capacitor;
+                catch (Exception exception)
+                {
+                    Console.WriteLine($"{exception.Message}\nПопробуйте снова.");
+                }
+            }
         }
 
         /// <summary>
-        /// Ввод параметров объекта Inductor.
+        /// Ввод индуктивности с клавиатуры.
         /// </summary>
         /// <returns>Объект типа Inductor.</returns>
         private static Inductor InputInductor()
         {
             Inductor inductor = new Inductor();
-            InputBaseParams(inductor);
-
-            var validationAction = new Action(() =>
+            Console.Write("Введите название элемента: ");
+            inductor.Name = Console.ReadLine();
+            while (true)
             {
-                //TODO: дублирование
-                Console.Write("Введите значение индуктивности: ");
-                string inductanceString = Console.ReadLine();
-                inductanceString = inductanceString.Replace('.', ',');
-                if (!Double.TryParse(inductanceString, out double inductance))
+                try
                 {
-                    throw new ArgumentException("Ёмкость должна быть числом.");
+                    inductor.Inductance = InputParameter("индуктивность");
+                    return inductor;
                 }
-                inductor.Inductance = inductance;
-            });
-
-            ValidateInput(validationAction);
-
-            return inductor;
+                catch (Exception exception)
+                {
+                    Console.WriteLine($"{exception.Message}\nПопробуйте снова.");
+                }
+            }
         }
     }
 }

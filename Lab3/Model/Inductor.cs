@@ -41,20 +41,15 @@ namespace Model
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
-        public Inductor()
-        {
-
-        }
+        public Inductor() : this ("не задано", 1) { }
 
         //TODO: 
         /// <summary>
         /// Конструктор класса Inductor.
         /// </summary>
-        /// <param name="name">Наименование резистора.</param>
-        /// <param name="resistance">Активное сопротивление.</param>
+        /// <param name="name">Наименование индуктивности.</param>
         /// <param name="inductance">Индуктивность.</param>
-        public Inductor(string name, double resistance, 
-            double inductance) : base(name, resistance)
+        public Inductor(string name, double inductance) : base(name)
         {
             Inductance = inductance;
         }
@@ -67,8 +62,7 @@ namespace Model
         public override Complex Impedance(int frequency)
         {
             CheckFrequency(frequency);
-            return new Complex(Resistance, 2 * Math.PI * 
-                frequency * Inductance);
+            return new Complex(0, 2 * Math.PI * frequency * Inductance);
         }
     }
 }
