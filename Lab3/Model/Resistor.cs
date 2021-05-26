@@ -36,7 +36,7 @@ namespace Model
             }
         }
 
-        //TODO: 
+        //TODO: +
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>

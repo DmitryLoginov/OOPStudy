@@ -42,7 +42,7 @@ namespace Model
         /// </summary>
         public Capacitor() : this("не задано", 1) { }
 
-        //TODO: 
+        //TODO: +
         /// <summary>
         /// Конструктор класса Capacitor.
         /// </summary>

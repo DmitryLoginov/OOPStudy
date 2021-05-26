@@ -88,7 +88,7 @@ namespace ConsoleLoader
         }
 
         /// <summary>
-        /// Ввод параметра с типом double.
+        /// Принимает и проверяет параметр типа double.
         /// </summary>
         /// <param name="id">Строковый идентификатор.</param>
         /// <returns>Переменная типа double.</returns>
@@ -120,63 +120,67 @@ namespace ConsoleLoader
         /// Ввод резистора с клавиатуры.
         /// </summary>
         /// <returns>Объект типа Resistor.</returns>
-        private static Resistor InputResistor()
+        private static PassiveElementBase InputResistor()
         {
             Resistor resistor = new Resistor();
-            Console.Write("Введите название элемента: ");
-            resistor.Name = Console.ReadLine();
-            while (true)
+            var inputFunc = new Func<PassiveElementBase>(() => 
             {
-                try
-                {
-                    resistor.Resistance = InputParameter("активное сопротивление");
-                    return resistor;
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine($"{exception.Message}\nПопробуйте снова.");
-                }
-            }
+                resistor.Resistance = InputParameter("активное сопротивление");
+                return resistor;
+            });
+            return GetParameter(inputFunc, resistor);
         }
 
         /// <summary>
         /// Ввод ёмкости с клавиатуры.
         /// </summary>
         /// <returns>Объект типа Capacitor.</returns>
-        private static Capacitor InputCapacitor()
+        private static PassiveElementBase InputCapacitor()
         {
             Capacitor capacitor = new Capacitor();
-            Console.Write("Введите название элемента: ");
-            capacitor.Name = Console.ReadLine();
-            while (true)
+            var inputFunc = new Func<PassiveElementBase>(() => 
             {
-                try
-                {
-                    capacitor.Capacitance = InputParameter("ёмкость");
-                    return capacitor;
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine($"{exception.Message}\nПопробуйте снова.");
-                }
-            }
+                capacitor.Capacitance = InputParameter("ёмкость");
+                return capacitor;
+            });
+            return GetParameter(inputFunc, capacitor);
         }
 
         /// <summary>
         /// Ввод индуктивности с клавиатуры.
         /// </summary>
         /// <returns>Объект типа Inductor.</returns>
-        private static Inductor InputInductor()
+        private static PassiveElementBase InputInductor()
         {
             Inductor inductor = new Inductor();
+            var inputFunc = new Func<PassiveElementBase>(() => 
+            {
+                inductor.Inductance = InputParameter("индуктивность");
+                return inductor;
+            });
+            return GetParameter(inputFunc, inductor);
+        }
+
+        //TODO: XML +
+        /// <summary>
+        /// Производит валидацию параметров объекта PassiveElementBase
+        /// при вводе с клавиатуры.
+        /// </summary>
+        /// <param name="inputFunc">
+        /// Делегат Func, возвращающий объект PassiveElementBase.
+        /// </param>
+        /// <param name="element">Объект типа PassiveElementBase.</param>
+        /// <returns>Объект типа PassiveElementBase.</returns>
+        private static PassiveElementBase GetParameter(Func<PassiveElementBase> inputFunc, 
+            PassiveElementBase element)
+        {
             Console.Write("Введите название элемента: ");
-            inductor.Name = Console.ReadLine();
+            element.Name = Console.ReadLine();
             while (true)
             {
                 try
                 {
-                    inductor.Inductance = InputParameter("индуктивность");
-                    return inductor;
+                    return inputFunc.Invoke();
                 }
                 catch (Exception exception)
                 {

@@ -37,13 +37,13 @@ namespace Model
             }
         }
 
-        //TODO: 
+        //TODO: +
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
         public Inductor() : this ("не задано", 1) { }
 
-        //TODO: 
+        //TODO: +
         /// <summary>
         /// Конструктор класса Inductor.
         /// </summary>
