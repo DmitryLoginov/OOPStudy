@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace View
 {
-    public partial class MainForm : Form
+    public partial class FindObjectForm : Form
     {
-        public MainForm()
+        public FindObjectForm()
         {
             InitializeComponent();
         }
