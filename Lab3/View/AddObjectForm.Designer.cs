@@ -40,6 +40,7 @@ namespace View
             this.objectParamTextBox = new System.Windows.Forms.TextBox();
             this.OKButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.randomButton = new System.Windows.Forms.Button();
             this.nameGroupBox.SuspendLayout();
             this.objectTypeGroupBox.SuspendLayout();
             this.paramsGroupBox.SuspendLayout();
@@ -152,11 +153,22 @@ namespace View
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // randomButton
+            // 
+            this.randomButton.Location = new System.Drawing.Point(12, 198);
+            this.randomButton.Name = "randomButton";
+            this.randomButton.Size = new System.Drawing.Size(19, 23);
+            this.randomButton.TabIndex = 6;
+            this.randomButton.Text = "R";
+            this.randomButton.UseVisualStyleBackColor = true;
+            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
+            // 
             // AddObjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(204, 232);
+            this.Controls.Add(this.randomButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.OKButton);
             this.Controls.Add(this.paramsGroupBox);
@@ -189,5 +201,6 @@ namespace View
         private System.Windows.Forms.Label frequencyLabel;
         private System.Windows.Forms.TextBox frequencyTextBox;
         private System.Windows.Forms.Label objectParamLabel;
+        private System.Windows.Forms.Button randomButton;
     }
 }

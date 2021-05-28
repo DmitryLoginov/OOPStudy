@@ -31,10 +31,61 @@ namespace View
             dataGridPassiveElements.DataSource = _data;
         }
 
-        private void AddObjectButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addObjectButton_Click(object sender, EventArgs e)
         {
             AddObjectForm addObjectForm = new AddObjectForm();
             addObjectForm.Show();
+            addObjectForm.SendElement += AddElementEvent;
+        }
+
+        /// <summary>
+        /// Обработчик события ...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddElementEvent(object sender, PassiveElementEventArgs e)
+        {
+            _data.Add(e.AddedElement);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void deleteObjectButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                if (dataGridPassiveElements.CurrentCell == null)
+                {
+                    throw new Exception("Не выбрано ни одной записи.");
+                }
+                _data.RemoveAt(dataGridPassiveElements.CurrentCell.RowIndex);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void findObjectButton_Click(object sender, EventArgs e)
+        {
+            FindObjectForm findObjectForm = new FindObjectForm();
+            findObjectForm.Show();
         }
     }
 }

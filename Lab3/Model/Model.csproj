@@ -46,6 +46,7 @@
     <Compile Include="Inductor.cs" />
     <Compile Include="PassiveElementBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomPassiveElement.cs" />
     <Compile Include="Resistor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
