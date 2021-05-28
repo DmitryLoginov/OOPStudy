@@ -36,6 +36,17 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public override Complex Impedance
+        {
+            get
+            {
+                return Resistance;
+            }
+        }
+
         //TODO: +
         /// <summary>
         /// Конструктор по умолчанию.
@@ -57,10 +68,10 @@ namespace Model
         /// </summary>
         /// <param name="frequency">Частота электрического тока.</param>
         /// <returns>Комплексное сопротивление.</returns>
-        public override Complex Impedance(int frequency)
-        {
-            CheckFrequency(frequency);
-            return new Complex(Resistance, 0);
-        }
+        //public override Complex Impedance(int frequency)
+        //{
+        //    CheckFrequency(frequency);
+        //    return new Complex(Resistance, 0);
+        //}
     }
 }

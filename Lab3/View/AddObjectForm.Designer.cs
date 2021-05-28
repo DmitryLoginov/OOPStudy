@@ -29,165 +29,165 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.nameGroupBox = new System.Windows.Forms.GroupBox();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.objectTypeGroupBox = new System.Windows.Forms.GroupBox();
+            this.objectTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.paramsGroupBox = new System.Windows.Forms.GroupBox();
+            this.frequencyTextBox = new System.Windows.Forms.TextBox();
+            this.frequencyLabel = new System.Windows.Forms.Label();
+            this.objectParamLabel = new System.Windows.Forms.Label();
+            this.objectParamTextBox = new System.Windows.Forms.TextBox();
+            this.OKButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.nameGroupBox.SuspendLayout();
+            this.objectTypeGroupBox.SuspendLayout();
+            this.paramsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // nameGroupBox
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(255, 47);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Название элемента";
+            this.nameGroupBox.Controls.Add(this.nameTextBox);
+            this.nameGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.nameGroupBox.Name = "nameGroupBox";
+            this.nameGroupBox.Size = new System.Drawing.Size(181, 47);
+            this.nameGroupBox.TabIndex = 0;
+            this.nameGroupBox.TabStop = false;
+            this.nameGroupBox.Text = "Название элемента";
             // 
-            // textBox1
+            // nameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(7, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(242, 20);
-            this.textBox1.TabIndex = 0;
+            this.nameTextBox.Location = new System.Drawing.Point(7, 20);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(168, 20);
+            this.nameTextBox.TabIndex = 0;
             // 
-            // radioButton1
+            // objectTypeGroupBox
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 21);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(73, 17);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Резистор";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.objectTypeGroupBox.Controls.Add(this.objectTypeComboBox);
+            this.objectTypeGroupBox.Location = new System.Drawing.Point(12, 65);
+            this.objectTypeGroupBox.Name = "objectTypeGroupBox";
+            this.objectTypeGroupBox.Size = new System.Drawing.Size(181, 47);
+            this.objectTypeGroupBox.TabIndex = 2;
+            this.objectTypeGroupBox.TabStop = false;
+            this.objectTypeGroupBox.Text = "Тип элемента";
             // 
-            // groupBox2
+            // objectTypeComboBox
             // 
-            this.groupBox2.Controls.Add(this.radioButton3);
-            this.groupBox2.Controls.Add(this.radioButton2);
-            this.groupBox2.Controls.Add(this.radioButton1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 65);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(118, 96);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Тип элемента";
+            this.objectTypeComboBox.FormattingEnabled = true;
+            this.objectTypeComboBox.Items.AddRange(new object[] {
+            "Резистор",
+            "Ёмкостный элемент",
+            "Индуктивный элемент"});
+            this.objectTypeComboBox.Location = new System.Drawing.Point(6, 19);
+            this.objectTypeComboBox.Name = "objectTypeComboBox";
+            this.objectTypeComboBox.Size = new System.Drawing.Size(169, 21);
+            this.objectTypeComboBox.TabIndex = 0;
+            this.objectTypeComboBox.SelectionChangeCommitted += new System.EventHandler(this.objectTypeComboBox_SelectionChangeCommitted);
             // 
-            // radioButton2
+            // paramsGroupBox
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 45);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(91, 17);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Конденсатор";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.paramsGroupBox.Controls.Add(this.frequencyTextBox);
+            this.paramsGroupBox.Controls.Add(this.frequencyLabel);
+            this.paramsGroupBox.Controls.Add(this.objectParamLabel);
+            this.paramsGroupBox.Controls.Add(this.objectParamTextBox);
+            this.paramsGroupBox.Location = new System.Drawing.Point(12, 118);
+            this.paramsGroupBox.Name = "paramsGroupBox";
+            this.paramsGroupBox.Size = new System.Drawing.Size(181, 74);
+            this.paramsGroupBox.TabIndex = 3;
+            this.paramsGroupBox.TabStop = false;
+            this.paramsGroupBox.Text = "Параметры";
             // 
-            // radioButton3
+            // frequencyTextBox
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 69);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(102, 17);
-            this.radioButton3.TabIndex = 3;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Индуктивность";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.frequencyTextBox.Enabled = false;
+            this.frequencyTextBox.Location = new System.Drawing.Point(100, 47);
+            this.frequencyTextBox.Name = "frequencyTextBox";
+            this.frequencyTextBox.Size = new System.Drawing.Size(75, 20);
+            this.frequencyTextBox.TabIndex = 3;
             // 
-            // groupBox3
+            // frequencyLabel
             // 
-            this.groupBox3.Controls.Add(this.textBox2);
-            this.groupBox3.Location = new System.Drawing.Point(137, 65);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(130, 48);
-            this.groupBox3.TabIndex = 3;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Параметр";
+            this.frequencyLabel.AutoSize = true;
+            this.frequencyLabel.Location = new System.Drawing.Point(6, 50);
+            this.frequencyLabel.Name = "frequencyLabel";
+            this.frequencyLabel.Size = new System.Drawing.Size(78, 13);
+            this.frequencyLabel.TabIndex = 2;
+            this.frequencyLabel.Text = "Частота тока:";
             // 
-            // textBox2
+            // objectParamLabel
             // 
-            this.textBox2.Location = new System.Drawing.Point(7, 20);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(117, 20);
-            this.textBox2.TabIndex = 0;
+            this.objectParamLabel.AutoSize = true;
+            this.objectParamLabel.Location = new System.Drawing.Point(6, 24);
+            this.objectParamLabel.Name = "objectParamLabel";
+            this.objectParamLabel.Size = new System.Drawing.Size(88, 13);
+            this.objectParamLabel.TabIndex = 1;
+            this.objectParamLabel.Text = "Сопротивление:";
             // 
-            // button1
+            // objectParamTextBox
             // 
-            this.button1.Location = new System.Drawing.Point(111, 170);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "ОК";
-            this.button1.UseVisualStyleBackColor = true;
+            this.objectParamTextBox.Enabled = false;
+            this.objectParamTextBox.Location = new System.Drawing.Point(100, 21);
+            this.objectParamTextBox.Name = "objectParamTextBox";
+            this.objectParamTextBox.Size = new System.Drawing.Size(75, 20);
+            this.objectParamTextBox.TabIndex = 0;
             // 
-            // button2
+            // OKButton
             // 
-            this.button2.Location = new System.Drawing.Point(192, 170);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Закрыть";
-            this.button2.UseVisualStyleBackColor = true;
+            this.OKButton.Location = new System.Drawing.Point(37, 198);
+            this.OKButton.Name = "OKButton";
+            this.OKButton.Size = new System.Drawing.Size(75, 23);
+            this.OKButton.TabIndex = 4;
+            this.OKButton.Text = "ОК";
+            this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
-            // button3
+            // cancelButton
             // 
-            this.button3.Location = new System.Drawing.Point(12, 170);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(93, 23);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Random";
-            this.button3.UseVisualStyleBackColor = true;
+            this.cancelButton.Location = new System.Drawing.Point(118, 198);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 5;
+            this.cancelButton.Text = "Закрыть";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // AddObjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(278, 206);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(204, 232);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.OKButton);
+            this.Controls.Add(this.paramsGroupBox);
+            this.Controls.Add(this.objectTypeGroupBox);
+            this.Controls.Add(this.nameGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "AddObjectForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление элемента";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.nameGroupBox.ResumeLayout(false);
+            this.nameGroupBox.PerformLayout();
+            this.objectTypeGroupBox.ResumeLayout(false);
+            this.paramsGroupBox.ResumeLayout(false);
+            this.paramsGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox nameGroupBox;
+        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.GroupBox objectTypeGroupBox;
+        private System.Windows.Forms.GroupBox paramsGroupBox;
+        private System.Windows.Forms.TextBox objectParamTextBox;
+        private System.Windows.Forms.Button OKButton;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.ComboBox objectTypeComboBox;
+        private System.Windows.Forms.Label frequencyLabel;
+        private System.Windows.Forms.TextBox frequencyTextBox;
+        private System.Windows.Forms.Label objectParamLabel;
     }
 }

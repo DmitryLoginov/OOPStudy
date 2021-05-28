@@ -29,111 +29,114 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dataGridGroupBox = new System.Windows.Forms.GroupBox();
+            this.dataGridPassiveElements = new System.Windows.Forms.DataGridView();
+            this.addObjectButton = new System.Windows.Forms.Button();
+            this.deleteObjectButton = new System.Windows.Forms.Button();
+            this.findObjectButton = new System.Windows.Forms.Button();
+            this.saveDataButton = new System.Windows.Forms.Button();
+            this.loadDataButton = new System.Windows.Forms.Button();
+            this.dataGridGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPassiveElements)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // dataGridGroupBox
             // 
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(320, 177);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Пассивные элементы электрической цепи";
+            this.dataGridGroupBox.Controls.Add(this.dataGridPassiveElements);
+            this.dataGridGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.dataGridGroupBox.Name = "dataGridGroupBox";
+            this.dataGridGroupBox.Size = new System.Drawing.Size(320, 177);
+            this.dataGridGroupBox.TabIndex = 0;
+            this.dataGridGroupBox.TabStop = false;
+            this.dataGridGroupBox.Text = "Пассивные элементы электрической цепи";
             // 
-            // dataGridView1
+            // dataGridPassiveElements
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(308, 152);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridPassiveElements.AllowUserToAddRows = false;
+            this.dataGridPassiveElements.AllowUserToDeleteRows = false;
+            this.dataGridPassiveElements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridPassiveElements.Location = new System.Drawing.Point(6, 19);
+            this.dataGridPassiveElements.Name = "dataGridPassiveElements";
+            this.dataGridPassiveElements.ShowEditingIcon = false;
+            this.dataGridPassiveElements.Size = new System.Drawing.Size(308, 152);
+            this.dataGridPassiveElements.TabIndex = 0;
             // 
-            // button1
+            // addObjectButton
             // 
-            this.button1.Location = new System.Drawing.Point(338, 31);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Добавить элемент";
-            this.button1.UseVisualStyleBackColor = true;
+            this.addObjectButton.Location = new System.Drawing.Point(342, 31);
+            this.addObjectButton.Name = "addObjectButton";
+            this.addObjectButton.Size = new System.Drawing.Size(121, 23);
+            this.addObjectButton.TabIndex = 1;
+            this.addObjectButton.Text = "Добавить элемент";
+            this.addObjectButton.UseVisualStyleBackColor = true;
+            this.addObjectButton.Click += new System.EventHandler(this.AddObjectButton_Click);
             // 
-            // button2
+            // deleteObjectButton
             // 
-            this.button2.Location = new System.Drawing.Point(338, 60);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Удалить элемент";
-            this.button2.UseVisualStyleBackColor = true;
+            this.deleteObjectButton.Location = new System.Drawing.Point(342, 60);
+            this.deleteObjectButton.Name = "deleteObjectButton";
+            this.deleteObjectButton.Size = new System.Drawing.Size(121, 23);
+            this.deleteObjectButton.TabIndex = 2;
+            this.deleteObjectButton.Text = "Удалить элемент";
+            this.deleteObjectButton.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // findObjectButton
             // 
-            this.button3.Location = new System.Drawing.Point(338, 89);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(121, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Найти элемент";
-            this.button3.UseVisualStyleBackColor = true;
+            this.findObjectButton.Location = new System.Drawing.Point(342, 89);
+            this.findObjectButton.Name = "findObjectButton";
+            this.findObjectButton.Size = new System.Drawing.Size(121, 23);
+            this.findObjectButton.TabIndex = 3;
+            this.findObjectButton.Text = "Найти элемент";
+            this.findObjectButton.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // saveDataButton
             // 
-            this.button4.Location = new System.Drawing.Point(338, 118);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(121, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Сохранить данные";
-            this.button4.UseVisualStyleBackColor = true;
+            this.saveDataButton.Location = new System.Drawing.Point(342, 118);
+            this.saveDataButton.Name = "saveDataButton";
+            this.saveDataButton.Size = new System.Drawing.Size(121, 23);
+            this.saveDataButton.TabIndex = 4;
+            this.saveDataButton.Text = "Сохранить данные";
+            this.saveDataButton.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // loadDataButton
             // 
-            this.button5.Location = new System.Drawing.Point(338, 147);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(121, 23);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Загрузить данные";
-            this.button5.UseVisualStyleBackColor = true;
+            this.loadDataButton.Location = new System.Drawing.Point(342, 147);
+            this.loadDataButton.Name = "loadDataButton";
+            this.loadDataButton.Size = new System.Drawing.Size(121, 23);
+            this.loadDataButton.TabIndex = 5;
+            this.loadDataButton.Text = "Загрузить данные";
+            this.loadDataButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 199);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(472, 199);
+            this.Controls.Add(this.loadDataButton);
+            this.Controls.Add(this.saveDataButton);
+            this.Controls.Add(this.findObjectButton);
+            this.Controls.Add(this.deleteObjectButton);
+            this.Controls.Add(this.addObjectButton);
+            this.Controls.Add(this.dataGridGroupBox);
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Элементы цепи";
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.dataGridGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPassiveElements)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.GroupBox dataGridGroupBox;
+        private System.Windows.Forms.DataGridView dataGridPassiveElements;
+        private System.Windows.Forms.Button addObjectButton;
+        private System.Windows.Forms.Button deleteObjectButton;
+        private System.Windows.Forms.Button findObjectButton;
+        private System.Windows.Forms.Button saveDataButton;
+        private System.Windows.Forms.Button loadDataButton;
     }
 }
 

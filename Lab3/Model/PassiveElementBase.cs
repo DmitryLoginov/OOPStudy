@@ -37,6 +37,32 @@ namespace Model
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        private int _frequency;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Frequency
+        {
+            get
+            {
+                return _frequency;
+            }
+            set
+            {
+                CheckFrequency(value);
+                _frequency = value;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual Complex Impedance { get; }
+
+        /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
         protected PassiveElementBase() : this("не задано") { }
@@ -55,13 +81,13 @@ namespace Model
         /// </summary>
         /// <param name="frequency">Частота электрического тока.</param>
         /// <returns>Комплексное сопротивление.</returns>
-        public abstract Complex Impedance(int frequency);
+        //public abstract Complex Impedance(int frequency);
 
         /// <summary>
         /// Проверка частоты тока.
         /// </summary>
         /// <param name="frequency">Частота.</param>
-        protected void CheckFrequency(int frequency)
+        private void CheckFrequency(int frequency)
         {
             if (frequency < 0)
             {

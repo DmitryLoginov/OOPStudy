@@ -38,6 +38,17 @@ namespace Model
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public override Complex Impedance
+        {
+            get
+            {
+                return new Complex(0, -1 / (2 * Math.PI * Frequency * Capacitance));
+            }
+        }
+
+        /// <summary>
         /// Конструктор по умолчани.
         /// </summary>
         public Capacitor() : this("не задано", 1) { }
@@ -58,10 +69,10 @@ namespace Model
         /// </summary>
         /// <param name="frequency">Частота электрического тока.</param>
         /// <returns>Комплексное сопротивление.</returns>
-        public override Complex Impedance(int frequency)
-        {
-            CheckFrequency(frequency);
-            return new Complex(0, -1 / (2 * Math.PI * frequency * Capacitance));
-        }
+        //public override Complex Impedance(int frequency)
+        //{
+        //    CheckFrequency(frequency);
+        //    return new Complex(0, -1 / (2 * Math.PI * frequency * Capacitance));
+        //}
     }
 }
