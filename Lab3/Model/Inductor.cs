@@ -3,6 +3,7 @@ using System.Numerics;
 
 namespace Model
 {
+    [Serializable]
     /// <summary>
     /// Индуктивность.
     /// </summary>
@@ -48,11 +49,13 @@ namespace Model
             }
         }
 
+        public Inductor() { }
+
         //TODO: +
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
-        public Inductor() : this ("не задано", 1) { }
+        //public Inductor() : this ("не задано", 1) { }
 
         //TODO: +
         /// <summary>

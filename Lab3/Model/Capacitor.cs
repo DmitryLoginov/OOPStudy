@@ -3,6 +3,7 @@ using System.Numerics;
 
 namespace Model
 {
+    [Serializable]
     /// <summary>
     /// Конденсатор.
     /// </summary>
@@ -48,10 +49,12 @@ namespace Model
             }
         }
 
+        public Capacitor() { }
+
         /// <summary>
         /// Конструктор по умолчани.
         /// </summary>
-        public Capacitor() : this("не задано", 1) { }
+        //public Capacitor() : this("не задано", 1) { }
 
         //TODO: +
         /// <summary>

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using System.Windows.Forms;
 
 using Model;
@@ -44,7 +46,7 @@ namespace View
         }
 
         /// <summary>
-        /// Обработчик события ...
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -86,6 +88,68 @@ namespace View
         {
             FindObjectForm findObjectForm = new FindObjectForm();
             findObjectForm.Show();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveDataButton_Click(object sender, EventArgs e)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(BindingList<PassiveElementBase>));
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Файлы (*.ldv)|*.ldv|Все файлы (*.*)|*.*";
+            saveFileDialog.AddExtension = true;
+            saveFileDialog.DefaultExt = ".ldv";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            string fileName = saveFileDialog.FileName;
+
+            using (FileStream fileStream = new FileStream(fileName, FileMode.OpenOrCreate))
+            {
+                
+                serializer.Serialize(fileStream, _data);
+            }
+
+            MessageBox.Show("Файл успешно сохранён.", "Сохранение завершено", 
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void loadDataButton_Click(object sender, EventArgs e)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(BindingList<PassiveElementBase>));
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Файлы (*.ldv)|*.ldv|Все файлы (*.*)|*.*";
+            
+            if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            string fileName = openFileDialog.FileName;
+
+            try
+            {
+                using (FileStream fileStream = new FileStream(fileName, FileMode.OpenOrCreate))
+                {
+                    _data = (BindingList<PassiveElementBase>)serializer.Deserialize(fileStream);
+                }
+                dataGridPassiveElements.DataSource = _data;
+                MessageBox.Show("Файл успешно загружен.", "Загрузка завершена",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Файл повреждён или не соответствует формату.", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }

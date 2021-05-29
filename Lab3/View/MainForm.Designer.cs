@@ -101,6 +101,7 @@ namespace View
             this.saveDataButton.TabIndex = 4;
             this.saveDataButton.Text = "Сохранить данные";
             this.saveDataButton.UseVisualStyleBackColor = true;
+            this.saveDataButton.Click += new System.EventHandler(this.saveDataButton_Click);
             // 
             // loadDataButton
             // 
@@ -110,6 +111,7 @@ namespace View
             this.loadDataButton.TabIndex = 5;
             this.loadDataButton.Text = "Загрузить данные";
             this.loadDataButton.UseVisualStyleBackColor = true;
+            this.loadDataButton.Click += new System.EventHandler(this.loadDataButton_Click);
             // 
             // MainForm
             // 

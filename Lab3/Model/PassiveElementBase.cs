@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Numerics;
+using System.Xml.Serialization;
 
 namespace Model
 {
+    [Serializable]
+    [XmlInclude(typeof(Resistor))]
+    [XmlInclude(typeof(Capacitor))]
+    [XmlInclude(typeof(Inductor))]
     /// <summary>
     /// Абстрактный пассивный элемент электрической схемы.
     /// </summary>
@@ -63,9 +68,14 @@ namespace Model
         public virtual Complex Impedance { get; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public PassiveElementBase() { }
+        
+        /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
-        protected PassiveElementBase() : this("не задано") { }
+        //protected PassiveElementBase() : this("не задано") { }
 
         /// <summary>
         /// Конструктор класса PassiveElementBase.

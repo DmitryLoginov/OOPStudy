@@ -2,6 +2,7 @@
 using System.Numerics;
 namespace Model
 {
+    [Serializable]
     /// <summary>
     /// Резистор.
     /// </summary>
@@ -47,11 +48,13 @@ namespace Model
             }
         }
 
+        public Resistor() { }
+        
         //TODO: +
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
-        public Resistor() : this("не задано", 1) { }
+        //public Resistor() : this("не задано", 1) { }
 
         /// <summary>
         /// Конструктор класса Resistor.

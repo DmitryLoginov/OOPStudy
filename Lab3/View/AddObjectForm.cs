@@ -19,7 +19,7 @@ namespace View
     {
 
         /// <summary>
-        /// Событие... или обработчик события...?
+        /// 
         /// </summary>
         public event EventHandler<PassiveElementEventArgs> SendElement;
 
