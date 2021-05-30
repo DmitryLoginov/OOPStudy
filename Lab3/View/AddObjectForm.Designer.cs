@@ -75,16 +75,13 @@ namespace View
             // 
             // objectTypeComboBox
             // 
+            this.objectTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.objectTypeComboBox.FormattingEnabled = true;
-            this.objectTypeComboBox.Items.AddRange(new object[] {
-            "Резистор",
-            "Ёмкостный элемент",
-            "Индуктивный элемент"});
             this.objectTypeComboBox.Location = new System.Drawing.Point(6, 19);
             this.objectTypeComboBox.Name = "objectTypeComboBox";
             this.objectTypeComboBox.Size = new System.Drawing.Size(169, 21);
             this.objectTypeComboBox.TabIndex = 0;
-            this.objectTypeComboBox.SelectionChangeCommitted += new System.EventHandler(this.objectTypeComboBox_SelectionChangeCommitted);
+            this.objectTypeComboBox.SelectionChangeCommitted += new System.EventHandler(this.ObjectTypeComboBoxSelectionChangeCommitted);
             // 
             // paramsGroupBox
             // 
@@ -112,18 +109,18 @@ namespace View
             this.frequencyLabel.AutoSize = true;
             this.frequencyLabel.Location = new System.Drawing.Point(6, 50);
             this.frequencyLabel.Name = "frequencyLabel";
-            this.frequencyLabel.Size = new System.Drawing.Size(78, 13);
+            this.frequencyLabel.Size = new System.Drawing.Size(75, 13);
             this.frequencyLabel.TabIndex = 2;
-            this.frequencyLabel.Text = "Частота тока:";
+            this.frequencyLabel.Text = "Частота тока";
             // 
             // objectParamLabel
             // 
             this.objectParamLabel.AutoSize = true;
             this.objectParamLabel.Location = new System.Drawing.Point(6, 24);
             this.objectParamLabel.Name = "objectParamLabel";
-            this.objectParamLabel.Size = new System.Drawing.Size(88, 13);
+            this.objectParamLabel.Size = new System.Drawing.Size(85, 13);
             this.objectParamLabel.TabIndex = 1;
-            this.objectParamLabel.Text = "Сопротивление:";
+            this.objectParamLabel.Text = "Сопротивление";
             // 
             // objectParamTextBox
             // 
@@ -141,7 +138,7 @@ namespace View
             this.OKButton.TabIndex = 4;
             this.OKButton.Text = "ОК";
             this.OKButton.UseVisualStyleBackColor = true;
-            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
+            this.OKButton.Click += new System.EventHandler(this.OKButtonClick);
             // 
             // cancelButton
             // 
@@ -151,7 +148,7 @@ namespace View
             this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "Закрыть";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.СancelButtonClick);
             // 
             // randomButton
             // 
@@ -161,7 +158,7 @@ namespace View
             this.randomButton.TabIndex = 6;
             this.randomButton.Text = "R";
             this.randomButton.UseVisualStyleBackColor = true;
-            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
+            this.randomButton.Click += new System.EventHandler(this.RandomButtonClick);
             // 
             // AddObjectForm
             // 

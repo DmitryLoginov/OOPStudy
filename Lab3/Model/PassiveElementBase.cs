@@ -35,7 +35,7 @@ namespace Model
                 }
                 else
                 {
-                    throw new ArgumentException("Наименование не может быть " +
+                    throw new ArgumentException("Название не может быть " +
                         "пустой строкой или null.");
                 }
             }
@@ -101,7 +101,7 @@ namespace Model
         {
             if (frequency < 0)
             {
-                throw new ArgumentException("Частота должна быть больше нуля.");
+                throw new ArgumentException("Частота должна быть больше либо равна нулю.");
             }
         }
     }

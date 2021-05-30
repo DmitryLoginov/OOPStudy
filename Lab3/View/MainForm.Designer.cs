@@ -56,9 +56,10 @@ namespace View
             this.dataGridPassiveElements.AllowUserToDeleteRows = false;
             this.dataGridPassiveElements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPassiveElements.Location = new System.Drawing.Point(6, 19);
-            this.dataGridPassiveElements.MultiSelect = false;
             this.dataGridPassiveElements.Name = "dataGridPassiveElements";
             this.dataGridPassiveElements.ReadOnly = true;
+            this.dataGridPassiveElements.RowHeadersVisible = false;
+            this.dataGridPassiveElements.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridPassiveElements.ShowEditingIcon = false;
             this.dataGridPassiveElements.Size = new System.Drawing.Size(399, 152);
             this.dataGridPassiveElements.TabIndex = 0;
@@ -71,7 +72,7 @@ namespace View
             this.addObjectButton.TabIndex = 1;
             this.addObjectButton.Text = "Добавить элемент";
             this.addObjectButton.UseVisualStyleBackColor = true;
-            this.addObjectButton.Click += new System.EventHandler(this.addObjectButton_Click);
+            this.addObjectButton.Click += new System.EventHandler(this.AddObjectButtonClick);
             // 
             // deleteObjectButton
             // 
@@ -81,7 +82,7 @@ namespace View
             this.deleteObjectButton.TabIndex = 2;
             this.deleteObjectButton.Text = "Удалить элемент";
             this.deleteObjectButton.UseVisualStyleBackColor = true;
-            this.deleteObjectButton.Click += new System.EventHandler(this.deleteObjectButton_Click);
+            this.deleteObjectButton.Click += new System.EventHandler(this.DeleteObjectButtonClick);
             // 
             // findObjectButton
             // 
@@ -91,7 +92,7 @@ namespace View
             this.findObjectButton.TabIndex = 3;
             this.findObjectButton.Text = "Найти элемент";
             this.findObjectButton.UseVisualStyleBackColor = true;
-            this.findObjectButton.Click += new System.EventHandler(this.findObjectButton_Click);
+            this.findObjectButton.Click += new System.EventHandler(this.FindObjectButtonClick);
             // 
             // saveDataButton
             // 
@@ -101,7 +102,7 @@ namespace View
             this.saveDataButton.TabIndex = 4;
             this.saveDataButton.Text = "Сохранить данные";
             this.saveDataButton.UseVisualStyleBackColor = true;
-            this.saveDataButton.Click += new System.EventHandler(this.saveDataButton_Click);
+            this.saveDataButton.Click += new System.EventHandler(this.SaveDataButtonClick);
             // 
             // loadDataButton
             // 
@@ -111,7 +112,7 @@ namespace View
             this.loadDataButton.TabIndex = 5;
             this.loadDataButton.Text = "Загрузить данные";
             this.loadDataButton.UseVisualStyleBackColor = true;
-            this.loadDataButton.Click += new System.EventHandler(this.loadDataButton_Click);
+            this.loadDataButton.Click += new System.EventHandler(this.LoadDataButtonClick);
             // 
             // MainForm
             // 

@@ -38,7 +38,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void addObjectButton_Click(object sender, EventArgs e)
+        private void AddObjectButtonClick(object sender, EventArgs e)
         {
             AddObjectForm addObjectForm = new AddObjectForm();
             addObjectForm.Show();
@@ -60,16 +60,25 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void deleteObjectButton_Click(object sender, EventArgs e)
+        private void DeleteObjectButtonClick(object sender, EventArgs e)
         {
             try
             {
-                
-                if (dataGridPassiveElements.CurrentCell == null)
+                if (dataGridPassiveElements.SelectedRows.Count > 1)
                 {
-                    throw new Exception("Не выбрано ни одной записи.");
+                    foreach(DataGridViewRow row in dataGridPassiveElements.SelectedRows)
+                    {
+                        dataGridPassiveElements.Rows.Remove(row);
+                    }
                 }
-                _data.RemoveAt(dataGridPassiveElements.CurrentCell.RowIndex);
+                else
+                {
+                    if (dataGridPassiveElements.CurrentCell == null)
+                    {
+                        throw new Exception("Не выбрано ни одной записи.");
+                    }
+                    _data.RemoveAt(dataGridPassiveElements.CurrentCell.RowIndex);
+                }
             }
             catch (Exception ex)
             {
@@ -84,9 +93,9 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void findObjectButton_Click(object sender, EventArgs e)
+        private void FindObjectButtonClick(object sender, EventArgs e)
         {
-            FindObjectForm findObjectForm = new FindObjectForm();
+            FindObjectForm findObjectForm = new FindObjectForm(_data);
             findObjectForm.Show();
         }
 
@@ -95,13 +104,22 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void saveDataButton_Click(object sender, EventArgs e)
+        private void SaveDataButtonClick(object sender, EventArgs e)
         {
+            if (_data.Count == 0)
+            {
+                MessageBox.Show("Отсутствуют данные для сохранения.", "Данные не сохранены", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             XmlSerializer serializer = new XmlSerializer(typeof(BindingList<PassiveElementBase>));
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Файлы (*.ldv)|*.ldv|Все файлы (*.*)|*.*";
-            saveFileDialog.AddExtension = true;
-            saveFileDialog.DefaultExt = ".ldv";
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Файлы (*.ldv)|*.ldv|Все файлы (*.*)|*.*",
+                AddExtension = true,
+                DefaultExt = ".ldv"
+            };
 
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
             {
@@ -121,12 +139,14 @@ namespace View
 
         }
 
-        private void loadDataButton_Click(object sender, EventArgs e)
+        private void LoadDataButtonClick(object sender, EventArgs e)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(BindingList<PassiveElementBase>));
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Файлы (*.ldv)|*.ldv|Все файлы (*.*)|*.*";
-            
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Файлы (*.ldv)|*.ldv|Все файлы (*.*)|*.*"
+            };
+
             if (openFileDialog.ShowDialog() == DialogResult.Cancel)
             {
                 return;
@@ -141,10 +161,11 @@ namespace View
                     _data = (BindingList<PassiveElementBase>)serializer.Deserialize(fileStream);
                 }
                 dataGridPassiveElements.DataSource = _data;
+                dataGridPassiveElements.CurrentCell = null;
                 MessageBox.Show("Файл успешно загружен.", "Загрузка завершена",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Файл повреждён или не соответствует формату.", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
