@@ -17,11 +17,11 @@ namespace View
     /// </summary>
     public partial class AddObjectForm : Form
     {
-        private const string _resistor = "Резистор";
+        private const string ResistorKey = "Резистор";
 
-        private const string _capacitor = "Ёмкостный элемент";
+        private const string CapacitorKey = "Ёмкостный элемент";
 
-        private const string _inductor = "Индуктивный элемент";
+        private const string InductorKey = "Индуктивный элемент";
 
         /// <summary>
         /// 
@@ -41,7 +41,7 @@ namespace View
             InitializeComponent();
             objectTypeComboBox.DataSource = new List<string>()
             {
-                _resistor, _capacitor, _inductor
+                ResistorKey, CapacitorKey, InductorKey
             };
             #if !DEBUG
             randomButton.Visible = false;
@@ -59,19 +59,19 @@ namespace View
         {
             switch (objectTypeComboBox.SelectedItem.ToString())
             {
-                case _resistor:
+                case ResistorKey:
                 {
                     objectParamLabel.Text = "Сопротивление";
                     _element = new Resistor();
                     break;
                 }
-                case _capacitor:
+                case CapacitorKey:
                 {
                     objectParamLabel.Text = "Ёмкость";
                     _element = new Capacitor();
                     break;
                 }
-                case _inductor:
+                case InductorKey:
                 {
                     objectParamLabel.Text = "Индуктивность";
                     _element = new Inductor();
@@ -149,7 +149,7 @@ namespace View
             {
                 case Resistor resistor:
                 {
-                    objectTypeComboBox.SelectedItem = _resistor;
+                    objectTypeComboBox.SelectedItem = ResistorKey;
                     _element = new Resistor();
                     objectParamLabel.Text = "Сопротивление";
                     objectParamTextBox.Text = resistor.Resistance.ToString();
@@ -157,7 +157,7 @@ namespace View
                 }
                 case Capacitor capacitor:
                 {
-                    objectTypeComboBox.SelectedItem = _capacitor;
+                    objectTypeComboBox.SelectedItem = CapacitorKey;
                     _element = new Capacitor();
                     objectParamLabel.Text = "Ёмкость";
                     objectParamTextBox.Text = capacitor.Capacitance.ToString();
@@ -165,7 +165,7 @@ namespace View
                 }
                 case Inductor inductor:
                 {
-                    objectTypeComboBox.SelectedItem = _inductor;
+                    objectTypeComboBox.SelectedItem = InductorKey;
                     _element = new Inductor();
                     objectParamLabel.Text = "Индуктивность";
                     objectParamTextBox.Text = inductor.Inductance.ToString();
