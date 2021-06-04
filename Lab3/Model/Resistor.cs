@@ -48,9 +48,10 @@ namespace Model
             }
         }
 
+        //TODO: XML комментарии?
         public Resistor() { }
         
-        //TODO: +
+        //TODO:
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
@@ -66,6 +67,7 @@ namespace Model
             Resistance = resistance;
         }
 
+        //TODO:
         /// <summary>
         /// Возвращает комплексное сопротивление элемента.
         /// </summary>

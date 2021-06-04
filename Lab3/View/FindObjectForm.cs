@@ -21,7 +21,7 @@ namespace View
         /// <summary>
         /// Список объектов PassiveElementBase.
         /// </summary>
-        private BindingList<PassiveElementBase> _data = new BindingList<PassiveElementBase>();
+        private readonly BindingList<PassiveElementBase> _data;
 
         /// <summary>
         /// Конструктор класса FindObjectForm.
@@ -34,7 +34,6 @@ namespace View
             nameTextBox.Enabled = false;
             frequencyTextBox.Enabled = false;
             complexPartsGroupBox.Enabled = false;
-
         }
 
         /// <summary>
@@ -141,6 +140,7 @@ namespace View
 
             dataGridSearchResults.CurrentCell = null;
 
+            //TODO: Duplication
             if (nameCheckBox.Checked == true)
             {
                 for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
@@ -152,6 +152,7 @@ namespace View
                 }
             }
 
+            //TODO: Duplication
             if (frequencyCheckBox.Checked == true)
             {
                 for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
@@ -163,6 +164,7 @@ namespace View
                 }
             }
 
+            //TODO: Duplication
             if (impedanceCheckBox.Checked == true)
             {
                 if (!String.IsNullOrEmpty(realPartTextBox.Text))

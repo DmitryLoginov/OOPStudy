@@ -4,13 +4,13 @@ using System.Xml.Serialization;
 
 namespace Model
 {
+    /// <summary>
+    /// Абстрактный пассивный элемент электрической схемы.
+    /// </summary>
     [Serializable]
     [XmlInclude(typeof(Resistor))]
     [XmlInclude(typeof(Capacitor))]
     [XmlInclude(typeof(Inductor))]
-    /// <summary>
-    /// Абстрактный пассивный элемент электрической схемы.
-    /// </summary>
     public abstract class PassiveElementBase
     {
         /// <summary>
@@ -42,12 +42,12 @@ namespace Model
         }
 
         /// <summary>
-        /// 
+        /// //TODO:
         /// </summary>
         private int _frequency;
 
         /// <summary>
-        /// 
+        /// //TODO:
         /// </summary>
         public int Frequency
         {
@@ -67,6 +67,7 @@ namespace Model
         /// </summary>
         public virtual Complex Impedance { get; }
 
+        //TODO:
         /// <summary>
         /// 
         /// </summary>
@@ -86,6 +87,7 @@ namespace Model
             Name = name;
         }
 
+        //TODO:
         /// <summary>
         /// Возвращает комплексное сопротивление элемента.
         /// </summary>

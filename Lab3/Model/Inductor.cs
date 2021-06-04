@@ -49,15 +49,15 @@ namespace Model
             }
         }
 
+        //TODO: XML комментарии?
         public Inductor() { }
 
-        //TODO: +
+        //TODO:
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
         //public Inductor() : this ("не задано", 1) { }
 
-        //TODO: +
         /// <summary>
         /// Конструктор класса Inductor.
         /// </summary>
@@ -68,6 +68,7 @@ namespace Model
             Inductance = inductance;
         }
 
+        //TODO:
         /// <summary>
         /// Возвращает комплексное сопротивление элемента.
         /// </summary>

@@ -207,7 +207,6 @@ namespace View
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         private double CheckObjectParam()
         {

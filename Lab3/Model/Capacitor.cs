@@ -49,14 +49,15 @@ namespace Model
             }
         }
 
+        //TODO: XML комментарии?
         public Capacitor() { }
 
+        //TODO:
         /// <summary>
         /// Конструктор по умолчани.
         /// </summary>
         //public Capacitor() : this("не задано", 1) { }
 
-        //TODO: +
         /// <summary>
         /// Конструктор класса Capacitor.
         /// </summary>
@@ -67,6 +68,7 @@ namespace Model
             Capacitance = capacitance;
         }
 
+        //TODO:
         /// <summary>
         /// Возвращает комплексное сопротивление элемента.
         /// </summary>

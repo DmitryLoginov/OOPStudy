@@ -139,6 +139,7 @@ namespace View
 
         }
 
+        //TODO: XML комментарии?
         private void LoadDataButtonClick(object sender, EventArgs e)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(BindingList<PassiveElementBase>));
