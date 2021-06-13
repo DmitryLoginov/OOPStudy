@@ -31,64 +31,64 @@ namespace View
             InitializeComponent();
             _data = data;
             dataGridSearchResults.DataSource = _data;
+            dataGridSearchResults.Columns[0].HeaderText = "Название";
+            dataGridSearchResults.Columns[1].HeaderText = "Частота тока";
+            dataGridSearchResults.Columns[2].HeaderText = "Комплексное сопротивление";
             nameTextBox.Enabled = false;
             frequencyTextBox.Enabled = false;
             complexPartsGroupBox.Enabled = false;
         }
 
         /// <summary>
-        /// 
+        /// Изменяет значение параметра Enabled для контрола при
+        /// изменении свойства Check соответствующего объекта CheckBox.
+        /// </summary>
+        /// <param name="checkBox">Объект класса CheckBox.</param>
+        /// <param name="control">Объект класса Control.</param>
+        private void CheckBoxCheckedChangedHandler(CheckBox checkBox, Control control)
+        {
+            if (checkBox.Checked == true)
+            {
+                control.Enabled = true;
+            }
+            else
+            {
+                control.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Обработчик изменения свойства Check объекта nameCheckBox.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void NameCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            if (nameCheckBox.Checked == true)
-            {
-                nameTextBox.Enabled = true;
-            }
-            else
-            {
-                nameTextBox.Enabled = false;
-            }
+            CheckBoxCheckedChangedHandler(nameCheckBox, nameTextBox);
         }
 
         /// <summary>
-        /// 
+        /// Обработчик изменения свойства Check объекта frequencyCheckBox.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void FrequencyCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            if (frequencyCheckBox.Checked == true)
-            {
-                frequencyTextBox.Enabled = true;
-            }
-            else
-            {
-                frequencyTextBox.Enabled = false;
-            }
+            CheckBoxCheckedChangedHandler(frequencyCheckBox, frequencyTextBox);
         }
 
         /// <summary>
-        /// 
+        /// Обработчик изменения свойства Check объекта impedanceCheckBox.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ImpedanceChechBoxCheckedChanged(object sender, EventArgs e)
         {
-            if (impedanceCheckBox.Checked == true)
-            {
-                complexPartsGroupBox.Enabled = true;
-            }
-            else
-            {
-                complexPartsGroupBox.Enabled = false;
-            }
+            CheckBoxCheckedChangedHandler(impedanceCheckBox, complexPartsGroupBox);
         }
 
         /// <summary>
-        /// 
+        /// Закрывает форму для поиска элементов.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -98,32 +98,31 @@ namespace View
         }
 
         /// <summary>
-        /// 
+        /// Сбрасывает фильтр.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ResetFilterButtonClick(object sender, EventArgs e)
         {
             nameCheckBox.Checked = false;
-            nameTextBox.Text = "";
+            nameTextBox.Text = string.Empty;
             frequencyCheckBox.Checked = false;
-            frequencyTextBox.Text = "";
+            frequencyTextBox.Text = string.Empty;
             impedanceCheckBox.Checked = false;
-            realPartTextBox.Text = "";
-            imaginaryPartTextBox.Text = "";
+            realPartTextBox.Text = string.Empty;
+            imaginaryPartTextBox.Text = string.Empty;
             for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
             {
                 dataGridSearchResults.Rows[i].Visible = true;
             }
-
         }
 
         /// <summary>
-        /// 
+        /// Показывает результаты поиска в таблице.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void showResultsButton_Click(object sender, EventArgs e)
+        private void ShowResultsButtonClick(object sender, EventArgs e)
         {
             if (nameCheckBox.Checked == false && frequencyCheckBox.Checked == false && 
                 impedanceCheckBox.Checked == false)
@@ -133,70 +132,143 @@ namespace View
                 return;
             }
 
-            //for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
-            //{
-            //    dataGridSearchResults.Rows[i].Visible = false;
-            //}
-
             dataGridSearchResults.CurrentCell = null;
 
-            //TODO: Duplication
-            if (nameCheckBox.Checked == true)
+            var filterFuncs = new List<Tuple<CheckBox, Func<int, bool>>>()
             {
-                for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
-                {
-                    if (!_data[i].Name.Contains(nameTextBox.Text))
+                new Tuple<CheckBox, Func<int, bool>>
+                (
+                    nameCheckBox,
+                    (index) =>
                     {
-                        dataGridSearchResults.Rows[i].Visible = false;
+                        return !_data[index].Name.Contains(nameTextBox.Text);
                     }
+                ),
+                new Tuple<CheckBox, Func<int, bool>>
+                (
+                    frequencyCheckBox,
+                    (index) =>
+                    {
+                        if (frequencyTextBox.Text == string.Empty)
+                        {
+                            return false;
+                        }
+                        return (dataGridSearchResults.Rows[index].Cells[1].Value.ToString() 
+                            != frequencyTextBox.Text);
+                    }
+                ),
+                new Tuple<CheckBox, Func<int, bool>>
+                (
+                    impedanceCheckBox,
+                    (index) =>
+                    {
+                        if (realPartTextBox.Text == string.Empty)
+                        {
+                            return false;
+                        }
+                        if (dataGridSearchResults.Rows[index].Cells[2].Value is Complex impedance)
+                        {
+                            return (impedance.Real.ToString() != realPartTextBox.Text);
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                ),
+                new Tuple<CheckBox, Func<int, bool>>
+                (
+                    impedanceCheckBox,
+                    (index) =>
+                    {
+                        if (imaginaryPartTextBox.Text == string.Empty)
+                        {
+                            return false;
+                        }
+                        if (dataGridSearchResults.Rows[index].Cells[2].Value is Complex impedance)
+                        {
+                            return (impedance.Imaginary.ToString() != imaginaryPartTextBox.Text);
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                )
+            };
+
+            for (int i = 0; i < filterFuncs.Count; i++)
+            {
+                if (filterFuncs[i].Item1.Checked)
+                {
+                    FilterData(filterFuncs[i].Item2);
                 }
             }
 
             //TODO: Duplication
-            if (frequencyCheckBox.Checked == true)
-            {
-                for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
-                {
-                    if (dataGridSearchResults.Rows[i].Cells[1].Value.ToString() != frequencyTextBox.Text)
-                    {
-                        dataGridSearchResults.Rows[i].Visible = false;
-                    }
-                }
-            }
+            //if (nameCheckBox.Checked == true)
+            //{
+            //    for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
+            //    {
+            //        if (!_data[i].Name.Contains(nameTextBox.Text))
+            //        {
+            //            dataGridSearchResults.Rows[i].Visible = false;
+            //        }
+            //    }
+            //}
 
             //TODO: Duplication
-            if (impedanceCheckBox.Checked == true)
+            //if (frequencyCheckBox.Checked == true)
+            //{
+            //    for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
+            //    {
+            //        if (dataGridSearchResults.Rows[i].Cells[1].Value.ToString() != frequencyTextBox.Text)
+            //        {
+            //            dataGridSearchResults.Rows[i].Visible = false;
+            //        }
+            //    }
+            //}
+
+            //TODO: Duplication
+            //if (impedanceCheckBox.Checked == true)
+            //{
+            //    if (!string.IsNullOrEmpty(realPartTextBox.Text))
+            //    {
+            //        for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
+            //        {
+            //            if (dataGridSearchResults.Rows[i].Cells[2].Value is Complex impedance)
+            //            {
+            //                if (impedance.Real.ToString() != realPartTextBox.Text)
+            //                {
+            //                    dataGridSearchResults.Rows[i].Visible = false;
+            //                }
+            //            }
+            //        }
+            //    }
+            //
+            //    if (!string.IsNullOrEmpty(imaginaryPartTextBox.Text))
+            //    {
+            //        for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
+            //        {
+            //            if (dataGridSearchResults.Rows[i].Cells[2].Value is Complex impedance)
+            //            {
+            //                if (impedance.Imaginary.ToString() != imaginaryPartTextBox.Text)
+            //                {
+            //                    dataGridSearchResults.Rows[i].Visible = false;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+        }
+
+        private void FilterData(Func<int, bool> condition)
+        {
+            for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
             {
-                if (!String.IsNullOrEmpty(realPartTextBox.Text))
+                if (condition(i))
                 {
-                    for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
-                    {
-                        if (dataGridSearchResults.Rows[i].Cells[2].Value is Complex)
-                        {
-                            Complex impedance = (Complex)dataGridSearchResults.Rows[i].Cells[2].Value;
-                            
-                            if (impedance.Real.ToString() != realPartTextBox.Text)
-                            {
-                                dataGridSearchResults.Rows[i].Visible = false;
-                            }
-                        }
-                    }
-                }
-
-                if (!String.IsNullOrEmpty(imaginaryPartTextBox.Text))
-                {
-                    for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
-                    {
-                        if (dataGridSearchResults.Rows[i].Cells[2].Value is Complex)
-                        {
-                            Complex impedance = (Complex)dataGridSearchResults.Rows[i].Cells[2].Value;
-
-                            if (impedance.Imaginary.ToString() != imaginaryPartTextBox.Text)
-                            {
-                                dataGridSearchResults.Rows[i].Visible = false;
-                            }
-                        }
-                    }
+                    dataGridSearchResults.Rows[i].Visible = false;
                 }
             }
         }

@@ -51,7 +51,7 @@ namespace View
             this.nameGroupBox.Controls.Add(this.nameTextBox);
             this.nameGroupBox.Location = new System.Drawing.Point(12, 12);
             this.nameGroupBox.Name = "nameGroupBox";
-            this.nameGroupBox.Size = new System.Drawing.Size(181, 47);
+            this.nameGroupBox.Size = new System.Drawing.Size(203, 47);
             this.nameGroupBox.TabIndex = 0;
             this.nameGroupBox.TabStop = false;
             this.nameGroupBox.Text = "Название элемента";
@@ -60,7 +60,7 @@ namespace View
             // 
             this.nameTextBox.Location = new System.Drawing.Point(7, 20);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(168, 20);
+            this.nameTextBox.Size = new System.Drawing.Size(190, 20);
             this.nameTextBox.TabIndex = 0;
             // 
             // objectTypeGroupBox
@@ -68,7 +68,7 @@ namespace View
             this.objectTypeGroupBox.Controls.Add(this.objectTypeComboBox);
             this.objectTypeGroupBox.Location = new System.Drawing.Point(12, 65);
             this.objectTypeGroupBox.Name = "objectTypeGroupBox";
-            this.objectTypeGroupBox.Size = new System.Drawing.Size(181, 47);
+            this.objectTypeGroupBox.Size = new System.Drawing.Size(203, 47);
             this.objectTypeGroupBox.TabIndex = 2;
             this.objectTypeGroupBox.TabStop = false;
             this.objectTypeGroupBox.Text = "Тип элемента";
@@ -79,9 +79,10 @@ namespace View
             this.objectTypeComboBox.FormattingEnabled = true;
             this.objectTypeComboBox.Location = new System.Drawing.Point(6, 19);
             this.objectTypeComboBox.Name = "objectTypeComboBox";
-            this.objectTypeComboBox.Size = new System.Drawing.Size(169, 21);
+            this.objectTypeComboBox.Size = new System.Drawing.Size(191, 21);
             this.objectTypeComboBox.TabIndex = 0;
-            this.objectTypeComboBox.SelectionChangeCommitted += new System.EventHandler(this.ObjectTypeComboBoxSelectionChangeCommitted);
+            //this.objectTypeComboBox.SelectionChangeCommitted += new System.EventHandler(this.ObjectTypeComboBoxSelectionChangeCommitted);
+            this.objectTypeComboBox.SelectedValueChanged += new System.EventHandler(this.ObjectTypeComboBoxSelectedValueChanged);
             // 
             // paramsGroupBox
             // 
@@ -91,15 +92,14 @@ namespace View
             this.paramsGroupBox.Controls.Add(this.objectParamTextBox);
             this.paramsGroupBox.Location = new System.Drawing.Point(12, 118);
             this.paramsGroupBox.Name = "paramsGroupBox";
-            this.paramsGroupBox.Size = new System.Drawing.Size(181, 74);
+            this.paramsGroupBox.Size = new System.Drawing.Size(203, 74);
             this.paramsGroupBox.TabIndex = 3;
             this.paramsGroupBox.TabStop = false;
             this.paramsGroupBox.Text = "Параметры";
             // 
             // frequencyTextBox
             // 
-            this.frequencyTextBox.Enabled = false;
-            this.frequencyTextBox.Location = new System.Drawing.Point(100, 47);
+            this.frequencyTextBox.Location = new System.Drawing.Point(122, 47);
             this.frequencyTextBox.Name = "frequencyTextBox";
             this.frequencyTextBox.Size = new System.Drawing.Size(75, 20);
             this.frequencyTextBox.TabIndex = 3;
@@ -109,30 +109,29 @@ namespace View
             this.frequencyLabel.AutoSize = true;
             this.frequencyLabel.Location = new System.Drawing.Point(6, 50);
             this.frequencyLabel.Name = "frequencyLabel";
-            this.frequencyLabel.Size = new System.Drawing.Size(75, 13);
+            this.frequencyLabel.Size = new System.Drawing.Size(93, 13);
             this.frequencyLabel.TabIndex = 2;
-            this.frequencyLabel.Text = "Частота тока";
+            this.frequencyLabel.Text = "Частота тока, Гц";
             // 
             // objectParamLabel
             // 
             this.objectParamLabel.AutoSize = true;
             this.objectParamLabel.Location = new System.Drawing.Point(6, 24);
             this.objectParamLabel.Name = "objectParamLabel";
-            this.objectParamLabel.Size = new System.Drawing.Size(85, 13);
+            this.objectParamLabel.Size = new System.Drawing.Size(107, 13);
             this.objectParamLabel.TabIndex = 1;
-            this.objectParamLabel.Text = "Сопротивление";
+            this.objectParamLabel.Text = "Сопротивление, Ом";
             // 
             // objectParamTextBox
             // 
-            this.objectParamTextBox.Enabled = false;
-            this.objectParamTextBox.Location = new System.Drawing.Point(100, 21);
+            this.objectParamTextBox.Location = new System.Drawing.Point(122, 21);
             this.objectParamTextBox.Name = "objectParamTextBox";
             this.objectParamTextBox.Size = new System.Drawing.Size(75, 20);
             this.objectParamTextBox.TabIndex = 0;
             // 
             // OKButton
             // 
-            this.OKButton.Location = new System.Drawing.Point(37, 198);
+            this.OKButton.Location = new System.Drawing.Point(59, 198);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(75, 23);
             this.OKButton.TabIndex = 4;
@@ -142,7 +141,7 @@ namespace View
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(118, 198);
+            this.cancelButton.Location = new System.Drawing.Point(140, 198);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 5;
@@ -154,7 +153,7 @@ namespace View
             // 
             this.randomButton.Location = new System.Drawing.Point(12, 198);
             this.randomButton.Name = "randomButton";
-            this.randomButton.Size = new System.Drawing.Size(19, 23);
+            this.randomButton.Size = new System.Drawing.Size(41, 23);
             this.randomButton.TabIndex = 6;
             this.randomButton.Text = "R";
             this.randomButton.UseVisualStyleBackColor = true;
@@ -164,7 +163,7 @@ namespace View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(204, 232);
+            this.ClientSize = new System.Drawing.Size(227, 232);
             this.Controls.Add(this.randomButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.OKButton);

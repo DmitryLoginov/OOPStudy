@@ -171,6 +171,7 @@ namespace View
             this.dataGridSearchResults.Location = new System.Drawing.Point(7, 20);
             this.dataGridSearchResults.Name = "dataGridSearchResults";
             this.dataGridSearchResults.ReadOnly = true;
+            this.dataGridSearchResults.RowHeadersVisible = false;
             this.dataGridSearchResults.Size = new System.Drawing.Size(377, 138);
             this.dataGridSearchResults.TabIndex = 0;
             // 
@@ -195,7 +196,7 @@ namespace View
             this.resetFilterButton.Name = "resetFilterButton";
             this.resetFilterButton.Size = new System.Drawing.Size(75, 23);
             this.resetFilterButton.TabIndex = 10;
-            this.resetFilterButton.Text = "Сбросить фильтр";
+            this.resetFilterButton.Text = "Сбросить";
             this.resetFilterButton.UseVisualStyleBackColor = true;
             this.resetFilterButton.Click += new System.EventHandler(this.ResetFilterButtonClick);
             // 
@@ -207,7 +208,7 @@ namespace View
             this.showResultsButton.TabIndex = 11;
             this.showResultsButton.Text = "Показать";
             this.showResultsButton.UseVisualStyleBackColor = true;
-            this.showResultsButton.Click += new System.EventHandler(this.showResultsButton_Click);
+            this.showResultsButton.Click += new System.EventHandler(this.ShowResultsButtonClick);
             // 
             // FindObjectForm
             // 

@@ -23,8 +23,14 @@ namespace View
 
         private const string InductorKey = "Индуктивный элемент";
 
+        private const string ResistorLabel = "Сопротивление, Ом";
+
+        private const string CapacitorLabel = "Ёмкость, Ф";
+
+        private const string InductorLabel = "Индуктивность, Гн";
+
         /// <summary>
-        /// 
+        /// Событие ...
         /// </summary>
         public event EventHandler<PassiveElementEventArgs> SendElement;
 
@@ -55,36 +61,9 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ObjectTypeComboBoxSelectionChangeCommitted(object sender, EventArgs e)
-        {
-            switch (objectTypeComboBox.SelectedItem.ToString())
-            {
-                case ResistorKey:
-                {
-                    objectParamLabel.Text = "Сопротивление";
-                    _element = new Resistor();
-                    break;
-                }
-                case CapacitorKey:
-                {
-                    objectParamLabel.Text = "Ёмкость";
-                    _element = new Capacitor();
-                    break;
-                }
-                case InductorKey:
-                {
-                    objectParamLabel.Text = "Индуктивность";
-                    _element = new Inductor();
-                    break;
-                }
-                default:
-                {
-                    throw new Exception("Неверный формат.");
-                }
-            }
-            objectParamTextBox.Enabled = true;
-            frequencyTextBox.Enabled = true;
-        }
+        //private void ObjectTypeComboBoxSelectionChangeCommitted(object sender, EventArgs e)
+        //{
+        //}
 
         /// <summary>
         /// Обрабатывает нажатие кнопки ОК.
@@ -115,12 +94,12 @@ namespace View
                     }
                 }
                 CheckFrequency();
-                SendElement(this, new PassiveElementEventArgs(_element));
+                SendElement?.Invoke(this, new PassiveElementEventArgs(_element));
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", 
+                MessageBox.Show(ex.Message, "Ошибка ввода", 
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -145,39 +124,32 @@ namespace View
             PassiveElementBase randomElement = RandomPassiveElement.GetRandomElement();
             nameTextBox.Text = randomElement.Name;
             frequencyTextBox.Text = randomElement.Frequency.ToString();
+
             switch (randomElement)
             {
                 case Resistor resistor:
                 {
                     objectTypeComboBox.SelectedItem = ResistorKey;
-                    _element = new Resistor();
-                    objectParamLabel.Text = "Сопротивление";
                     objectParamTextBox.Text = resistor.Resistance.ToString();
                     break;
                 }
                 case Capacitor capacitor:
                 {
                     objectTypeComboBox.SelectedItem = CapacitorKey;
-                    _element = new Capacitor();
-                    objectParamLabel.Text = "Ёмкость";
                     objectParamTextBox.Text = capacitor.Capacitance.ToString();
                     break;
                 }
                 case Inductor inductor:
                 {
                     objectTypeComboBox.SelectedItem = InductorKey;
-                    _element = new Inductor();
-                    objectParamLabel.Text = "Индуктивность";
                     objectParamTextBox.Text = inductor.Inductance.ToString();
                     break;
                 }
                 default:
                 {
-                    throw new Exception("Ошибка");
+                    throw new Exception("Неверный формат.");
                 }
             }
-            objectParamTextBox.Enabled = true;
-            frequencyTextBox.Enabled = true;
         }
 
         /// <summary>
@@ -185,9 +157,9 @@ namespace View
         /// </summary>
         private void CheckName()
         {
-            if (String.IsNullOrEmpty(nameTextBox.Text))
+            if (string.IsNullOrEmpty(nameTextBox.Text))
             {
-                throw new Exception("Поле \"Название элемента\" не заполнено.");
+                throw new Exception($"Поле \"{nameGroupBox.Text}\" не заполнено.");
             }
             _element.Name = nameTextBox.Text;
         }
@@ -197,9 +169,9 @@ namespace View
         /// </summary>
         private void CheckFrequency()
         {
-            if (!Int32.TryParse(frequencyTextBox.Text, out int frequency))
+            if (!int.TryParse(frequencyTextBox.Text, out int frequency))
             {
-                throw new Exception("Параметр \"Частота\" должен быть числом.");
+                throw new Exception($"Параметр \"{frequencyLabel.Text}\" должен быть целым числом.");
             }
             _element.Frequency = frequency;
         }
@@ -211,12 +183,46 @@ namespace View
         private double CheckObjectParam()
         {
             objectParamTextBox.Text.Replace('.', ',');
-            if (!Double.TryParse(objectParamTextBox.Text, out double param))
+            if (!double.TryParse(objectParamTextBox.Text, out double param))
             {
                 throw new Exception($"Параметр \"{objectParamLabel.Text}\" должен быть числом.");
             }
-
             return param;
+        }
+
+        /// <summary>
+        /// Изменяет текст objectParamLabel в зависимости
+        /// от значения в objectTypeComboBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ObjectTypeComboBoxSelectedValueChanged(object sender, EventArgs e)
+        {
+            switch (objectTypeComboBox.SelectedItem.ToString())
+            {
+                case ResistorKey:
+                {
+                    objectParamLabel.Text = ResistorLabel;
+                    _element = new Resistor();
+                    break;
+                }
+                case CapacitorKey:
+                {
+                    objectParamLabel.Text = CapacitorLabel;
+                    _element = new Capacitor();
+                    break;
+                }
+                case InductorKey:
+                {
+                    objectParamLabel.Text = InductorLabel;
+                    _element = new Inductor();
+                    break;
+                }
+                default:
+                {
+                    throw new Exception("Неверный формат.");
+                }
+            }
         }
     }
 }

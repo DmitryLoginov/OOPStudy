@@ -3,10 +3,10 @@ using System.Numerics;
 
 namespace Model
 {
-    [Serializable]
     /// <summary>
     /// Индуктивность.
     /// </summary>
+    [Serializable]
     public class Inductor : PassiveElementBase
     {
         /// <summary>
@@ -39,7 +39,7 @@ namespace Model
         }
 
         /// <summary>
-        /// 
+        /// Комплексное сопротивлние индуктивного элемента.
         /// </summary>
         public override Complex Impedance
         {
@@ -49,14 +49,11 @@ namespace Model
             }
         }
 
-        //TODO: XML комментарии?
-        public Inductor() { }
-
-        //TODO:
+        //TODO: XML комментарии? +
         /// <summary>
-        /// Конструктор по умолчанию.
+        /// Конструктор класса Inductor без параметров для сериализации.
         /// </summary>
-        //public Inductor() : this ("не задано", 1) { }
+        public Inductor() { }
 
         /// <summary>
         /// Конструктор класса Inductor.
@@ -67,17 +64,5 @@ namespace Model
         {
             Inductance = inductance;
         }
-
-        //TODO:
-        /// <summary>
-        /// Возвращает комплексное сопротивление элемента.
-        /// </summary>
-        /// <param name="frequency">Частота электрического тока.</param>
-        /// <returns>Комплексное сопротивление.</returns>
-        //public override Complex Impedance(int frequency)
-        //{
-        //    CheckFrequency(frequency);
-        //    return new Complex(0, 2 * Math.PI * frequency * Inductance);
-        //}
     }
 }

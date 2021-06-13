@@ -18,6 +18,12 @@ namespace Model
         /// </summary>
         private string _name;
 
+        //TODO: +
+        /// <summary>
+        /// Частота электрического тока.
+        /// </summary>
+        private int _frequency;
+
         /// <summary>
         /// Наименование элемента.
         /// </summary>
@@ -41,13 +47,9 @@ namespace Model
             }
         }
 
+        // TODO: +
         /// <summary>
-        /// //TODO:
-        /// </summary>
-        private int _frequency;
-
-        /// <summary>
-        /// //TODO:
+        /// Частота электрического тока.
         /// </summary>
         public int Frequency
         {
@@ -63,20 +65,15 @@ namespace Model
         }
 
         /// <summary>
-        /// 
+        /// Комплексное сопротивление элемента.
         /// </summary>
         public virtual Complex Impedance { get; }
 
-        //TODO:
+        //TODO: +
         /// <summary>
-        /// 
+        /// Конструктор класса PassiveElementBase без параметров для сериализации.
         /// </summary>
-        public PassiveElementBase() { }
-        
-        /// <summary>
-        /// Конструктор по умолчанию.
-        /// </summary>
-        //protected PassiveElementBase() : this("не задано") { }
+        protected PassiveElementBase() { }
 
         /// <summary>
         /// Конструктор класса PassiveElementBase.
@@ -87,16 +84,8 @@ namespace Model
             Name = name;
         }
 
-        //TODO:
         /// <summary>
-        /// Возвращает комплексное сопротивление элемента.
-        /// </summary>
-        /// <param name="frequency">Частота электрического тока.</param>
-        /// <returns>Комплексное сопротивление.</returns>
-        //public abstract Complex Impedance(int frequency);
-
-        /// <summary>
-        /// Проверка частоты тока.
+        /// Проверяет частоту тока.
         /// </summary>
         /// <param name="frequency">Частота.</param>
         private void CheckFrequency(int frequency)

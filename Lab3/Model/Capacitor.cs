@@ -3,10 +3,10 @@ using System.Numerics;
 
 namespace Model
 {
-    [Serializable]
     /// <summary>
     /// Конденсатор.
     /// </summary>
+    [Serializable]
     public class Capacitor : PassiveElementBase
     {
         /// <summary>
@@ -39,7 +39,7 @@ namespace Model
         }
 
         /// <summary>
-        /// 
+        /// Комплексное сопротивление ёмкостного элемента.
         /// </summary>
         public override Complex Impedance
         {
@@ -49,14 +49,11 @@ namespace Model
             }
         }
 
-        //TODO: XML комментарии?
-        public Capacitor() { }
-
-        //TODO:
+        //TODO: XML комментарии? +
         /// <summary>
-        /// Конструктор по умолчани.
+        /// Конструктор класса Capacitor без параметров для сериализации.
         /// </summary>
-        //public Capacitor() : this("не задано", 1) { }
+        public Capacitor() { }
 
         /// <summary>
         /// Конструктор класса Capacitor.
@@ -67,17 +64,5 @@ namespace Model
         {
             Capacitance = capacitance;
         }
-
-        //TODO:
-        /// <summary>
-        /// Возвращает комплексное сопротивление элемента.
-        /// </summary>
-        /// <param name="frequency">Частота электрического тока.</param>
-        /// <returns>Комплексное сопротивление.</returns>
-        //public override Complex Impedance(int frequency)
-        //{
-        //    CheckFrequency(frequency);
-        //    return new Complex(0, -1 / (2 * Math.PI * frequency * Capacitance));
-        //}
     }
 }

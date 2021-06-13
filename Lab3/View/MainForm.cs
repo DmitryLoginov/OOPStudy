@@ -31,10 +31,14 @@ namespace View
         {
             InitializeComponent();
             dataGridPassiveElements.DataSource = _data;
+            dataGridPassiveElements.Columns[0].HeaderText = "Название";
+            dataGridPassiveElements.Columns[1].HeaderText = "Частота тока";
+            dataGridPassiveElements.Columns[2].HeaderText = "Комплексное сопротивление";
+            dataGridPassiveElements.Columns[2].Width = 190;
         }
 
         /// <summary>
-        /// 
+        /// Вызывает форму добавления нового элемента в таблицу.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -46,7 +50,8 @@ namespace View
         }
 
         /// <summary>
-        /// 
+        /// Обработчик события SendElement класса AddObjectForm.
+        /// Добавляет элемент в таблицу.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -56,7 +61,7 @@ namespace View
         }
 
         /// <summary>
-        /// 
+        /// Удаляет выбранный элемент (один или несколько) из таблицы.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -89,7 +94,7 @@ namespace View
         }
 
         /// <summary>
-        /// 
+        /// Вызывает форму для поиска элементов.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -100,7 +105,7 @@ namespace View
         }
 
         /// <summary>
-        /// 
+        /// Сохраняет данные таблицы в файл *.ldv.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -139,7 +144,12 @@ namespace View
 
         }
 
-        //TODO: XML комментарии?
+        //TODO: XML комментарии? +
+        /// <summary>
+        /// Загружает данные из файла *.ldv в таблицу.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoadDataButtonClick(object sender, EventArgs e)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(BindingList<PassiveElementBase>));
@@ -171,7 +181,30 @@ namespace View
                 MessageBox.Show("Файл повреждён или не соответствует формату.", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+        }
+
+        /// <summary>
+        /// Уточняет, действительно ли пользователь хочет
+        /// завершить работу с программой, если в таблице имеются данные.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_data.Count != 0)
+            {
+                DialogResult dialog = MessageBox.Show("В таблице имеются несохранённые данные.\n" +
+                    "Вы действительно хотите выйти?", "Завершение работы", 
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialog == DialogResult.Yes)
+                {
+                    e.Cancel = false;
+                }
+                if (dialog == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

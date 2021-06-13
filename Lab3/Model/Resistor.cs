@@ -2,10 +2,10 @@
 using System.Numerics;
 namespace Model
 {
-    [Serializable]
     /// <summary>
     /// Резистор.
     /// </summary>
+    [Serializable]
     public class Resistor : PassiveElementBase
     {
 
@@ -38,7 +38,7 @@ namespace Model
         }
 
         /// <summary>
-        /// 
+        /// Комплексное сопротивление резистора.
         /// </summary>
         public override Complex Impedance
         {
@@ -48,14 +48,11 @@ namespace Model
             }
         }
 
-        //TODO: XML комментарии?
-        public Resistor() { }
-        
-        //TODO:
+        //TODO: XML комментарии? +
         /// <summary>
-        /// Конструктор по умолчанию.
+        /// Конструктор класса Resistor без параметров для сериализации.
         /// </summary>
-        //public Resistor() : this("не задано", 1) { }
+        public Resistor() { }
 
         /// <summary>
         /// Конструктор класса Resistor.
@@ -66,17 +63,5 @@ namespace Model
         {
             Resistance = resistance;
         }
-
-        //TODO:
-        /// <summary>
-        /// Возвращает комплексное сопротивление элемента.
-        /// </summary>
-        /// <param name="frequency">Частота электрического тока.</param>
-        /// <returns>Комплексное сопротивление.</returns>
-        //public override Complex Impedance(int frequency)
-        //{
-        //    CheckFrequency(frequency);
-        //    return new Complex(Resistance, 0);
-        //}
     }
 }
