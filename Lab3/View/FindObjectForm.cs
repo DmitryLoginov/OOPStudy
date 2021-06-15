@@ -34,6 +34,7 @@ namespace View
             dataGridSearchResults.Columns[0].HeaderText = "Название";
             dataGridSearchResults.Columns[1].HeaderText = "Частота тока";
             dataGridSearchResults.Columns[2].HeaderText = "Комплексное сопротивление";
+            dataGridSearchResults.Columns[2].Width = 160;
             nameTextBox.Enabled = false;
             frequencyTextBox.Enabled = false;
             complexPartsGroupBox.Enabled = false;
@@ -133,6 +134,10 @@ namespace View
             }
 
             dataGridSearchResults.CurrentCell = null;
+            for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
+            {
+                dataGridSearchResults.Rows[i].Visible = true;
+            }
 
             var filterFuncs = new List<Tuple<CheckBox, Func<int, bool>>>()
             {
@@ -170,10 +175,7 @@ namespace View
                         {
                             return (impedance.Real.ToString() != realPartTextBox.Text);
                         }
-                        else
-                        {
-                            return false;
-                        }
+                        return false;
                     }
                 ),
                 new Tuple<CheckBox, Func<int, bool>>
@@ -189,10 +191,7 @@ namespace View
                         {
                             return (impedance.Imaginary.ToString() != imaginaryPartTextBox.Text);
                         }
-                        else
-                        {
-                            return false;
-                        }
+                        return false;
                     }
                 )
             };
@@ -262,6 +261,13 @@ namespace View
             //}
         }
 
+        /// <summary>
+        /// Фильтрует записи в dataGridSearchResults в зависимости
+        /// от заданных пользователем условий.
+        /// </summary>
+        /// <param name="condition">
+        /// Делегат Func с одним параметром типа int, возвращающий результат типа bool.
+        /// </param>
         private void FilterData(Func<int, bool> condition)
         {
             for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)

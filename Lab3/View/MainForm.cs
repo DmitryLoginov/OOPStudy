@@ -34,7 +34,7 @@ namespace View
             dataGridPassiveElements.Columns[0].HeaderText = "Название";
             dataGridPassiveElements.Columns[1].HeaderText = "Частота тока";
             dataGridPassiveElements.Columns[2].HeaderText = "Комплексное сопротивление";
-            dataGridPassiveElements.Columns[2].Width = 190;
+            dataGridPassiveElements.Columns[2].Width = 178;
         }
 
         /// <summary>

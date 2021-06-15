@@ -17,20 +17,38 @@ namespace View
     /// </summary>
     public partial class AddObjectForm : Form
     {
+        /// <summary>
+        /// Тип Resistor для objectTypeComboBox.DataSource.
+        /// </summary>
         private const string ResistorKey = "Резистор";
 
+        /// <summary>
+        /// Тип Capacitor для objectTypeComboBox.DataSource.
+        /// </summary>
         private const string CapacitorKey = "Ёмкостный элемент";
 
+        /// <summary>
+        /// Тип Inductor для objectTypeComboBox.DataSource.
+        /// </summary>
         private const string InductorKey = "Индуктивный элемент";
 
+        /// <summary>
+        /// Текст для objectParamLabel при типе Resistor.
+        /// </summary>
         private const string ResistorLabel = "Сопротивление, Ом";
 
+        /// <summary>
+        /// Текст для objectParamLabel при типе Capacitor.
+        /// </summary>
         private const string CapacitorLabel = "Ёмкость, Ф";
 
+        /// <summary>
+        /// Текст для objectParamLabel при типе Inductor.
+        /// </summary>
         private const string InductorLabel = "Индуктивность, Гн";
 
         /// <summary>
-        /// Событие ...
+        /// Событие для передачи объекта PassiveElementBase в MainForm.
         /// </summary>
         public event EventHandler<PassiveElementEventArgs> SendElement;
 
@@ -53,17 +71,6 @@ namespace View
             randomButton.Visible = false;
             #endif
         }
-
-        /// <summary>
-        /// Изменяет текст objectParamLabel, а также доступность
-        /// objectParamTextBox и frequencyTextBox в зависимости
-        /// от значения в objectTypeComboBox.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void ObjectTypeComboBoxSelectionChangeCommitted(object sender, EventArgs e)
-        //{
-        //}
 
         /// <summary>
         /// Обрабатывает нажатие кнопки ОК.
@@ -153,7 +160,7 @@ namespace View
         }
 
         /// <summary>
-        /// 
+        /// Проверяет название элемента в nameTextBox.
         /// </summary>
         private void CheckName()
         {
@@ -165,7 +172,7 @@ namespace View
         }
 
         /// <summary>
-        /// 
+        /// Проверяет частоту тока в frequencyTextBox.
         /// </summary>
         private void CheckFrequency()
         {
@@ -177,7 +184,7 @@ namespace View
         }
 
         /// <summary>
-        /// 
+        /// Проверяет параметры элемента в objectParamTextBox.
         /// </summary>
         /// <returns></returns>
         private double CheckObjectParam()

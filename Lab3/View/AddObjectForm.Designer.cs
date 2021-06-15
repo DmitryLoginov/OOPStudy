@@ -81,7 +81,6 @@ namespace View
             this.objectTypeComboBox.Name = "objectTypeComboBox";
             this.objectTypeComboBox.Size = new System.Drawing.Size(191, 21);
             this.objectTypeComboBox.TabIndex = 0;
-            //this.objectTypeComboBox.SelectionChangeCommitted += new System.EventHandler(this.ObjectTypeComboBoxSelectionChangeCommitted);
             this.objectTypeComboBox.SelectedValueChanged += new System.EventHandler(this.ObjectTypeComboBoxSelectedValueChanged);
             // 
             // paramsGroupBox
@@ -172,6 +171,7 @@ namespace View
             this.Controls.Add(this.nameGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddObjectForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление элемента";
