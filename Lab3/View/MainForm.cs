@@ -144,7 +144,6 @@ namespace View
 
         }
 
-        //TODO: XML комментарии? +
         /// <summary>
         /// Загружает данные из файла *.ldv в таблицу.
         /// </summary>

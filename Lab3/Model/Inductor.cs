@@ -49,7 +49,6 @@ namespace Model
             }
         }
 
-        //TODO: XML комментарии? +
         /// <summary>
         /// Конструктор класса Inductor без параметров для сериализации.
         /// </summary>

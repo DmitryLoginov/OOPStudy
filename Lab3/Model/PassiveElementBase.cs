@@ -18,7 +18,6 @@ namespace Model
         /// </summary>
         private string _name;
 
-        //TODO: +
         /// <summary>
         /// Частота электрического тока.
         /// </summary>
@@ -47,7 +46,6 @@ namespace Model
             }
         }
 
-        // TODO: +
         /// <summary>
         /// Частота электрического тока.
         /// </summary>
@@ -67,9 +65,8 @@ namespace Model
         /// <summary>
         /// Комплексное сопротивление элемента.
         /// </summary>
-        public virtual Complex Impedance { get; }
+        public abstract Complex Impedance { get; }
 
-        //TODO: +
         /// <summary>
         /// Конструктор класса PassiveElementBase без параметров для сериализации.
         /// </summary>

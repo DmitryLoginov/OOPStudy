@@ -49,7 +49,6 @@ namespace Model
             }
         }
 
-        //TODO: XML комментарии? +
         /// <summary>
         /// Конструктор класса Capacitor без параметров для сериализации.
         /// </summary>

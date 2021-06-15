@@ -48,7 +48,6 @@ namespace Model
             }
         }
 
-        //TODO: XML комментарии? +
         /// <summary>
         /// Конструктор класса Resistor без параметров для сериализации.
         /// </summary>

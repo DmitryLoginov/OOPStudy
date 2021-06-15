@@ -183,13 +183,18 @@ namespace View
                     impedanceCheckBox,
                     (index) =>
                     {
-                        if (imaginaryPartTextBox.Text == string.Empty)
+                        var tmpValue = dataGridSearchResults.Rows[index].Cells[2].Value;
+                        var imaginaryToStringFunc = new Func<Complex, string>(                        
+                                tmpImpedance => tmpImpedance.Imaginary.ToString());
+                        var tmpTextBox = imaginaryPartTextBox;
+
+                        if (tmpTextBox.Text == string.Empty)
                         {
                             return false;
                         }
-                        if (dataGridSearchResults.Rows[index].Cells[2].Value is Complex impedance)
+                        if (tmpValue is Complex impedance)
                         {
-                            return (impedance.Imaginary.ToString() != imaginaryPartTextBox.Text);
+                            return (imaginaryToStringFunc.Invoke(impedance) != tmpTextBox.Text);
                         }
                         return false;
                     }
@@ -204,61 +209,7 @@ namespace View
                 }
             }
 
-            //TODO: Duplication
-            //if (nameCheckBox.Checked == true)
-            //{
-            //    for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
-            //    {
-            //        if (!_data[i].Name.Contains(nameTextBox.Text))
-            //        {
-            //            dataGridSearchResults.Rows[i].Visible = false;
-            //        }
-            //    }
-            //}
-
-            //TODO: Duplication
-            //if (frequencyCheckBox.Checked == true)
-            //{
-            //    for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
-            //    {
-            //        if (dataGridSearchResults.Rows[i].Cells[1].Value.ToString() != frequencyTextBox.Text)
-            //        {
-            //            dataGridSearchResults.Rows[i].Visible = false;
-            //        }
-            //    }
-            //}
-
-            //TODO: Duplication
-            //if (impedanceCheckBox.Checked == true)
-            //{
-            //    if (!string.IsNullOrEmpty(realPartTextBox.Text))
-            //    {
-            //        for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
-            //        {
-            //            if (dataGridSearchResults.Rows[i].Cells[2].Value is Complex impedance)
-            //            {
-            //                if (impedance.Real.ToString() != realPartTextBox.Text)
-            //                {
-            //                    dataGridSearchResults.Rows[i].Visible = false;
-            //                }
-            //            }
-            //        }
-            //    }
-            //
-            //    if (!string.IsNullOrEmpty(imaginaryPartTextBox.Text))
-            //    {
-            //        for (int i = 0; i < dataGridSearchResults.Rows.Count; i++)
-            //        {
-            //            if (dataGridSearchResults.Rows[i].Cells[2].Value is Complex impedance)
-            //            {
-            //                if (impedance.Imaginary.ToString() != imaginaryPartTextBox.Text)
-            //                {
-            //                    dataGridSearchResults.Rows[i].Visible = false;
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
+            
         }
 
         /// <summary>
