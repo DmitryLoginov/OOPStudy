@@ -45,8 +45,8 @@ namespace View
         private void AddObjectButtonClick(object sender, EventArgs e)
         {
             AddObjectForm addObjectForm = new AddObjectForm();
-            addObjectForm.ShowDialog(this);
             addObjectForm.SendElement += AddElementEvent;
+            addObjectForm.ShowDialog(this);
         }
 
         /// <summary>
