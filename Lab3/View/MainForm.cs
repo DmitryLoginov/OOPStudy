@@ -45,7 +45,7 @@ namespace View
         private void AddObjectButtonClick(object sender, EventArgs e)
         {
             AddObjectForm addObjectForm = new AddObjectForm();
-            addObjectForm.Show();
+            addObjectForm.ShowDialog(this);
             addObjectForm.SendElement += AddElementEvent;
         }
 
@@ -101,7 +101,7 @@ namespace View
         private void FindObjectButtonClick(object sender, EventArgs e)
         {
             FindObjectForm findObjectForm = new FindObjectForm(_data);
-            findObjectForm.Show();
+            findObjectForm.ShowDialog(this);
         }
 
         /// <summary>

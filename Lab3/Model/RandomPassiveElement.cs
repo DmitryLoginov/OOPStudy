@@ -14,14 +14,15 @@ namespace Model
     public static class RandomPassiveElement
     {
         /// <summary>
-        /// 
+        /// Объект класса Random.
         /// </summary>
         private static Random _randNum = new Random();
         
         /// <summary>
-        /// 
+        /// Возвращает случайный элемент Resistor, Capacitor или
+        /// Inductor по ссылке на базовый класс PassiveElementBase.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Объект типа PassiveElementBase.</returns>
         public static PassiveElementBase GetRandomElement()
         {
             PassiveElementBase element;
@@ -53,9 +54,9 @@ namespace Model
         }
         
         /// <summary>
-        /// 
+        /// Задаёт наименование и частоту тока случайным образом.
         /// </summary>
-        /// <param name="element"></param>
+        /// <param name="element">Объект типа PassiveElementBase.</param>
         private static void RandomBaseParams(PassiveElementBase element)
         {
             element.Name = RandomName();
@@ -63,9 +64,9 @@ namespace Model
         }
 
         /// <summary>
-        /// 
+        /// Формирует случайное наименование элемента.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Строка-наименование элемента.</returns>
         private static string RandomName()
         {
             string name = String.Empty;
@@ -84,9 +85,9 @@ namespace Model
         }
 
         /// <summary>
-        /// 
+        /// Формирует объект Resistor со случайными значениями полей.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Объект типа Resistor.</returns>
         public static Resistor RandomResistor()
         {
             Resistor resistor = new Resistor();
@@ -98,9 +99,9 @@ namespace Model
         }
 
         /// <summary>
-        /// 
+        /// Формирует объект Capacitor со случайными значениями полей.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Объект типа Capacitor.</returns>
         public static Capacitor RandomCapacitor()
         {
             Capacitor capacitor = new Capacitor();
@@ -112,9 +113,9 @@ namespace Model
         }
 
         /// <summary>
-        /// 
+        /// Формирует объект Inductor со случайными значениями полей.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Объект типа Inductor.</returns>
         public static Inductor RandomInductor()
         {
             Inductor inductor = new Inductor();

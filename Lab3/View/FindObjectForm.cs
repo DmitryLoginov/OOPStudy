@@ -167,15 +167,11 @@ namespace View
                     impedanceCheckBox,
                     (index) =>
                     {
-                        if (realPartTextBox.Text == string.Empty)
-                        {
-                            return false;
-                        }
-                        if (dataGridSearchResults.Rows[index].Cells[2].Value is Complex impedance)
-                        {
-                            return (impedance.Real.ToString() != realPartTextBox.Text);
-                        }
-                        return false;
+                        var realToStringFunc = new Func<Complex, string>(
+                                tmpImpedance => tmpImpedance.Real.ToString());
+
+                        return CheckImpedanceCondition(dataGridSearchResults.Rows[index].Cells[2].Value,
+                            realToStringFunc, realPartTextBox);
                     }
                 ),
                 new Tuple<CheckBox, Func<int, bool>>
@@ -183,20 +179,11 @@ namespace View
                     impedanceCheckBox,
                     (index) =>
                     {
-                        var tmpValue = dataGridSearchResults.Rows[index].Cells[2].Value;
                         var imaginaryToStringFunc = new Func<Complex, string>(                        
                                 tmpImpedance => tmpImpedance.Imaginary.ToString());
-                        var tmpTextBox = imaginaryPartTextBox;
 
-                        if (tmpTextBox.Text == string.Empty)
-                        {
-                            return false;
-                        }
-                        if (tmpValue is Complex impedance)
-                        {
-                            return (imaginaryToStringFunc.Invoke(impedance) != tmpTextBox.Text);
-                        }
-                        return false;
+                        return CheckImpedanceCondition(dataGridSearchResults.Rows[index].Cells[2].Value, 
+                            imaginaryToStringFunc, imaginaryPartTextBox);
                     }
                 )
             };
@@ -228,6 +215,32 @@ namespace View
                     dataGridSearchResults.Rows[i].Visible = false;
                 }
             }
+        }
+
+        /// <summary>
+        /// Определяет, равняется ли комплексная составляющая сопротивления
+        /// для объекта в dataGridSearchResults значению, 
+        /// введённому пользователем в TextBox.
+        /// </summary>
+        /// <param name="value">Значение ячейки в столбце "Комплексное сопротивление".</param>
+        /// <param name="complexPart">
+        /// Делегат Func, принимающий переменную типа Complex 
+        /// и возвращающий комплексную составляющую в формате string.
+        /// </param>
+        /// <param name="textBox">Объект TextBox.</param>
+        /// <returns>Переменная типа bool.</returns>
+        private bool CheckImpedanceCondition(object value, 
+            Func<Complex, string> complexPart, TextBox textBox)
+        {
+            if (textBox.Text == string.Empty)
+            {
+                return false;
+            }
+            if (value is Complex impedance)
+            {
+                return (complexPart.Invoke(impedance) != textBox.Text);
+            }
+            return false;
         }
     }
 }
